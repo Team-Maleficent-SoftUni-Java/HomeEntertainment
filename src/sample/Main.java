@@ -250,6 +250,7 @@ public class Main extends Application {
             if(kalimba.isPlaying())kalimba.stop();else kalimba.play();
         });
 
+       kalimba.play();
 
         LongValue lastNanoTime = new LongValue(System.nanoTime());
         IntValue score = new IntValue(0);
@@ -345,7 +346,10 @@ public class Main extends Application {
                             player.rightBoundary().intersects(BATHROOM_X - brickSingleVert.getWidth(), BATHROOM_Y, brickSingleVert.getWidth(), BATHROOM_HEIGHT + 40)) { //wall between living room and bathroom
 
                         if ((input.contains("UP")||(input.contains("W"))) || ((input.contains("DOWN"))||(input.contains("S")))) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
                             player.hasAlreadyHit = true;
                         }
 
