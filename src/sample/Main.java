@@ -18,7 +18,10 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.event.*;
 
+<<<<<<< HEAD
 import javax.swing.*;
+=======
+>>>>>>> origin/master
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.nio.file.Paths;
@@ -251,6 +254,7 @@ public class Main extends Application {
             if(kalimba.isPlaying())kalimba.stop();else kalimba.play();
         });
 
+       kalimba.play();
 
         LongValue lastNanoTime = new LongValue(System.nanoTime());
         IntValue score = new IntValue(0);
@@ -346,7 +350,14 @@ public class Main extends Application {
                             player.rightBoundary().intersects(BATHROOM_X - brickSingleVert.getWidth(), BATHROOM_Y, brickSingleVert.getWidth(), BATHROOM_HEIGHT + 40)) { //wall between living room and bathroom
 
                         if ((input.contains("UP")||(input.contains("W"))) || ((input.contains("DOWN"))||(input.contains("S")))) {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
                             player.hasAlreadyHit = true;
                         }
 
@@ -398,6 +409,7 @@ public class Main extends Application {
                             wallHit.play(1);
                         }
                         if(player.upperBoundary().intersects(fridgeBoundary)){
+<<<<<<< HEAD
                             //changing fridgeImage to openfridge for 5 secs
                             fridge.setImage(openFridgeImage);
                             fridge.setPosition(kitchenSink.getX() + kitchenSink.getWidth() + (2 * brickSingleHorizontal.getWidth()), 30);
@@ -410,6 +422,10 @@ public class Main extends Application {
                                     },
                                     5000
                             );
+=======
+                            fridge.setImage(openFridgeImage);
+                            fridge.setPosition(kitchenSink.getX() + kitchenSink.getWidth() + (2 * brickSingleHorizontal.getWidth()), 30);
+>>>>>>> origin/master
                         }
 
                         player.hasAlreadyHit = true;
