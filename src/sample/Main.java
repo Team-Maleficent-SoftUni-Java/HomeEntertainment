@@ -1,7 +1,10 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -13,7 +16,11 @@ import javafx.scene.paint.Color;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
+import javafx.event.*;
 
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.event.ActionEvent;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -21,6 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Main extends Application {
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -150,6 +158,10 @@ public class Main extends Application {
         fridge.setImage(fridgeImage);
         fridge.setPosition(kitchenSink.getX() + kitchenSink.getWidth() + (2 * brickSingleHorizontal.getWidth()) + 20, 30);
 
+        Image openFridgeImage=new Image("img/openfridge.png", 132, 125, false, false);
+
+
+
         //The kitchenTable object
         Image kitchenTableImage = new Image("img/table_burned_burned.png", 267, 151, false, false);
         Sprite kitchenTable = new Sprite();
@@ -232,6 +244,12 @@ public class Main extends Application {
         // Preparing sounds
         AudioClip wallHit = new AudioClip(Paths.get("src/sounds/wall_hit.wav").toUri().toString());
 //      AudioClip walking = new AudioClip(Paths.get("src/sounds/walking.wav").toUri().toString());
+       AudioClip kalimba=new AudioClip(Paths.get("src/sounds/Kalimba.mp3").toUri().toString());
+        Button soundOffOn=new Button("Music");
+        root.getChildren().add(soundOffOn);
+        soundOffOn.setOnAction(e->{
+            if(kalimba.isPlaying())kalimba.stop();else kalimba.play();
+        });
 
 
         LongValue lastNanoTime = new LongValue(System.nanoTime());
@@ -267,7 +285,7 @@ public class Main extends Application {
                 // Player movement
 
                 player.setVelocity(0, 0);
-                if (input.contains("LEFT")) {
+                if (input.contains("LEFT")|| input.contains("A")) {
                     if (player.leftBoundary().intersects(kitchenSinkBoundary) ||
                             player.leftBoundary().intersects(kitchenTableBoundary) ||
                             player.leftBoundary().intersects(wardrobeBoundary) ||
@@ -288,7 +306,7 @@ public class Main extends Application {
                             player.leftBoundary().intersects(BATHROOM_X - brickSingleVert.getWidth(), BATHROOM_Y, brickSingleVert.getWidth(), BATHROOM_HEIGHT + 40)) { //wall between living room and bathroom
 
                         //checks if another button is already pressed; prevents sound spam
-                        if (input.contains("UP") || input.contains("DOWN")) {
+                        if ((input.contains("UP")||(input.contains("W"))) || ((input.contains("DOWN"))||(input.contains("S")))) {
                             player.hasAlreadyHit = true;
                         }
 
@@ -310,7 +328,7 @@ public class Main extends Application {
                         player.hasAlreadyHit = false;
                     }
                 }
-                if (input.contains("RIGHT")) {
+                if (input.contains("RIGHT")||(input.contains("D"))) {
                     if (player.rightBoundary().intersects(fridgeBoundary) ||
                             player.rightBoundary().intersects(bedBoundary) ||
                             player.rightBoundary().intersects(livingRoomChairBoundary) ||
@@ -327,7 +345,8 @@ public class Main extends Application {
                             player.rightBoundary().intersects(BEDROOM_X - brickSingleVert.getWidth(), (3 * brickSingleVert.getHeight()) + (2 * wallColon.getHeight()) + brickSingleVert.getHeight() + 40, brickSingleVert.getWidth(), brickSingleVert.getHeight() * 2) || // wall between kitchen and bedroom(one brick)
                             player.rightBoundary().intersects(BATHROOM_X - brickSingleVert.getWidth(), BATHROOM_Y, brickSingleVert.getWidth(), BATHROOM_HEIGHT + 40)) { //wall between living room and bathroom
 
-                        if (input.contains("UP") || input.contains("DOWN")) {
+                        if ((input.contains("UP")||(input.contains("W"))) || ((input.contains("DOWN"))||(input.contains("S")))) {
+
                             player.hasAlreadyHit = true;
                         }
 
@@ -349,7 +368,7 @@ public class Main extends Application {
                         player.hasAlreadyHit = false;
                     }
                 }
-                if (input.contains("UP")) {
+                if (input.contains("UP")||(input.contains("W"))) {
                     if (player.upperBoundary().intersects(kitchenDresserBoundary) ||
                             player.upperBoundary().intersects(kitchenSinkBoundary) ||
                             player.upperBoundary().intersects(kitchenTableBoundary) ||
@@ -371,12 +390,26 @@ public class Main extends Application {
                             player.upperBoundary().intersects(brickSingleVert.getWidth() + (14 * brickSingleHorizontal.getWidth()), BATHROOM_Y - brickSingleHorizontal.getHeight(), 2 * brickSingleHorizontal.getWidth(), brickSingleHorizontal.getHeight()) || //wall between bedroom and bathroom
                             player.upperBoundary().intersects(BEDROOM_X - brickSingleVert.getWidth(), 0, brickSingleVert.getWidth(), (3 * brickSingleVert.getHeight()) + (2 * wallColon.getHeight()))) { //wall between kitchen and bedroom
 
-                        if (input.contains("LEFT") || input.contains("RIGHT")) {
+                        if (input.contains("LEFT") || input.contains("RIGHT")||input.contains("A")||input.contains("D")) {
                             player.hasAlreadyHit = true;
                         }
 
                         if (!player.hasAlreadyHit) {
                             wallHit.play(1);
+                        }
+                        if(player.upperBoundary().intersects(fridgeBoundary)){
+                            //changing fridgeImage to openfridge for 5 secs
+                            fridge.setImage(openFridgeImage);
+                            fridge.setPosition(kitchenSink.getX() + kitchenSink.getWidth() + (2 * brickSingleHorizontal.getWidth()), 30);
+                            new java.util.Timer().schedule(
+                                    new java.util.TimerTask() {
+                                        @Override
+                                        public void run() {
+                                            fridge.setImage(fridgeImage);
+                                        }
+                                    },
+                                    5000
+                            );
                         }
 
                         player.hasAlreadyHit = true;
@@ -393,7 +426,7 @@ public class Main extends Application {
                         player.hasAlreadyHit = false;
                     }
                 }
-                if (input.contains("DOWN")) {
+                if (input.contains("DOWN")||input.contains("S")) {
                     if (player.bottomBoundary().intersects(kitchenTableBoundary) ||
                             player.bottomBoundary().intersects(livingRoomChairBoundary) ||
                             player.bottomBoundary().intersects(desk.getX(), desk.getY() + 40, desk.getWidth(), desk.getHeight()) || //desk
@@ -409,7 +442,7 @@ public class Main extends Application {
                             player.bottomBoundary().intersects(brickSingleVert.getWidth() + (6 * brickSingleHorizontal.getWidth()), wallShort.getHeight(), 10 * brickSingleHorizontal.getWidth(), brickSingleHorizontal.getHeight()) || //upper wall right from entrance
                             player.bottomBoundary().intersects(BEDROOM_X - brickSingleVert.getWidth(), (3 * brickSingleVert.getHeight()) + (2 * wallColon.getHeight()) + brickSingleVert.getHeight() + 40, brickSingleVert.getWidth(), brickSingleVert.getHeight() * 2)) { // wall between kitchen and bedroom(one brick)
 
-                        if (input.contains("LEFT") || input.contains("RIGHT")) {
+                        if (input.contains("LEFT") || input.contains("RIGHT")||input.contains("A")||input.contains("D")) {
                             player.hasAlreadyHit = true;
                         }
 
@@ -566,5 +599,7 @@ public class Main extends Application {
         }.start();
 
         theStage.show();
+
     }
+
 }
