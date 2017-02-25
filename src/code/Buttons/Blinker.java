@@ -1,4 +1,4 @@
-package sample.Buttons;
+package code.Buttons;
 
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;

@@ -1,14 +1,13 @@
-package sample.Player;
+package code.Player;
 
 import javafx.scene.image.Image;
-import sample.Achievments.Achievement;
-import sample.GlobalVariables;
-import sample.Sounds.SoundManager;
+import code.Achievments.Achievement;
+import code.GlobalVariables;
+import code.Sounds.SoundManager;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import static sample.Graphics.RoomsParameters.brickSingleHorizontal;
+import static code.GlobalVariables.*;
 
 public class Player extends Sprite {
     private double health;

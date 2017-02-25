@@ -1,4 +1,4 @@
-package sample.Graphics;
+package code.Graphics;
 
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
@@ -6,13 +6,10 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import sample.GlobalVariables;
+import code.GlobalVariables;
+import static code.GlobalVariables.*;
 
-import static sample.Graphics.RoomsParameters.*;
-import static sample.Graphics.RoomsParameters.BATHROOM_X;
-import static sample.Graphics.RoomsParameters.BATHROOM_Y;
-
-public class GraphicDisplayer {
+public class GraphicController {
 
     public static void displayObjects (){
         //The kitchenDresser object
@@ -126,16 +123,16 @@ public class GraphicDisplayer {
 
         //Draw pavements of different rooms
         GlobalVariables.getGraphicContext().clearRect(0, 0, 1024, 768);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getParquet(), KITCHEN_X, KITCHEN_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getParquet(), KITCHEN_X, KITCHEN_Y + KITCHEN_HEIGHT / 2);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getCarpet2(), BEDROOM_X, BEDROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getCarpet2(), BEDROOM_X, BEDROOM_Y + BEDROOM_HEIGHT / 2);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getTiles(), BATHROOM_X, BATHROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getTiles(), BATHROOM_X, BATHROOM_Y + BATHROOM_HEIGHT / 2);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getCarpet(), LIVINGROOM_X, LIVINGROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getCarpet(), LIVINGROOM_X + LIVINGROOM_WIDTH / 2, LIVINGROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getCarpet(), LIVINGROOM_X, LIVINGROOM_Y + LIVINGROOM_HEIGHT / 2);
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getCarpet(), LIVINGROOM_X + LIVINGROOM_WIDTH / 2, LIVINGROOM_Y + LIVINGROOM_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getParquet(), KITCHEN_X, KITCHEN_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getParquet(), KITCHEN_X, KITCHEN_Y + KITCHEN_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet2(), BEDROOM_X, BEDROOM_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet2(), BEDROOM_X, BEDROOM_Y + BEDROOM_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, BATHROOM_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, BATHROOM_Y + BATHROOM_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVINGROOM_X, LIVINGROOM_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVINGROOM_X + LIVINGROOM_WIDTH / 2, LIVINGROOM_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVINGROOM_X, LIVINGROOM_Y + LIVINGROOM_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVINGROOM_X + LIVINGROOM_WIDTH / 2, LIVINGROOM_Y + LIVINGROOM_HEIGHT / 2);
 
         //Draw upper walls and bricks
         //Upper border
@@ -148,7 +145,7 @@ public class GraphicDisplayer {
         for (int i = 0; i < GlobalVariables.getCanvas().getWidth() / brickSingleHorizontal.getWidth(); i++) {
             GlobalVariables.getGraphicContext().drawImage(wallShort, brickSingleVert.getWidth() + wallUpBorder1 + doorWidth + (i * brickSingleHorizontal.getWidth()), brickSingleHorizontal.getHeight());
             //Stats board
-            GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getStatsBoard(), GlobalVariables.getCanvas().getWidth() - 240, 3);
+            GlobalVariables.getGraphicContext().drawImage(ImageController.getStatsBoard(), GlobalVariables.getCanvas().getWidth() - 240, 3);
             GlobalVariables.getGraphicContext().drawImage(brickSingleHorizontal, brickSingleVert.getWidth() + wallUpBorder1 + doorWidth + (i * brickSingleHorizontal.getWidth()), 0);
         }
         //wall between kitchen and bedroom
@@ -221,7 +218,7 @@ public class GraphicDisplayer {
         FurnitureObjects.getLivingRoomChair().render(GlobalVariables.getGraphicContext());
         FurnitureObjects.getToilet().render(GlobalVariables.getGraphicContext());
         FurnitureObjects.getBathroomSink().render(GlobalVariables.getGraphicContext());
-        GlobalVariables.getGraphicContext().drawImage(ImageDefiner.getSiphon(), BATHROOM_X + (BATHROOM_WIDTH / 2) - (ImageDefiner.getSiphon().getWidth() / 2), BATHROOM_Y + 100);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getSiphon(), BATHROOM_X + (BATHROOM_WIDTH / 2) - (ImageController.getSiphon().getWidth() / 2), BATHROOM_Y + 100);
 
         //Player above the middle wall and the obstacles in the low middle part of the screen
         if (GlobalVariables.getPlayer().bottomBoundary().intersects(0, brickSingleHorizontal.getHeight() + wallShort.getHeight() + KITCHEN_HEIGHT, GlobalVariables.getCanvas().getWidth(), brickSingleHorizontal.getHeight() + LIVINGROOM_HEIGHT + 40)) {
@@ -243,11 +240,11 @@ public class GraphicDisplayer {
 
         //Display scores on the stats board
         String pointsText = "Points: " + GlobalVariables.getPlayer().score;
-        GlobalVariables.getGraphicContext().fillText(pointsText, GlobalVariables.getCanvas().getWidth() - ImageDefiner.getStatsBoard().getWidth() + 5, GlobalVariables.getCanvas().getLayoutY() + 40);
+        GlobalVariables.getGraphicContext().fillText(pointsText, GlobalVariables.getCanvas().getWidth() - ImageController.getStatsBoard().getWidth() + 5, GlobalVariables.getCanvas().getLayoutY() + 40);
 
         //Display health on stats board
         String healthText = "Health " + (int) (GlobalVariables.getPlayer().getPlayerHealth()) + "%";
 
-        GlobalVariables.getGraphicContext().fillText(healthText, GlobalVariables.getCanvas().getWidth() - ImageDefiner.getStatsBoard().getWidth() + 5, GlobalVariables.getCanvas().getLayoutY() + 20);
+        GlobalVariables.getGraphicContext().fillText(healthText, GlobalVariables.getCanvas().getWidth() - ImageController.getStatsBoard().getWidth() + 5, GlobalVariables.getCanvas().getLayoutY() + 20);
     }
 }

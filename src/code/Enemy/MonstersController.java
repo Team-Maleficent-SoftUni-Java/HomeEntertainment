@@ -1,17 +1,18 @@
-package sample.Enemy;
+package code.Enemy;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import sample.Achievments.AchievementManager;
-import sample.Achievments.GameMessage;
-import sample.Buttons.ButtonManager;
-import sample.GlobalVariables;
-import sample.Player.Sprite;
+import code.Achievments.AchievementManager;
+import code.Achievments.GameMessage;
+import code.Buttons.ButtonController;
+import code.GlobalVariables;
+import code.Player.Sprite;
 
 import java.util.ArrayDeque;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class Monsters {
+public class MonstersController {
 
     private static ArrayDeque<String> monstersImages;
 
@@ -20,6 +21,10 @@ public class Monsters {
         monstersImages.addLast("img/monster.gif");
         monstersImages.addLast("img/monster1.png");
         monstersImages.addLast("img/monster2.png");
+    }
+
+    public static ArrayDeque<String> getMonstersImages() {
+        return monstersImages;
     }
 
     public static void createMonsters() {
@@ -49,10 +54,10 @@ public class Monsters {
                 GlobalVariables.getPlayer().subtractPlayerHealth();
 
                 if (GlobalVariables.getPlayer().getPlayerHealth() <= 0){
-                    GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonQuit());
-                    GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonQuit());
-                    GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonStartNewGame());
-                    GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonStartNewGame());
+                    GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonQuit());
+                    GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonQuit());
+                    GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonStartNewGame());
+                    GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonStartNewGame());
                     animationTimer.stop();
                 }
 
@@ -61,7 +66,16 @@ public class Monsters {
         }
     }
 
-    public static ArrayDeque<String> getMonstersImages() {
-        return monstersImages;
+    public static void showMonsters(AtomicInteger monsterCounter) {
+        monsterCounter.addAndGet(1);
+        if (monsterCounter.get() == 300) {
+            Sprite tempMonster = GlobalVariables.getMonsterList().pop();
+            GlobalVariables.getMonsterList().addLast(tempMonster);
+            double px = (GlobalVariables.getPlayer().getX() * Math.random() + 100);
+            double py = (GlobalVariables.getPlayer().getY() * Math.random() + 100);
+            tempMonster.setPosition(px, py);
+            GlobalVariables.getMonstersToRender().add(tempMonster);
+            monsterCounter.set(0);
+        }
     }
 }

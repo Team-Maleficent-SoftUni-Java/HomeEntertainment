@@ -1,11 +1,10 @@
-package sample.Graphics;
+package code.Graphics;
 
+import code.GlobalVariables;
 import javafx.scene.image.Image;
+import static code.GlobalVariables.*;
 
-import static sample.Graphics.RoomsParameters.*;
-import static sample.Graphics.RoomsParameters.BEDROOM_HEIGHT;
-
-public class ImageDefiner {
+public class ImageController {
     private static Image parquet;
     private static Image tiles;
     private static Image carpet;
@@ -20,6 +19,25 @@ public class ImageDefiner {
         carpet2 = new Image("img/carpet03.jpg", BEDROOM_WIDTH, BEDROOM_HEIGHT / 2, false, false);
         siphon = new Image("img/siphon.png", 40, 40, false, false);
         statsBoard = new Image("img/statsBoard.png");
+    }
+
+    public static void setPlayerImages () {
+        //down
+        GlobalVariables.getPlayerDownImages().addLast("img/playerFront0.png");
+        GlobalVariables.getPlayerDownImages().addLast("img/playerFront1.png");
+        GlobalVariables.getPlayerDownImages().addLast("img/playerFront2.png");
+        //up
+        GlobalVariables.getPlayerUpImages().addLast("img/playerBack0.png");
+        GlobalVariables.getPlayerUpImages().addLast("img/playerBack1.png");
+        GlobalVariables.getPlayerUpImages().addLast("img/playerBack2.png");
+        //right
+        GlobalVariables.getPlayerRightImages().addLast("img/playerRight0.png");
+        GlobalVariables.getPlayerRightImages().addLast("img/playerRight1.png");
+        GlobalVariables.getPlayerRightImages().addLast("img/playerRight2.png");
+        //left
+        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft0.png");
+        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft1.png");
+        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft2.png");
     }
 
     public static Image getParquet() {

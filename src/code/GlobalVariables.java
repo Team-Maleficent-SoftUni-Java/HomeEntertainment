@@ -1,17 +1,47 @@
-package sample;
+package code;
 
+import code.Graphics.ImageController;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import sample.Player.Player;
-import sample.Player.Sprite;
+import code.Player.Player;
+import code.Player.Sprite;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GlobalVariables {
+
     private static final String PROJECT_PATH = System.getProperty("user.dir");
+    private static final Canvas CANVAS = new Canvas(1024, 768);
+
+    // Create Image and ImageView objects
+    public static final Image brickSingleHorizontal = new Image("img/brickSingleHorizontal.png");
+    public static final Image brickSingleVert = new Image("img/brickSingleVert.png");
+    public static final Image wallShort = new Image("img/wallShort.png");
+    public static final Image wallColon = new Image("img/wallColon.png");
+    //borders Kitchen
+    public static final double KITCHEN_X = brickSingleVert.getWidth();
+    public static final double KITCHEN_Y = brickSingleHorizontal.getHeight() + wallShort.getHeight();
+    public static final double KITCHEN_WIDTH = brickSingleHorizontal.getWidth() * 8;
+    public static final double KITCHEN_HEIGHT = GlobalVariables.getCanvas().getHeight() / 2 - brickSingleHorizontal.getHeight();
+    //borders Living room
+    public static final double LIVINGROOM_X = brickSingleVert.getWidth();
+    public static final double LIVINGROOM_Y = brickSingleHorizontal.getHeight() + wallShort.getHeight() + KITCHEN_HEIGHT + brickSingleHorizontal.getHeight();
+    public static final double LIVINGROOM_WIDTH = brickSingleHorizontal.getWidth() * 10 - brickSingleVert.getWidth();
+    public static final double LIVINGROOM_HEIGHT = GlobalVariables.getCanvas().getHeight() - LIVINGROOM_Y - (2 * brickSingleHorizontal.getHeight());
+    //borders Bedroom
+    public static final double BEDROOM_X = brickSingleVert.getWidth() + KITCHEN_WIDTH + brickSingleVert.getWidth();
+    public static final double BEDROOM_Y = brickSingleHorizontal.getHeight() + wallShort.getHeight();
+    public static final double BEDROOM_WIDTH = GlobalVariables.getCanvas().getWidth() - KITCHEN_WIDTH - (3 * brickSingleVert.getWidth());
+    public static final double BEDROOM_HEIGHT = GlobalVariables.getCanvas().getHeight() / 2 - brickSingleHorizontal.getHeight();
+    //borders Bathroom
+    public static final double BATHROOM_X = brickSingleVert.getWidth() + LIVINGROOM_WIDTH + brickSingleVert.getWidth();
+    public static final double BATHROOM_Y = brickSingleHorizontal.getHeight() + wallShort.getHeight() + KITCHEN_HEIGHT + brickSingleHorizontal.getHeight();
+    public static final double BATHROOM_WIDTH = GlobalVariables.getCanvas().getWidth() - (3 * brickSingleVert.getWidth()) - LIVINGROOM_WIDTH;
+    public static final double BATHROOM_HEIGHT = GlobalVariables.getCanvas().getHeight() - LIVINGROOM_Y - (2 * brickSingleHorizontal.getHeight());
 
     private static Group root = new Group();
     private static final boolean[] _mute = {false};
@@ -20,9 +50,8 @@ public class GlobalVariables {
     private static AudioClip _walking, _running, _wallHit;
     private static AtomicInteger _stepCounter;
     private static ArrayDeque<String> _playerDownImages, _playerRightImages, _playerLeftImages, _playerUpImages;
-    private static Canvas _canvas = new Canvas(1024, 768);
     private static String _direction;
-    private static GraphicsContext gc = _canvas.getGraphicsContext2D();
+    private static GraphicsContext gc = CANVAS.getGraphicsContext2D();
     private static ArrayList<Sprite> monstersToRender;
     private static ArrayDeque<Sprite> monsterList;
 
@@ -86,52 +115,28 @@ public class GlobalVariables {
         return _playerDownImages;
     }
 
-    public static void setPlayerDownImages(ArrayDeque<String> playerDownImages) {
-        _playerDownImages = playerDownImages;
-        GlobalVariables.getPlayerDownImages().addLast("img/playerFront0.png");
-        GlobalVariables.getPlayerDownImages().addLast("img/playerFront1.png");
-        GlobalVariables.getPlayerDownImages().addLast("img/playerFront2.png");
+    public static void setPlayerImages(ArrayDeque<String> playerImages) {
+        _playerDownImages = playerImages;
+        _playerUpImages = playerImages;
+        _playerLeftImages = playerImages;
+        _playerRightImages = playerImages;
+        ImageController.setPlayerImages();
     }
 
     public static ArrayDeque<String> getPlayerRightImages() {
         return _playerRightImages;
     }
 
-    public static void setPlayerRightImages(ArrayDeque<String> playerRightImages) {
-        _playerRightImages = playerRightImages;
-        GlobalVariables.getPlayerRightImages().addLast("img/playerRight0.png");
-        GlobalVariables.getPlayerRightImages().addLast("img/playerRight1.png");
-        GlobalVariables.getPlayerRightImages().addLast("img/playerRight2.png");
-    }
-
     public static ArrayDeque<String> getPlayerLeftImages() {
         return _playerLeftImages;
-    }
-
-    public static void setPlayerLeftImages(ArrayDeque<String> playerLeftImages) {
-        _playerLeftImages = playerLeftImages;
-        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft0.png");
-        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft1.png");
-        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft2.png");
     }
 
     public static ArrayDeque<String> getPlayerUpImages() {
         return _playerUpImages;
     }
 
-    public static void setPlayerUpImages(ArrayDeque<String> playerUpImages) {
-        _playerUpImages = playerUpImages;
-        GlobalVariables.getPlayerUpImages().addLast("img/playerBack0.png");
-        GlobalVariables.getPlayerUpImages().addLast("img/playerBack1.png");
-        GlobalVariables.getPlayerUpImages().addLast("img/playerBack2.png");
-    }
-
     public static Canvas getCanvas() {
-        return _canvas;
-    }
-
-    public static void setCanvas(Canvas canvas) {
-        _canvas = canvas;
+        return CANVAS;
     }
 
     public static String getDirection() {

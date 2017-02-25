@@ -1,6 +1,6 @@
-package sample.Achievments;
+package code.Achievments;
 
-import sample.Player.Sprite;
+import code.Player.Sprite;
 
 public class Achievement extends Sprite {
 

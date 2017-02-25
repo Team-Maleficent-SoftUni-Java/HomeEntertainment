@@ -1,7 +1,7 @@
-package sample.Sounds;
+package code.Sounds;
 
 import javafx.scene.media.AudioClip;
-import sample.GlobalVariables;
+import code.GlobalVariables;
 
 import java.nio.file.Paths;
 
