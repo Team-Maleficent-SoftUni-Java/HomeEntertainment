@@ -9,7 +9,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class AchievementManager {
+public class AchievementController {
 
     private final GraphicsContext gc;
     private final int achievementY;
@@ -17,7 +17,7 @@ public class AchievementManager {
     private Player player;
     private Group root;
 
-    public AchievementManager(Player player, GraphicsContext gc, Group root) {
+    public AchievementController(Player player, GraphicsContext gc, Group root) {
 
         this.setPlayer(player);
         this.gc = gc;

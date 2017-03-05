@@ -5,7 +5,6 @@ import code.Player.Sprite;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 
 import java.util.ArrayDeque;
@@ -15,7 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class GlobalVariables {
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");
-    private static final int CANVAS_HEIGHT = 768;
+    public static final int CANVAS_FAKE_HEIGHT = 768;
+    private static final int CANVAS_HEIGHT = 900;
     private static final int CANVAS_WIDTH = 1024;
 
     //borders Kitchen
@@ -42,19 +42,12 @@ public class GlobalVariables {
     public static final double BATHROOM_WIDTH = 364;
     public static final double BATHROOM_HEIGHT = 244;
 
-    // Create Image and ImageView objects
-    public static Image brickSingleHorizontal = new Image("img/brickSingleHorizontal.png");
-    public static Image brickSingleVert = new Image("img/brickSingleVert.png");
-    public static Image wallShort = new Image("img/wallShort.png");
-    public static Image wallColon = new Image("img/wallColon.png");
-
     private static final boolean[] _mute = {false};
     private static Group root = new Group();
     private static Player _player;
     private static ArrayList<String> _input;
     private static AudioClip _walking, _running, _wallHit;
     private static AtomicInteger _stepCounter;
-    private static ArrayDeque<String> _playerDownImages, _playerRightImages, _playerLeftImages, _playerUpImages;
     private static Canvas _canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     private static String _direction;
     private static GraphicsContext gc = _canvas.getGraphicsContext2D();
@@ -115,50 +108,6 @@ public class GlobalVariables {
 
     public static void setMute(boolean mute) {
          _mute[0] = mute;
-    }
-
-    public static ArrayDeque<String> getPlayerDownImages() {
-        return _playerDownImages;
-    }
-
-    static void setPlayerDownImages(ArrayDeque<String> playerDownImages) {
-        _playerDownImages = playerDownImages;
-        GlobalVariables.getPlayerDownImages().addLast("img/playerFront0.png");
-        GlobalVariables.getPlayerDownImages().addLast("img/playerFront1.png");
-        GlobalVariables.getPlayerDownImages().addLast("img/playerFront2.png");
-    }
-
-    public static ArrayDeque<String> getPlayerRightImages() {
-        return _playerRightImages;
-    }
-
-    static void setPlayerRightImages(ArrayDeque<String> playerRightImages) {
-        _playerRightImages = playerRightImages;
-        GlobalVariables.getPlayerRightImages().addLast("img/playerRight0.png");
-        GlobalVariables.getPlayerRightImages().addLast("img/playerRight1.png");
-        GlobalVariables.getPlayerRightImages().addLast("img/playerRight2.png");
-    }
-
-    public static ArrayDeque<String> getPlayerLeftImages() {
-        return _playerLeftImages;
-    }
-
-    static void setPlayerLeftImages(ArrayDeque<String> playerLeftImages) {
-        _playerLeftImages = playerLeftImages;
-        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft0.png");
-        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft1.png");
-        GlobalVariables.getPlayerLeftImages().addLast("img/playerLeft2.png");
-    }
-
-    public static ArrayDeque<String> getPlayerUpImages() {
-        return _playerUpImages;
-    }
-
-    static void setPlayerUpImages(ArrayDeque<String> playerUpImages) {
-        _playerUpImages = playerUpImages;
-        GlobalVariables.getPlayerUpImages().addLast("img/playerBack0.png");
-        GlobalVariables.getPlayerUpImages().addLast("img/playerBack1.png");
-        GlobalVariables.getPlayerUpImages().addLast("img/playerBack2.png");
     }
 
     public static Canvas getCanvas() {

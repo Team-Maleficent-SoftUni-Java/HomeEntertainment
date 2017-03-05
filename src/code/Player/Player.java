@@ -2,13 +2,14 @@ package code.Player;
 
 import code.Achievments.Achievement;
 import code.GlobalVariables;
-import code.Sounds.SoundManager;
+import code.Graphics.ImageController;
+import code.Sounds.SoundController;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static code.GlobalVariables.brickSingleHorizontal;
+import static code.Graphics.ImageController.BRICK_SINGLE_HORIZONTAL;
 
 public class Player extends Sprite {
     private double health;
@@ -32,23 +33,23 @@ public class Player extends Sprite {
     public static void changeImage(String direction) {
         switch (direction) {
             case "down":
-                String tempImage = GlobalVariables.getPlayerDownImages().pop();
-                GlobalVariables.getPlayerDownImages().addLast(tempImage);
+                String tempImage = ImageController.getPlayerDownImages().pop();
+                ImageController.getPlayerDownImages().addLast(tempImage);
                 GlobalVariables.getPlayer().setImage(tempImage);
                 break;
             case "up":
-                String tempImageUp = GlobalVariables.getPlayerUpImages().pop();
-                GlobalVariables.getPlayerUpImages().addLast(tempImageUp);
+                String tempImageUp = ImageController.getPlayerUpImages().pop();
+                ImageController.getPlayerUpImages().addLast(tempImageUp);
                 GlobalVariables.getPlayer().setImage(tempImageUp);
                 break;
             case "right":
-                String tempImageRight = GlobalVariables.getPlayerRightImages().pop();
-                GlobalVariables.getPlayerRightImages().addLast(tempImageRight);
+                String tempImageRight = ImageController.getPlayerRightImages().pop();
+                ImageController.getPlayerRightImages().addLast(tempImageRight);
                 GlobalVariables.getPlayer().setImage(tempImageRight);
                 break;
             case "left":
-                String tempImageLeft = GlobalVariables.getPlayerLeftImages().pop();
-                GlobalVariables.getPlayerLeftImages().addLast(tempImageLeft);
+                String tempImageLeft = ImageController.getPlayerLeftImages().pop();
+                ImageController.getPlayerLeftImages().addLast(tempImageLeft);
                 GlobalVariables.getPlayer().setImage(tempImageLeft);
                 break;
             default:
@@ -128,13 +129,13 @@ public class Player extends Sprite {
         Image playerImage = new Image("img/playerFront0.png", 45, 120, false, false);
         GlobalVariables.setPlayer(new Player());
         GlobalVariables.getPlayer().setImage(playerImage);
-        GlobalVariables.getPlayer().setPosition(5 * brickSingleHorizontal.getWidth(), 20);
+        GlobalVariables.getPlayer().setPosition(5 * BRICK_SINGLE_HORIZONTAL.getWidth(), 20);
     }
 
     public static void sprayMonsters() {
         if (GlobalVariables.getInput().contains("SPACE")) {
-            if(!SoundManager.getSpraying().isPlaying() && !GlobalVariables.getMute()[0])
-                SoundManager.getSpraying().play();
+            if(!SoundController.getSpraying().isPlaying() && !GlobalVariables.getMute()[0])
+                SoundController.getSpraying().play();
 
             if("left".equals(GlobalVariables.getDirection()))
                 GlobalVariables.getPlayer().setSprayImage("img/SprayLeft.gif");
@@ -151,12 +152,12 @@ public class Player extends Sprite {
                 Sprite monster = monstersIter.next();
 
                 if ( GlobalVariables.getPlayer().sprayBoundary().intersects(monster.sprayBoundary())) {
-                    GlobalVariables.getPlayer().score++;
-                    if (!GlobalVariables.getMute()[0]) {
-                        SoundManager.getPickup().play();
-                    }
-                    for (long i = 0; i < 10000000; i++) {
-                        if ( i == 9999999){
+                    for (long i = 0; i < 100000000; i++) {
+                        if ( i == 99999999){
+                            GlobalVariables.getPlayer().score++;
+                            if (!GlobalVariables.getMute()[0]) {
+                                SoundController.getPickup().play();
+                            }
                             monstersIter.remove();
                         }
                     }

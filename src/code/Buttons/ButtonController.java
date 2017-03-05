@@ -11,7 +11,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ButtonManager {
+import static code.GlobalVariables.CANVAS_FAKE_HEIGHT;
+
+public class ButtonController {
     private static final Image[] imageSound = {new Image("img/soundOn.png", 30, 30, false, false)};
     private static final boolean[] isMainWindow = {true};
     private static Button buttonMenu;
@@ -35,7 +37,7 @@ public class ButtonManager {
         buttonMenu.setPrefHeight(50);
         buttonMenu.setPrefWidth(150);
         buttonMenu.setLayoutX((GlobalVariables.getCanvas().getWidth() - (3 * buttonMenu.getPrefWidth()) - (2 * 50)) / 2 + 15);
-        buttonMenu.setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
+        buttonMenu.setLayoutY(CANVAS_FAKE_HEIGHT - 180);
         buttonMenu.setStyle("-fx-font: 22 arial");
         GlobalVariables.getRoot().getChildren().add(buttonMenu);
 
@@ -44,7 +46,7 @@ public class ButtonManager {
         buttonStart.setPrefHeight(50);
         buttonStart.setPrefWidth(150);
         buttonStart.setLayoutX(buttonMenu.getLayoutX() + buttonMenu.getPrefWidth() + 50);
-        buttonStart.setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
+        buttonStart.setLayoutY(CANVAS_FAKE_HEIGHT - 180);
         buttonStart.setStyle("-fx-font: 22 arial");
         GlobalVariables.getRoot().getChildren().add(buttonStart);
 
@@ -53,7 +55,7 @@ public class ButtonManager {
         buttonQuit.setPrefHeight(50);
         buttonQuit.setPrefWidth(150);
         buttonQuit.setLayoutX(buttonStart.getLayoutX() + buttonStart.getPrefWidth() + 50);
-        buttonQuit.setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
+        buttonQuit.setLayoutY(CANVAS_FAKE_HEIGHT - 180);
         buttonQuit.setStyle("-fx-font: 22 arial");
         GlobalVariables.getRoot().getChildren().add(buttonQuit);
 
@@ -74,51 +76,51 @@ public class ButtonManager {
 
     public static void setButtonsParameters() {
         //Menu params
-        double menuWidth = (3 * ButtonManager.getButtonMenu().getPrefWidth()) + (2 * 50);
-        double menuHeight = GlobalVariables.getCanvas().getHeight() - (GlobalVariables.getCanvas().getHeight() / 2) + 100;
-        double menuX = ButtonManager.getButtonMenu().getLayoutX();
-        double menuY = (GlobalVariables.getCanvas().getHeight() - (GlobalVariables.getCanvas().getHeight() / 2)) / 2 - 100;
+        double menuWidth = (3 * ButtonController.getButtonMenu().getPrefWidth()) + (2 * 50);
+        double menuHeight = CANVAS_FAKE_HEIGHT - (CANVAS_FAKE_HEIGHT / 2) + 100;
+        double menuX = ButtonController.getButtonMenu().getLayoutX();
+        double menuY = (CANVAS_FAKE_HEIGHT - (CANVAS_FAKE_HEIGHT / 2)) / 2 - 100;
         menu = new Rectangle(menuX, menuY, menuWidth, menuHeight);
         menu.setFill(Color.SKYBLUE);
 
         //Menu Title
         Font menuTitleFont = Font.font(java.awt.Font.MONOSPACED, 43);
-        ButtonManager.getMenuTitle().setFont(menuTitleFont);
-        ButtonManager.getMenuTitle().setFill(Color.MEDIUMVIOLETRED);
-        ButtonManager.getMenuTitle().setX(GlobalVariables.getCanvas().getWidth() / 2 - 20);
-        ButtonManager.getMenuTitle().setY(menuY + 50);
+        ButtonController.getMenuTitle().setFont(menuTitleFont);
+        ButtonController.getMenuTitle().setFill(Color.MEDIUMVIOLETRED);
+        ButtonController.getMenuTitle().setX(GlobalVariables.getCanvas().getWidth() / 2 - 20);
+        ButtonController.getMenuTitle().setY(menuY + 50);
 
         //Menu Sound control
         Font menuSound1 = Font.font(java.awt.Font.MONOSPACED, 20);
-        ButtonManager.getMenuSoundText1().setFont(menuSound1);
-        ButtonManager.getMenuSoundText1().setFill(Color.MEDIUMVIOLETRED);
-        ButtonManager.getMenuSoundText1().setX(menuX + 60);
-        ButtonManager.getMenuSoundText1().setY(menuY + 100);
+        ButtonController.getMenuSoundText1().setFont(menuSound1);
+        ButtonController.getMenuSoundText1().setFill(Color.MEDIUMVIOLETRED);
+        ButtonController.getMenuSoundText1().setX(menuX + 60);
+        ButtonController.getMenuSoundText1().setY(menuY + 100);
         Font menuSound2 = Font.font(java.awt.Font.MONOSPACED, 15);
-        ButtonManager.getMenuSoundText2().setFont(menuSound2);
-        ButtonManager.getMenuSoundText2().setFill(Color.MEDIUMVIOLETRED);
-        ButtonManager.getMenuSoundText2().setX(menuX + 60);
-        ButtonManager.getMenuSoundText2().setY(menuY + 120);
-        ButtonManager.getKeyboardGuideTitle().setFont(menuSound1);
-        ButtonManager.getKeyboardGuideTitle().setFill(Color.MEDIUMVIOLETRED);
-        ButtonManager.getKeyboardGuideTitle().setX(menuX + 10);
-        ButtonManager.getKeyboardGuideTitle().setY(menuY + 180);
-        ButtonManager.getKeyboardGuideTitle().setFont(menuSound2);
-        ButtonManager.getKeyboardGuideTitle().setFill(Color.MEDIUMVIOLETRED);
-        ButtonManager.getKeyboardGuideTitle().setX(menuX + 10);
-        ButtonManager.getKeyboardGuideTitle().setY(menuY + 200);
-        ButtonManager.getKeyboardGuideTitle().setWrappingWidth(menu.getWidth() - 20);
+        ButtonController.getMenuSoundText2().setFont(menuSound2);
+        ButtonController.getMenuSoundText2().setFill(Color.MEDIUMVIOLETRED);
+        ButtonController.getMenuSoundText2().setX(menuX + 60);
+        ButtonController.getMenuSoundText2().setY(menuY + 120);
+        ButtonController.getKeyboardGuideTitle().setFont(menuSound1);
+        ButtonController.getKeyboardGuideTitle().setFill(Color.MEDIUMVIOLETRED);
+        ButtonController.getKeyboardGuideTitle().setX(menuX + 10);
+        ButtonController.getKeyboardGuideTitle().setY(menuY + 180);
+        ButtonController.getKeyboardGuideTitle().setFont(menuSound2);
+        ButtonController.getKeyboardGuideTitle().setFill(Color.MEDIUMVIOLETRED);
+        ButtonController.getKeyboardGuideTitle().setX(menuX + 10);
+        ButtonController.getKeyboardGuideTitle().setY(menuY + 200);
+        ButtonController.getKeyboardGuideTitle().setWrappingWidth(menu.getWidth() - 20);
 
         //Button Sound
-        ButtonManager.getButtonSound().setGraphic(new ImageView(ButtonManager.getImageSound()[0]));
-        ButtonManager.getButtonSound().setLayoutX(menuX + 10);
-        ButtonManager.getButtonSound().setLayoutY(menuY + 80);
+        ButtonController.getButtonSound().setGraphic(new ImageView(ButtonController.getImageSound()[0]));
+        ButtonController.getButtonSound().setLayoutX(menuX + 10);
+        ButtonController.getButtonSound().setLayoutY(menuY + 80);
 
         //Button Menu close
         Image imageDecline = new Image("img/not1.png", 30, 30, false, false);
-        ButtonManager.getButtonClose().setGraphic(new ImageView(imageDecline));
-        ButtonManager.getButtonClose().setLayoutX(menuX - ButtonManager.getButtonClose().getWidth() / 2);
-        ButtonManager.getButtonClose().setLayoutY(menuY - ButtonManager.getButtonClose().getHeight() / 2);
+        ButtonController.getButtonClose().setGraphic(new ImageView(imageDecline));
+        ButtonController.getButtonClose().setLayoutX(menuX - ButtonController.getButtonClose().getWidth() / 2);
+        ButtonController.getButtonClose().setLayoutY(menuY - ButtonController.getButtonClose().getHeight() / 2);
 
     }
 

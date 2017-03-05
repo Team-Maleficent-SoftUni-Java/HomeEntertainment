@@ -1,13 +1,13 @@
 package code.Buttons;
 
-import code.Enemy.Monsters;
+import code.Enemy.MonstersController;
 import code.GlobalVariables;
 import code.Graphics.FurnitureObjects;
 import code.Graphics.GraphicDisplayer;
-import code.Graphics.ImageDefiner;
+import code.Graphics.ImageController;
 import code.Main;
 import code.Player.Player;
-import code.Player.Sprite;
+import code.Sounds.SoundController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -25,72 +25,60 @@ import javafx.stage.Stage;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static code.GlobalVariables.*;
+import static code.Graphics.ImageController.*;
 
 public class ButtonEvents {
 
     public static void attachSoundButtonEvent() {
-        ButtonManager.getButtonSound().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.getButtonSound().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (GlobalVariables.getMute()[0]) {
-                    ButtonManager.getImageSound()[0] = new Image(
-                            "img/soundOn.png", 30, 30, false, false);
-                    ButtonManager.getButtonSound().setGraphic(new ImageView(ButtonManager.getImageSound()[0]));
-                    ButtonManager.getMenuSoundText1().setText("Sound ON");
-                    GlobalVariables.setMute(false);
+                    changeSoundMode(false, "Sound ON", "img/soundOn.png");
                 } else {
-                    ButtonManager.getImageSound()[0] = new Image(
-                            "img/soundOff.png", 30, 30, false, false);
-                    ButtonManager.getButtonSound().setGraphic(new ImageView(ButtonManager.getImageSound()[0]));
-                    ButtonManager.getMenuSoundText1().setText("Sound OFF");
-                    GlobalVariables.setMute(true);
+                    changeSoundMode(true, "Sound OFF", "img/soundOff.png");
                 }
+            }
+
+            private void changeSoundMode(boolean b, String soundStatus, String url) {
+                ButtonController.getImageSound()[0] = new Image(
+                        url, 30, 30, false, false);
+                ButtonController.getButtonSound().setGraphic(new ImageView(ButtonController.getImageSound()[0]));
+                ButtonController.getMenuSoundText1().setText(soundStatus);
+                GlobalVariables.setMute(b);
             }
         });
     }
 
     public static void attachCloseButtonEvent() {
-        ButtonManager.getButtonClose().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.getButtonClose().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (ButtonManager.getIsMainWindow()[0]) {
-                    GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonMenu());
+                if (ButtonController.getIsMainWindow()[0]) {
+                    GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonMenu());
                 } else {
-                    GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonQuit());
+                    GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonQuit());
                 }
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenu());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonClose());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuTitle());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuSoundText1());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuSoundText2());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonSound());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getKeyboardGuideTitle());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getKeyboardGuide());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonStartNewGame());
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonResume());
+                removeButtonsFromRoot();
+                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonStartNewGame());
+                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonResume());
             }
         });
     }
 
     public static void attachButtonMenuAction() {
-        ButtonManager.getButtonMenu().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.getButtonMenu().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonMenu());
-                GlobalVariables.getRoot().getChildren().add(ButtonManager.getMenu());
-                GlobalVariables.getRoot().getChildren().add(ButtonManager.getMenuTitle());
-                GlobalVariables.getRoot().getChildren().add(ButtonManager.getMenuSoundText1());
-                GlobalVariables.getRoot().getChildren().add(ButtonManager.getMenuSoundText2());
-                GlobalVariables.getRoot().getChildren().add(ButtonManager.getKeyboardGuideTitle());
-                GlobalVariables.getRoot().getChildren().add(ButtonManager.getKeyboardGuide());
-                GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonSound());
-                GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonClose());
+                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonMenu());
+                addButtonsToRoot();
+                GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonClose());
             }
         });
     }
 
     public static void attachButtonQuitAction(Stage theStage) {
-        ButtonManager.getButtonQuit().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.getButtonQuit().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 theStage.close();
@@ -99,10 +87,10 @@ public class ButtonEvents {
     }
 
     public static void attachButtonStartAction(Stage theStage) {
-        ButtonManager.getButtonStart().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.getButtonStart().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ButtonManager.getIsMainWindow()[0] = false;
+                ButtonController.getIsMainWindow()[0] = false;
 
                 //Prepare the score text
                 Font scoreFont = Font.font("Arial", FontWeight.NORMAL, 20);
@@ -110,7 +98,6 @@ public class ButtonEvents {
                 GlobalVariables.getGraphicContext().setStroke(Color.BLACK);
                 GlobalVariables.getGraphicContext().setLineWidth(1);
                 GlobalVariables.getGraphicContext().setTextAlign(TextAlignment.LEFT);
-
                 final Long[] lastNanoTime = {System.nanoTime()};
                 GlobalVariables.setStepCounter(new AtomicInteger(0));
                 AtomicInteger monsterCounter = new AtomicInteger(0);
@@ -122,18 +109,10 @@ public class ButtonEvents {
                         double elapsedTime = (currentNanoTime - lastNanoTime[0]) / 1000000000.0;
                         lastNanoTime[0] = currentNanoTime;
 
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonStart());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonMenu());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonQuit());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenu());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonClose());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuTitle());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuSoundText1());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuSoundText2());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonSound());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getKeyboardGuideTitle());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonManager.getKeyboardGuide());
-
+                        removeButtonsFromRoot();
+                        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonStart());
+                        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonMenu());
+                        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonQuit());
                         GlobalVariables.getGraphicContext().setEffect(null);
 
                         Rectangle2D wardrobeBoundary = FurnitureObjects.getWardrobe().getBoundary();
@@ -147,74 +126,58 @@ public class ButtonEvents {
                         Rectangle2D bedBoundary = FurnitureObjects.getBed().getBoundary();
 
                         //Button start new game
-                        ButtonManager.getButtonStartNewGame().setPrefHeight(50);
-                        ButtonManager.getButtonStartNewGame().setPrefWidth(150);
-                        ButtonManager.getButtonStartNewGame().setLayoutX((GlobalVariables.getCanvas().getWidth()
-                                - (3 * ButtonManager.getButtonMenu().getPrefWidth()) - (2 * 50)) / 2 + 15);
-                        ButtonManager.getButtonStartNewGame().setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
-                        ButtonManager.getButtonStartNewGame().setStyle("-fx-font: 22 arial");
+                        ButtonController.getButtonStartNewGame().setPrefHeight(50);
+                        ButtonController.getButtonStartNewGame().setPrefWidth(150);
+                        ButtonController.getButtonStartNewGame().setLayoutX((GlobalVariables.getCanvas().getWidth()
+                                - (3 * ButtonController.getButtonMenu().getPrefWidth()) - (2 * 50)) / 2 + 15);
+                        ButtonController.getButtonStartNewGame().setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
+                        ButtonController.getButtonStartNewGame().setStyle("-fx-font: 22 arial");
 
-                        ButtonManager.getButtonStartNewGame().setOnAction(__ ->
-                        {
+                        ButtonController.getButtonStartNewGame().setOnAction(__ -> {
                             theStage.close();
                             Platform.runLater(() -> new Main().start(new Stage()));
                         });
 
                         //Button Resume game
-                        ButtonManager.getButtonResume().setPrefHeight(50);
-                        ButtonManager.getButtonResume().setPrefWidth(150);
-                        ButtonManager.getButtonResume().setLayoutX(ButtonManager.getButtonMenu().getLayoutX()
-                                + ButtonManager.getButtonMenu().getPrefWidth() + 50);
-                        ButtonManager.getButtonResume().setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
-                        ButtonManager.getButtonResume().setStyle("-fx-font: 22 arial");
+                        ButtonController.getButtonResume().setPrefHeight(50);
+                        ButtonController.getButtonResume().setPrefWidth(150);
+                        ButtonController.getButtonResume().setLayoutX(ButtonController.getButtonMenu().getLayoutX()
+                                + ButtonController.getButtonMenu().getPrefWidth() + 50);
+                        ButtonController.getButtonResume().setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
+                        ButtonController.getButtonResume().setStyle("-fx-font: 22 arial");
 
                         //Button Pause game
                         Button pause = new Button("Pause");
                         pause.setPrefHeight(50);
                         pause.setPrefWidth(150);
-                        pause.setLayoutX(ButtonManager.getButtonMenu().getLayoutX() + ButtonManager.getButtonMenu().getPrefWidth() + 50);
-                        pause.setLayoutY(ButtonManager.getButtonResume().getLayoutY() - 20 - ButtonManager.getButtonResume().getPrefHeight());
+                        pause.setLayoutX(ButtonController.getButtonMenu().getLayoutX() + ButtonController.getButtonMenu().getPrefWidth() + 50);
+                        pause.setLayoutY(ButtonController.getButtonResume().getLayoutY() - 20 - ButtonController.getButtonResume().getPrefHeight());
                         pause.setStyle("-fx-font: 22 arial");
 
-                        ButtonManager.getButtonResume().setOnAction(new EventHandler<ActionEvent>() {
+                        ButtonController.getButtonResume().setOnAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenu());
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonClose());
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuTitle());
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuSoundText1());
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getMenuSoundText2());
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonSound());
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getKeyboardGuideTitle());
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getKeyboardGuide());
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonResume());
+                                removeButtonsFromRoot();
+                                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonResume());
                                 GlobalVariables.getRoot().getChildren().remove(pause);
-                                GlobalVariables.getRoot().getChildren().remove(ButtonManager.getButtonStartNewGame());
-
+                                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonStartNewGame());
                                 start();
                             }
                         });
 
                         //show menu
                         if (GlobalVariables.getInput().contains("ESCAPE")) {
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getMenu());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getMenuTitle());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getMenuSoundText1());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getMenuSoundText2());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonSound());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getKeyboardGuideTitle());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getKeyboardGuide());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonQuit());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonResume());
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonStartNewGame());
-
+                            addButtonsToRoot();
+                            GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonQuit());
+                            GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonResume());
+                            GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonStartNewGame());
                             stop();
                         }
 
                         //Pause control
                         if (GlobalVariables.getInput().contains("P")) {
                             GlobalVariables.getRoot().getChildren().add(pause);
-                            GlobalVariables.getRoot().getChildren().add(ButtonManager.getButtonResume());
+                            GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonResume());
                             stop();
                         }
 
@@ -230,43 +193,43 @@ public class ButtonEvents {
                                             .getX(), FurnitureObjects.getDesk().getY() + 40, FurnitureObjects.getDesk()
                                             .getWidth(), FurnitureObjects.getDesk().getHeight()) || //desk
                                     GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getToilet()
-                                            .getX(), BATHROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
+                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
                                             .getToilet().getWidth(), 50) || //toilet
                                     GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getBathtub()
                                             .getX(), FurnitureObjects.getBathtub().getY() + 100, FurnitureObjects
                                             .getBathtub().getWidth(), FurnitureObjects.getBathtub().getHeight()) || //bathtub
                                     GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getBathroomSink()
-                                            .getX(), BATHROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
+                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
                                             .getBathroomSink().getWidth(), 70) || //bathroom sink
                                     GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getRubberPlant()
-                                            .getX(), LIVING_ROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
-                                            .getRubberPlant().getWidth(), ImageDefiner.getCarpet()
-                                            .getHeight() / 4 + brickSingleHorizontal.getHeight()) || //rubber plant
+                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
+                                            .getRubberPlant().getWidth(), ImageController.getCarpet()
+                                            .getHeight() / 4 + BRICK_SINGLE_HORIZONTAL.getHeight()) || //rubber plant
                                     GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getTv()
                                             .getX(), FurnitureObjects.getTv().getY() + 100, FurnitureObjects
                                             .getTv().getWidth(), FurnitureObjects.getTv().getHeight()) || //tv
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(BEDROOM_X - brickSingleVert
-                                            .getWidth(), 0, brickSingleVert.getWidth(), (3 * brickSingleVert
-                                            .getHeight()) + (2 * wallColon.getHeight())) || // wall between kitchen and bedroom
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(0, 0, brickSingleVert
-                                            .getWidth() + (4 * brickSingleHorizontal.getWidth()), brickSingleHorizontal
-                                            .getHeight() + wallShort.getHeight()) || //upper wall left from entrance
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(0, 0, brickSingleVert
-                                            .getWidth(), GlobalVariables.getCanvas().getHeight() + wallShort.getHeight()) || //left border
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(brickSingleVert
-                                            .getWidth(), LIVING_ROOM_Y - brickSingleHorizontal
-                                            .getHeight(), 4 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().leftBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
+                                            .getWidth(), 0, BRICK_SINGLE_VERTICAL.getWidth(), (3 * BRICK_SINGLE_VERTICAL
+                                            .getHeight()) + (2 * WALL_COLON.getHeight())) || // wall between kitchen and bedroom
+                                    GlobalVariables.getPlayer().leftBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL
+                                            .getHeight() + WALL_SHORT.getHeight()) || //upper wall left from entrance
+                                    GlobalVariables.getPlayer().leftBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
+                                            .getWidth(), GlobalVariables.getCanvas().getHeight() + WALL_SHORT.getHeight()) || //left border
+                                    GlobalVariables.getPlayer().leftBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight(), 4 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between kitchen and living room
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(brickSingleVert
-                                            .getWidth() + (6 * brickSingleHorizontal.getWidth()), LIVING_ROOM_Y - brickSingleHorizontal
-                                            .getHeight(), 6 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().leftBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight(), 6 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between every rooms
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(BEDROOM_X - brickSingleVert
-                                            .getWidth(), (3 * brickSingleVert.getHeight()) + (2 * wallColon
-                                            .getHeight()) + brickSingleVert.getHeight() + 40, brickSingleVert
-                                            .getWidth(), brickSingleVert.getHeight() * 2) || // wall between kitchen and bedroom(one brick)
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(BATHROOM_X - brickSingleVert
-                                            .getWidth(), BATHROOM_Y, brickSingleVert
+                                    GlobalVariables.getPlayer().leftBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
+                                            .getWidth(), (3 * BRICK_SINGLE_VERTICAL.getHeight()) + (2 * WALL_COLON
+                                            .getHeight()) + BRICK_SINGLE_VERTICAL.getHeight() + 40, BRICK_SINGLE_VERTICAL
+                                            .getWidth(), BRICK_SINGLE_VERTICAL.getHeight() * 2) || // wall between kitchen and bedroom(one brick)
+                                    GlobalVariables.getPlayer().leftBoundary().intersects(BATHROOM_X - BRICK_SINGLE_VERTICAL
+                                            .getWidth(), BATHROOM_Y, BRICK_SINGLE_VERTICAL
                                             .getWidth(), BATHROOM_HEIGHT + 40)) { //wall between living room and bathroom
 
                                 Player.checkIfPlayerCollidesUD();
@@ -287,39 +250,39 @@ public class ButtonEvents {
                                             .getX(), FurnitureObjects.getBathtub().getY() + 100, FurnitureObjects.getBathtub()
                                             .getWidth(), FurnitureObjects.getBathtub().getHeight()) || //bathtub
                                     GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getToilet()
-                                            .getX(), BATHROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
+                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
                                             .getToilet().getWidth(), 50) || //toilet
                                     GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getCoffeeTable()
                                             .getX(), FurnitureObjects.getCoffeeTable().getY(), FurnitureObjects.getCoffeeTable()
-                                            .getWidth(), 3 * (ImageDefiner.getCarpet().getHeight() / 4) - 30) || // coffee table
+                                            .getWidth(), 3 * (ImageController.getCarpet().getHeight() / 4) - 30) || // coffee table
                                     GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getSofa()
-                                            .getX(), LIVING_ROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
-                                            .getSofa().getWidth(), ImageDefiner.getCarpet()
-                                            .getHeight() / 2 + (2 * brickSingleHorizontal.getHeight())) || // sofa
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BEDROOM_X - brickSingleVert
-                                            .getWidth(), 0, brickSingleVert.getWidth(), (3 * brickSingleVert
-                                            .getHeight()) + (2 * wallColon.getHeight())) || // wall between kitchen and bedroom
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(brickSingleVert.getWidth()
-                                            + (6 * brickSingleHorizontal.getWidth()), 0, 10 * brickSingleHorizontal
-                                            .getWidth(), brickSingleHorizontal.getHeight()
-                                            + wallShort.getHeight()) || //upper wall right from entrance
+                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
+                                            .getSofa().getWidth(), ImageController.getCarpet()
+                                            .getHeight() / 2 + (2 * BRICK_SINGLE_HORIZONTAL.getHeight())) || // sofa
+                                    GlobalVariables.getPlayer().rightBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
+                                            .getWidth(), 0, BRICK_SINGLE_VERTICAL.getWidth(), (3 * BRICK_SINGLE_VERTICAL
+                                            .getHeight()) + (2 * WALL_COLON.getHeight())) || // wall between kitchen and bedroom
+                                    GlobalVariables.getPlayer().rightBoundary().intersects(BRICK_SINGLE_VERTICAL.getWidth()
+                                            + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), 0, 10 * BRICK_SINGLE_HORIZONTAL
+                                            .getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight()
+                                            + WALL_SHORT.getHeight()) || //upper wall right from entrance
                                     GlobalVariables.getPlayer().rightBoundary().intersects(GlobalVariables.getCanvas()
-                                            .getWidth() - brickSingleVert.getWidth(), 0, brickSingleVert
+                                            .getWidth() - BRICK_SINGLE_VERTICAL.getWidth(), 0, BRICK_SINGLE_VERTICAL
                                             .getWidth(), GlobalVariables.getCanvas().getHeight() + 40) || //right border
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(brickSingleVert.getWidth()
-                                            + (14 * brickSingleHorizontal.getWidth()), BATHROOM_Y - brickSingleHorizontal
-                                            .getHeight(), 2 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().rightBoundary().intersects(BRICK_SINGLE_VERTICAL.getWidth()
+                                            + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight(), 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between bedroom and bathroom
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(brickSingleVert.getWidth()
-                                            + (6 * brickSingleHorizontal.getWidth()), LIVING_ROOM_Y - brickSingleHorizontal
-                                            .getHeight(), 6 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().rightBoundary().intersects(BRICK_SINGLE_VERTICAL.getWidth()
+                                            + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight(), 6 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between every rooms
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BEDROOM_X - brickSingleVert
-                                            .getWidth(), (3 * brickSingleVert.getHeight()) + (2 * wallColon
-                                            .getHeight()) + brickSingleVert.getHeight() + 40, brickSingleVert
-                                            .getWidth(), brickSingleVert.getHeight() * 2) || // wall between kitchen and bedroom(one brick)
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BATHROOM_X - brickSingleVert
-                                            .getWidth(), BATHROOM_Y, brickSingleVert
+                                    GlobalVariables.getPlayer().rightBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
+                                            .getWidth(), (3 * BRICK_SINGLE_VERTICAL.getHeight()) + (2 * WALL_COLON
+                                            .getHeight()) + BRICK_SINGLE_VERTICAL.getHeight() + 40, BRICK_SINGLE_VERTICAL
+                                            .getWidth(), BRICK_SINGLE_VERTICAL.getHeight() * 2) || // wall between kitchen and bedroom(one brick)
+                                    GlobalVariables.getPlayer().rightBoundary().intersects(BATHROOM_X - BRICK_SINGLE_VERTICAL
+                                            .getWidth(), BATHROOM_Y, BRICK_SINGLE_VERTICAL
                                             .getWidth(), BATHROOM_HEIGHT + 40)) { //wall between living room and bathroom
 
                                 Player.checkIfPlayerCollidesUD();
@@ -339,45 +302,45 @@ public class ButtonEvents {
                                     GlobalVariables.getPlayer().upperBoundary().intersects(bedBoundary) ||
                                     GlobalVariables.getPlayer().upperBoundary().intersects(livingRoomChairBoundary) ||
                                     GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getToilet()
-                                            .getX(), BATHROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
+                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
                                             .getToilet().getWidth(), 50) || //toilet
                                     GlobalVariables.getPlayer().upperBoundary().intersects(FurnitureObjects.getBathroomSink()
-                                            .getX(), BATHROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
+                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
                                             .getBathroomSink().getWidth(), 70) || //bathroom sink
                                     GlobalVariables.getPlayer().upperBoundary().intersects(FurnitureObjects.getSofa()
-                                            .getX(), LIVING_ROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
-                                            .getSofa().getWidth(), ImageDefiner.getCarpet().getHeight() / 2
-                                            + (2 * brickSingleHorizontal.getHeight())) || // sofa
+                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
+                                            .getSofa().getWidth(), ImageController.getCarpet().getHeight() / 2
+                                            + (2 * BRICK_SINGLE_HORIZONTAL.getHeight())) || // sofa
                                     GlobalVariables.getPlayer().upperBoundary().intersects(FurnitureObjects.getLivingDresser()
-                                            .getX(), LIVING_ROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
-                                            .getLivingDresser().getWidth(), ImageDefiner.getCarpet().getHeight() / 4
-                                            + brickSingleHorizontal.getHeight()) || //living room dresser
+                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
+                                            .getLivingDresser().getWidth(), ImageController.getCarpet().getHeight() / 4
+                                            + BRICK_SINGLE_HORIZONTAL.getHeight()) || //living room dresser
                                     GlobalVariables.getPlayer().upperBoundary().intersects(FurnitureObjects.getRubberPlant()
-                                            .getX(), LIVING_ROOM_Y - brickSingleHorizontal.getHeight(), FurnitureObjects
-                                            .getRubberPlant().getWidth(), ImageDefiner.getCarpet().getHeight() / 4
-                                            + brickSingleHorizontal.getHeight()) || //rubber plant
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(0, 0, brickSingleVert
-                                            .getWidth() + (4 * brickSingleHorizontal.getWidth()), brickSingleHorizontal
+                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
+                                            .getRubberPlant().getWidth(), ImageController.getCarpet().getHeight() / 4
+                                            + BRICK_SINGLE_HORIZONTAL.getHeight()) || //rubber plant
+                                    GlobalVariables.getPlayer().upperBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(brickSingleVert
-                                            .getWidth() + (6 * brickSingleHorizontal.getWidth()), wallShort
-                                            .getHeight(), 10 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().upperBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), WALL_SHORT
+                                            .getHeight(), 10 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(brickSingleVert
-                                            .getWidth(), LIVING_ROOM_Y - brickSingleHorizontal
-                                            .getHeight(), 4 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().upperBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight(), 4 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between kitchen and living room
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(brickSingleVert
-                                            .getWidth() + (6 * brickSingleHorizontal.getWidth()), LIVING_ROOM_Y - brickSingleHorizontal
-                                            .getHeight(), 6 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().upperBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight(), 6 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between every rooms
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(brickSingleVert
-                                            .getWidth() + (14 * brickSingleHorizontal.getWidth()), BATHROOM_Y - brickSingleHorizontal
-                                            .getHeight(), 2 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().upperBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight(), 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between bedroom and bathroom
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(BEDROOM_X - brickSingleVert
-                                            .getWidth(), 0, brickSingleVert.getWidth(), (3 * brickSingleVert
-                                            .getHeight()) + (2 * wallColon.getHeight()))) { //wall between kitchen and bedroom
+                                    GlobalVariables.getPlayer().upperBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
+                                            .getWidth(), 0, BRICK_SINGLE_VERTICAL.getWidth(), (3 * BRICK_SINGLE_VERTICAL
+                                            .getHeight()) + (2 * WALL_COLON.getHeight()))) { //wall between kitchen and bedroom
 
                                 Player.checkIfPlayerCollidesLR();
                             } else {
@@ -397,39 +360,39 @@ public class ButtonEvents {
                                     GlobalVariables.getPlayer().bottomBoundary().intersects(FurnitureObjects.getBathtub()
                                             .getX(), FurnitureObjects.getBathtub().getY() + 100, FurnitureObjects.getBathtub()
                                             .getWidth(), FurnitureObjects.getBathtub().getHeight()) || //bathtub
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, 0, brickSingleVert
-                                            .getWidth() + (4 * brickSingleHorizontal.getWidth()), brickSingleHorizontal
-                                            .getHeight() + wallShort.getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(brickSingleVert
-                                            .getWidth() + (6 * brickSingleHorizontal.getWidth()), 0, 10 * brickSingleHorizontal
-                                            .getWidth(), brickSingleHorizontal.getHeight() + wallShort
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL
+                                            .getHeight() + WALL_SHORT.getHeight()) || //upper wall right from entrance
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), 0, 10 * BRICK_SINGLE_HORIZONTAL
+                                            .getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT
                                             .getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(brickSingleVert
-                                            .getWidth(), LIVING_ROOM_Y - brickSingleHorizontal
-                                            .getHeight() - 5, 4 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight() - 5, 4 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between kitchen and living room
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(brickSingleVert
-                                            .getWidth() + (6 * brickSingleHorizontal.getWidth()), LIVING_ROOM_Y - brickSingleHorizontal
-                                            .getHeight() - 5, 6 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight() - 5, 6 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between every rooms
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(brickSingleVert
-                                            .getWidth() + (14 * brickSingleHorizontal.getWidth()), BATHROOM_Y - brickSingleHorizontal
-                                            .getHeight() - 5, 2 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
+                                            .getHeight() - 5, 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between bedroom and bathroom
                                     GlobalVariables.getPlayer().bottomBoundary().intersects(0, GlobalVariables.getCanvas()
-                                            .getHeight() - 10, GlobalVariables.getCanvas().getWidth(), brickSingleHorizontal
+                                            .getHeight() - 10, GlobalVariables.getCanvas().getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //down border
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, wallShort
-                                            .getHeight(), brickSingleVert.getWidth() + (4 * brickSingleHorizontal
-                                            .getWidth()), brickSingleHorizontal.getHeight()) || //upper wall left from entrance
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(brickSingleVert
-                                            .getWidth() + (6 * brickSingleHorizontal.getWidth()), wallShort
-                                            .getHeight(), 10 * brickSingleHorizontal.getWidth(), brickSingleHorizontal
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, WALL_SHORT
+                                            .getHeight(), BRICK_SINGLE_VERTICAL.getWidth() + (4 * BRICK_SINGLE_HORIZONTAL
+                                            .getWidth()), BRICK_SINGLE_HORIZONTAL.getHeight()) || //upper wall left from entrance
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
+                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), WALL_SHORT
+                                            .getHeight(), 10 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BEDROOM_X - brickSingleVert
-                                            .getWidth(), (3 * brickSingleVert.getHeight()) + (2 * wallColon
-                                            .getHeight()) + brickSingleVert.getHeight() + 40, brickSingleVert
-                                            .getWidth(), brickSingleVert.getHeight() * 2)) { // wall between kitchen and bedroom(one brick)
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
+                                            .getWidth(), (3 * BRICK_SINGLE_VERTICAL.getHeight()) + (2 * WALL_COLON
+                                            .getHeight()) + BRICK_SINGLE_VERTICAL.getHeight() + 40, BRICK_SINGLE_VERTICAL
+                                            .getWidth(), BRICK_SINGLE_VERTICAL.getHeight() * 2)) { // wall between kitchen and bedroom(one brick)
 
                                 Player.checkIfPlayerCollidesLR();
                             } else {
@@ -438,42 +401,44 @@ public class ButtonEvents {
                             }
                         }
                         //Stops sound effects while standing in place
-                        if ((!GlobalVariables.getInput().contains("LEFT") && !GlobalVariables.getInput()
-                                .contains("RIGHT") && !GlobalVariables.getInput().contains("UP") && !GlobalVariables.getInput()
-                                .contains("DOWN")) || GlobalVariables.getInput().contains("SPACE")) {
-                            GlobalVariables.getWalking().stop();
-                            GlobalVariables.getRunning().stop();
-                        }
+                        SoundController.stopSoundEffects();
                         GlobalVariables.getPlayer().update(elapsedTime);
 
                         // draw obstacles
                         GraphicDisplayer.drawWalls();
 
                         // show monsters
-                        monsterCounter.addAndGet(1);
-                        if (monsterCounter.get() == 300) {
-                            Sprite tempMonster = GlobalVariables.getMonsterList().pop();
-                            GlobalVariables.getMonsterList().addLast(tempMonster);
-                            double px = (GlobalVariables.getPlayer().getX() * Math.random() + 100);
-                            double py = (GlobalVariables.getPlayer().getY() * Math.random() + 100);
-                            tempMonster.setPosition(px, py);
-                            GlobalVariables.getMonstersToRender().add(tempMonster);
-                            monsterCounter.set(0);
-                        }
-
-                        for (Sprite monster : GlobalVariables.getMonstersToRender()) {
-                            monster.render(GlobalVariables.getGraphicContext());
-                        }
+                        MonstersController.displayMonsters(monsterCounter);
 
                         //Spraying the monsters
                         Player.sprayMonsters();
 
                         // Check collision with monsters
-                        Monsters.checkCollision(this);
-
+                        MonstersController.checkCollision(this);
                     }
                 }.start();
             }
         });
+    }
+
+    private static void removeButtonsFromRoot() {
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.getMenu());
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonClose());
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.getMenuTitle());
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.getMenuSoundText1());
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.getMenuSoundText2());
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonSound());
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.getKeyboardGuideTitle());
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.getKeyboardGuide());
+    }
+
+    private static void addButtonsToRoot() {
+        GlobalVariables.getRoot().getChildren().add(ButtonController.getMenu());
+        GlobalVariables.getRoot().getChildren().add(ButtonController.getMenuTitle());
+        GlobalVariables.getRoot().getChildren().add(ButtonController.getMenuSoundText1());
+        GlobalVariables.getRoot().getChildren().add(ButtonController.getMenuSoundText2());
+        GlobalVariables.getRoot().getChildren().add(ButtonController.getKeyboardGuideTitle());
+        GlobalVariables.getRoot().getChildren().add(ButtonController.getKeyboardGuide());
+        GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonSound());
     }
 }
