@@ -30,7 +30,7 @@ public class Player extends Sprite {
 
     public ArrayList<Achievement> achievements = new ArrayList<>();
 
-    public static void changeImage(String direction) {
+    private static void changeImage(String direction) {
         switch (direction) {
             case "down":
                 String tempImage = ImageController.getPlayerDownImages().pop();

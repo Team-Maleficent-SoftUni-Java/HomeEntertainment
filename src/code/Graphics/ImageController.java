@@ -21,14 +21,17 @@ public class ImageController {
     private static Image carpet2;
     private static Image siphon;
     private static Image statsBoard;
+    private static Image gardenGrass;
 
     public static void defineImages () {
         parquet = new Image("img/parquet.jpg", KITCHEN_WIDTH, KITCHEN_HEIGHT / 2, false, false);
         tiles = new Image("img/tiles2.jpg", BATHROOM_WIDTH, BATHROOM_HEIGHT / 2, false, false);
-        carpet = new Image("img/carpet.jpg", LIVING_ROOM_WIDTH / 2, LIVING_ROOM_HEIGHT / 2, false, false);
+        carpet = new Image("img/carpet.jpg", LIVING_ROOM_WIDTH / 2 ,
+                LIVING_ROOM_HEIGHT / 2 + 60, false, false);
         carpet2 = new Image("img/carpet03.jpg", BEDROOM_WIDTH, BEDROOM_HEIGHT / 2, false, false);
         siphon = new Image("img/siphon.png", 40, 40, false, false);
         statsBoard = new Image("img/statsBoard.png");
+        gardenGrass = new Image("img/gardenGrass.jpg", 600 , 200 , false, false);
     }
 
     public static ArrayDeque<String> getPlayerDownImages() {
@@ -75,7 +78,6 @@ public class ImageController {
         ImageController.getPlayerUpImages().addLast("img/playerBack2.png");
     }
 
-
     static Image getParquet() {
         return parquet;
     }
@@ -99,4 +101,6 @@ public class ImageController {
     static Image getStatsBoard() {
         return statsBoard;
     }
+
+    static Image getGardenGrass() { return gardenGrass; }
 }

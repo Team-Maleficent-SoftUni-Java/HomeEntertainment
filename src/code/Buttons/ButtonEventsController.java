@@ -3,7 +3,7 @@ package code.Buttons;
 import code.Enemy.MonstersController;
 import code.GlobalVariables;
 import code.Graphics.FurnitureObjects;
-import code.Graphics.GraphicDisplayer;
+import code.Graphics.GraphicController;
 import code.Graphics.ImageController;
 import code.Main;
 import code.Player.Player;
@@ -27,7 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static code.GlobalVariables.*;
 import static code.Graphics.ImageController.*;
 
-public class ButtonEvents {
+public class ButtonEventsController {
 
     public static void attachSoundButtonEvent() {
         ButtonController.getButtonSound().setOnAction(new EventHandler<ActionEvent>() {
@@ -130,7 +130,7 @@ public class ButtonEvents {
                         ButtonController.getButtonStartNewGame().setPrefWidth(150);
                         ButtonController.getButtonStartNewGame().setLayoutX((GlobalVariables.getCanvas().getWidth()
                                 - (3 * ButtonController.getButtonMenu().getPrefWidth()) - (2 * 50)) / 2 + 15);
-                        ButtonController.getButtonStartNewGame().setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
+                        ButtonController.getButtonStartNewGame().setLayoutY(CANVAS_FAKE_HEIGHT - 180);
                         ButtonController.getButtonStartNewGame().setStyle("-fx-font: 22 arial");
 
                         ButtonController.getButtonStartNewGame().setOnAction(__ -> {
@@ -143,7 +143,7 @@ public class ButtonEvents {
                         ButtonController.getButtonResume().setPrefWidth(150);
                         ButtonController.getButtonResume().setLayoutX(ButtonController.getButtonMenu().getLayoutX()
                                 + ButtonController.getButtonMenu().getPrefWidth() + 50);
-                        ButtonController.getButtonResume().setLayoutY(GlobalVariables.getCanvas().getHeight() - 180);
+                        ButtonController.getButtonResume().setLayoutY(CANVAS_FAKE_HEIGHT - 180);
                         ButtonController.getButtonResume().setStyle("-fx-font: 22 arial");
 
                         //Button Pause game
@@ -215,7 +215,7 @@ public class ButtonEvents {
                                             .getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL
                                             .getHeight() + WALL_SHORT.getHeight()) || //upper wall left from entrance
                                     GlobalVariables.getPlayer().leftBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), GlobalVariables.getCanvas().getHeight() + WALL_SHORT.getHeight()) || //left border
+                                            .getWidth(), CANVAS_FAKE_HEIGHT + WALL_SHORT.getHeight()) || //left border
                                     GlobalVariables.getPlayer().leftBoundary().intersects(BRICK_SINGLE_VERTICAL
                                             .getWidth(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
                                             .getHeight(), 4 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
@@ -268,7 +268,7 @@ public class ButtonEvents {
                                             + WALL_SHORT.getHeight()) || //upper wall right from entrance
                                     GlobalVariables.getPlayer().rightBoundary().intersects(GlobalVariables.getCanvas()
                                             .getWidth() - BRICK_SINGLE_VERTICAL.getWidth(), 0, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), GlobalVariables.getCanvas().getHeight() + 40) || //right border
+                                            .getWidth(), CANVAS_FAKE_HEIGHT + 40) || //right border
                                     GlobalVariables.getPlayer().rightBoundary().intersects(BRICK_SINGLE_VERTICAL.getWidth()
                                             + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
                                             .getHeight(), 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
@@ -379,9 +379,8 @@ public class ButtonEvents {
                                             .getWidth() + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
                                             .getHeight() - 5, 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
                                             .getHeight()) || //wall between bedroom and bathroom
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, GlobalVariables.getCanvas()
-                                            .getHeight() - 10, GlobalVariables.getCanvas().getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //down border
+                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, CANVAS_FAKE_HEIGHT - 10,
+                                            GlobalVariables.getCanvas().getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight()) || //down border
                                     GlobalVariables.getPlayer().bottomBoundary().intersects(0, WALL_SHORT
                                             .getHeight(), BRICK_SINGLE_VERTICAL.getWidth() + (4 * BRICK_SINGLE_HORIZONTAL
                                             .getWidth()), BRICK_SINGLE_HORIZONTAL.getHeight()) || //upper wall left from entrance
@@ -405,7 +404,7 @@ public class ButtonEvents {
                         GlobalVariables.getPlayer().update(elapsedTime);
 
                         // draw obstacles
-                        GraphicDisplayer.drawWalls();
+                        GraphicController.drawWalls();
 
                         // show monsters
                         MonstersController.displayMonsters(monsterCounter);

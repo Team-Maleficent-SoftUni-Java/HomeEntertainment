@@ -1,9 +1,9 @@
 package code;
 
-import code.Buttons.ButtonEvents;
+import code.Buttons.ButtonEventsController;
 import code.Buttons.ButtonController;
 import code.Enemy.MonstersController;
-import code.Graphics.GraphicDisplayer;
+import code.Graphics.GraphicController;
 import code.Graphics.ImageController;
 import code.Player.Player;
 import code.Sounds.SoundController;
@@ -29,7 +29,7 @@ public class Main extends Application {
         //Set stage properties
         theStage.setTitle("Home entertainment");
         GlobalVariables.setRoot(new Group());
-        Scene theScene = new Scene(GlobalVariables.getRoot(), 1024, 748, Color.WHITESMOKE);
+        Scene theScene = new Scene(GlobalVariables.getRoot(), 1024, 1000, Color.WHITESMOKE);
         theStage.setScene(theScene);
         GlobalVariables.getRoot().getChildren().add(GlobalVariables.getCanvas());
 
@@ -73,10 +73,10 @@ public class Main extends Application {
                 });
 
         //Display introduce on Main page
-        GraphicDisplayer.displayIntroduce();
+        GraphicController.displayIntroduce();
 
         //Display all objects in the house.
-        GraphicDisplayer.displayObjects();
+        GraphicController.displayObjects();
 
         // Load sounds
         SoundController.loadSounds();
@@ -88,11 +88,11 @@ public class Main extends Application {
         ButtonController.setButtonsParameters();
 
         //Set all buttons events
-        ButtonEvents.attachSoundButtonEvent();
-        ButtonEvents.attachCloseButtonEvent();
-        ButtonEvents.attachButtonMenuAction();
-        ButtonEvents.attachButtonQuitAction(theStage);
-        ButtonEvents.attachButtonStartAction(theStage);
+        ButtonEventsController.attachSoundButtonEvent();
+        ButtonEventsController.attachCloseButtonEvent();
+        ButtonEventsController.attachButtonMenuAction();
+        ButtonEventsController.attachButtonQuitAction(theStage);
+        ButtonEventsController.attachButtonStartAction(theStage);
         theStage.show();
         ButtonController.getBlinkedButton().play();
     }

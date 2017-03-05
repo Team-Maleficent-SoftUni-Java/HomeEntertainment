@@ -11,7 +11,7 @@ import javafx.scene.text.TextAlignment;
 import static code.GlobalVariables.*;
 import static code.Graphics.ImageController.*;
 
-public class GraphicDisplayer {
+public class GraphicController {
 
     public static void displayObjects (){
         //The kitchenDresser object
@@ -146,9 +146,11 @@ public class GraphicDisplayer {
         GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, BATHROOM_Y + BATHROOM_HEIGHT / 2);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X, LIVING_ROOM_Y);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X,  LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(),
-                LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2);
+                LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2 , LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), 0, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), 600, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100);
 
         //Draw upper walls and bricks
         //Upper border
@@ -240,14 +242,14 @@ public class GraphicDisplayer {
         }
 
         //wall between living room and bathroom
-        for (int i = 0; i < CANVAS_FAKE_HEIGHT; i++) {
+        for (int i = 0; i < 6; i++) {
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, 2 * (GlobalVariables.getCanvas().getWidth() / 3)
                     - BRICK_SINGLE_HORIZONTAL.getWidth(), CANVAS_FAKE_HEIGHT / 2 + (i * BRICK_SINGLE_VERTICAL.getHeight()));
         }
 
         //Render the bricks
         //Left border
-        for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight(); i++) {GlobalVariables
+        for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {GlobalVariables
                 .getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, 0, i * BRICK_SINGLE_VERTICAL.getHeight());
         }
 
@@ -271,17 +273,11 @@ public class GraphicDisplayer {
         FurnitureObjects.getTv().render(GlobalVariables.getGraphicContext());
 
         //Down border
-        /*for (int i = 0; i < GlobalVariables.getCanvas().getWidth() / BRICK_SINGLE_HORIZONTAL.getWidth(); i++) {
-            GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), CANVAS_FAKE_HEIGHT
-                    - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
-        }*/
-
         for (int i = 0; i < 4; i++) {
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), CANVAS_FAKE_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight()) + 20);
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, CANVAS_FAKE_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight()) + 20);
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), CANVAS_FAKE_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, CANVAS_FAKE_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
             wallKitchenLivingRoomWidth += BRICK_SINGLE_HORIZONTAL.getWidth();
         }
 
@@ -294,12 +290,8 @@ public class GraphicDisplayer {
                     CANVAS_FAKE_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
         }
 
-
-
-
-
         //Right border
-        for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight(); i++) {
+        for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, GlobalVariables.getCanvas().getWidth()
                     - BRICK_SINGLE_VERTICAL.getWidth(), i * BRICK_SINGLE_VERTICAL.getHeight());
         }
