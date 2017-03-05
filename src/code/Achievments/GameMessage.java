@@ -1,12 +1,12 @@
 package code.Achievments;
 
+import code.Player.Player;
 import javafx.animation.FadeTransition;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import code.Player.Player;
 
 public class GameMessage {
 

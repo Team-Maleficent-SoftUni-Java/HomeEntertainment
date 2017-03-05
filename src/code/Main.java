@@ -1,19 +1,20 @@
 package code;
 
-import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
 import code.Buttons.ButtonEvents;
-import code.Buttons.ButtonController;
-import code.Enemy.MonstersController;
-import code.Graphics.GraphicController;
-import code.Graphics.ImageController;
+import code.Buttons.ButtonManager;
+import code.Enemy.Monsters;
+import code.Graphics.GraphicDisplayer;
+import code.Graphics.ImageDefiner;
 import code.Player.Player;
 import code.Sounds.SoundManager;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -33,19 +34,22 @@ public class Main extends Application {
         GlobalVariables.getRoot().getChildren().add(GlobalVariables.getCanvas());
 
         // Define object images
-        ImageController.defineImages();
+        ImageDefiner.defineImages();
 
         //Set player images for all directions
-        GlobalVariables.setPlayerImages(new ArrayDeque<>());
+        GlobalVariables.setPlayerRightImages(new ArrayDeque<>());
+        GlobalVariables.setPlayerLeftImages(new ArrayDeque<>());
+        GlobalVariables.setPlayerDownImages(new ArrayDeque<>());
+        GlobalVariables.setPlayerUpImages(new ArrayDeque<>());
 
         //Create the player object
         Player.createPlayerObject();
 
         //Set monster images
-        MonstersController.setMonsterImages();
+        Monsters.setMonsterImages();
 
         //Start create different monsters
-        MonstersController.createMonsters();
+        Monsters.createMonsters();
         GlobalVariables.setMonstersToRender(new ArrayList<>());
 
         //Take the keys inputs
@@ -69,19 +73,20 @@ public class Main extends Application {
                 });
 
         //Display introduce on Main page
-        GraphicController.displayIntroduce();
+        GraphicDisplayer.displayIntroduce();
 
         //Display all objects in the house.
-        GraphicController.displayObjects();
+        System.out.println(GlobalVariables.getProjectPath());
+        GraphicDisplayer.displayObjects();
 
         // Load sounds
         SoundManager.loadSounds();
 
        //CreateButtons
-        ButtonController.createButtons();
+        ButtonManager.createButtons();
 
         //Set all buttons parameters
-        ButtonController.setButtonsParameters();
+        ButtonManager.setButtonsParameters();
 
         //Set all buttons events
         ButtonEvents.attachSoundButtonEvent();
@@ -90,6 +95,6 @@ public class Main extends Application {
         ButtonEvents.attachButtonQuitAction(theStage);
         ButtonEvents.attachButtonStartAction(theStage);
         theStage.show();
-        ButtonController.getBlinkedButton().play();
+        ButtonManager.getBlinkedButton().play();
     }
 }
