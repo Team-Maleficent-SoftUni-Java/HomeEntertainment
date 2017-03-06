@@ -4,6 +4,7 @@ import code.Achievments.AchievementController;
 import code.Achievments.GameMessage;
 import code.Buttons.ButtonController;
 import code.GlobalVariables;
+import code.IntersectsObject;
 import code.Player.Sprite;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
@@ -44,12 +45,12 @@ public class MonstersController {
 
                 GM.renderMessage("Ouch!", 1000, Color.RED);
 
-                if((int) GlobalVariables.getPlayer().getPlayerHealth() <= 0)
+                if ((int) GlobalVariables.getPlayer().getPlayerHealth() <= 0)
                     GM.renderMessage("Bugs owned the house and ate you, Game Over!", 10000000, Color.RED);
 
                 GlobalVariables.getPlayer().subtractPlayerHealth();
 
-                if (GlobalVariables.getPlayer().getPlayerHealth() <= 0){
+                if (GlobalVariables.getPlayer().getPlayerHealth() <= 0) {
                     GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonQuit());
                     GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonQuit());
                     GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonStartNewGame());
@@ -63,15 +64,18 @@ public class MonstersController {
     }
 
     public static void displayMonsters(AtomicInteger monsterCounter) {
+        IntersectsObject intersectObject = new IntersectsObject();
 
         monsterCounter.addAndGet(1);
-        if (monsterCounter.get() == 300) {
+        if (monsterCounter.get() == 200) {
             Sprite tempMonster = GlobalVariables.getMonsterList().pop();
             GlobalVariables.getMonsterList().addLast(tempMonster);
             double px = (GlobalVariables.getPlayer().getX() * Math.random() + 100);
             double py = (GlobalVariables.getPlayer().getY() * Math.random() + 100);
             tempMonster.setPosition(px, py);
-            GlobalVariables.getMonstersToRender().add(tempMonster);
+            if (!intersectObject.intersect(tempMonster)) {
+                GlobalVariables.getMonstersToRender().add(tempMonster);
+            }
             monsterCounter.set(0);
         }
 

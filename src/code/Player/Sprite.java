@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Sprite {
+    boolean hasAlreadyHit = false;
     private Image image;
     private double positionX;
     private double positionY;
@@ -12,7 +13,6 @@ public class Sprite {
     private double velocityY;
     private double width;
     private double height;
-    boolean hasAlreadyHit = false;
 
     public Sprite() {
         positionX = 0;
@@ -82,11 +82,15 @@ public class Sprite {
     }
 
     public Rectangle2D getBoundary() {
-        return new Rectangle2D(positionX, positionY, width, height);
+        return new Rectangle2D(this.positionX, this.positionY, this.width, this.height);
     }
 
     public boolean intersects(Sprite s) {
         return s.getBoundary().intersects(this.getBoundary());
+    }
+
+    public boolean intersects(Rectangle2D rect) {
+        return rect.intersects(this.getBoundary());
     }
 
     public String toString() {

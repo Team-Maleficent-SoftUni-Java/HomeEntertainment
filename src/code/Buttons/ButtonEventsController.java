@@ -2,9 +2,8 @@ package code.Buttons;
 
 import code.Enemy.MonstersController;
 import code.GlobalVariables;
-import code.Graphics.FurnitureObjects;
 import code.Graphics.GraphicController;
-import code.Graphics.ImageController;
+import code.IntersectsObject;
 import code.Main;
 import code.Player.Player;
 import code.Sounds.SoundController;
@@ -12,7 +11,6 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,8 +22,7 @@ import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static code.GlobalVariables.*;
-import static code.Graphics.ImageController.*;
+import static code.GlobalVariables.CANVAS_FAKE_HEIGHT;
 
 public class ButtonEventsController {
 
@@ -115,16 +112,6 @@ public class ButtonEventsController {
                         GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonQuit());
                         GlobalVariables.getGraphicContext().setEffect(null);
 
-                        Rectangle2D wardrobeBoundary = FurnitureObjects.getWardrobe().getBoundary();
-                        Rectangle2D stoveBoundary = FurnitureObjects.getStove().getBoundary();
-                        Rectangle2D kitchenDresserBoundary = FurnitureObjects.getKitchenDresser().getBoundary();
-                        Rectangle2D kitchenSinkBoundary = FurnitureObjects.getKitchenSink().getBoundary();
-                        Rectangle2D kitchenTableBoundary = FurnitureObjects.getKitchenTable().getBoundary();
-                        Rectangle2D fridgeBoundary = FurnitureObjects.getFridge().getBoundary();
-                        Rectangle2D livingRoomChairBoundary = FurnitureObjects.getLivingRoomChair().getBoundary();
-                        Rectangle2D coffeeTableBoundary = FurnitureObjects.getCoffeeTable().getBoundary();
-                        Rectangle2D bedBoundary = FurnitureObjects.getBed().getBoundary();
-
                         //Button start new game
                         ButtonController.getButtonStartNewGame().setPrefHeight(50);
                         ButtonController.getButtonStartNewGame().setPrefWidth(150);
@@ -181,56 +168,12 @@ public class ButtonEventsController {
                             stop();
                         }
 
+                        IntersectsObject intersectObject = new IntersectsObject();
+
                         // Player movement
                         GlobalVariables.getPlayer().setVelocity(0, 0);
                         if (GlobalVariables.getInput().contains("LEFT") && !GlobalVariables.getInput().contains("SPACE")) {
-                            if (GlobalVariables.getPlayer().leftBoundary().intersects(kitchenSinkBoundary) ||
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(kitchenTableBoundary) ||
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(wardrobeBoundary) ||
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(livingRoomChairBoundary) ||
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(fridgeBoundary) ||
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getDesk()
-                                            .getX(), FurnitureObjects.getDesk().getY() + 40, FurnitureObjects.getDesk()
-                                            .getWidth(), FurnitureObjects.getDesk().getHeight()) || //desk
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getToilet()
-                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getToilet().getWidth(), 50) || //toilet
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getBathtub()
-                                            .getX(), FurnitureObjects.getBathtub().getY() + 100, FurnitureObjects
-                                            .getBathtub().getWidth(), FurnitureObjects.getBathtub().getHeight()) || //bathtub
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getBathroomSink()
-                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getBathroomSink().getWidth(), 70) || //bathroom sink
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getRubberPlant()
-                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getRubberPlant().getWidth(), ImageController.getCarpet()
-                                            .getHeight() / 4 + BRICK_SINGLE_HORIZONTAL.getHeight()) || //rubber plant
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(FurnitureObjects.getTv()
-                                            .getX(), FurnitureObjects.getTv().getY() + 100, FurnitureObjects
-                                            .getTv().getWidth(), FurnitureObjects.getTv().getHeight()) || //tv
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
-                                            .getWidth(), 0, BRICK_SINGLE_VERTICAL.getWidth(), (3 * BRICK_SINGLE_VERTICAL
-                                            .getHeight()) + (2 * WALL_COLON.getHeight())) || // wall between kitchen and bedroom
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight() + WALL_SHORT.getHeight()) || //upper wall left from entrance
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), CANVAS_FAKE_HEIGHT + WALL_SHORT.getHeight()) || //left border
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight(), 4 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between kitchen and living room
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight(), 6 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between every rooms
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
-                                            .getWidth(), (3 * BRICK_SINGLE_VERTICAL.getHeight()) + (2 * WALL_COLON
-                                            .getHeight()) + BRICK_SINGLE_VERTICAL.getHeight() + 40, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), BRICK_SINGLE_VERTICAL.getHeight() * 2) || // wall between kitchen and bedroom(one brick)
-                                    GlobalVariables.getPlayer().leftBoundary().intersects(BATHROOM_X - BRICK_SINGLE_VERTICAL
-                                            .getWidth(), BATHROOM_Y, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), BATHROOM_HEIGHT + 40)) { //wall between living room and bathroom
+                            if (intersectObject.intersect(GlobalVariables.getPlayer().leftBoundary())) {
 
                                 Player.checkIfPlayerCollidesUD();
 
@@ -240,50 +183,7 @@ public class ButtonEventsController {
                             }
                         }
                         if (GlobalVariables.getInput().contains("RIGHT") && !GlobalVariables.getInput().contains("SPACE")) {
-                            if (GlobalVariables.getPlayer().rightBoundary().intersects(fridgeBoundary) ||
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(bedBoundary) ||
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(livingRoomChairBoundary) ||
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getDesk()
-                                            .getX(), FurnitureObjects.getDesk().getY() + 40, FurnitureObjects.getDesk()
-                                            .getWidth(), FurnitureObjects.getDesk().getHeight()) || //desk
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getBathtub()
-                                            .getX(), FurnitureObjects.getBathtub().getY() + 100, FurnitureObjects.getBathtub()
-                                            .getWidth(), FurnitureObjects.getBathtub().getHeight()) || //bathtub
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getToilet()
-                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getToilet().getWidth(), 50) || //toilet
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getCoffeeTable()
-                                            .getX(), FurnitureObjects.getCoffeeTable().getY(), FurnitureObjects.getCoffeeTable()
-                                            .getWidth(), 3 * (ImageController.getCarpet().getHeight() / 4) - 30) || // coffee table
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getSofa()
-                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getSofa().getWidth(), ImageController.getCarpet()
-                                            .getHeight() / 2 + (2 * BRICK_SINGLE_HORIZONTAL.getHeight())) || // sofa
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
-                                            .getWidth(), 0, BRICK_SINGLE_VERTICAL.getWidth(), (3 * BRICK_SINGLE_VERTICAL
-                                            .getHeight()) + (2 * WALL_COLON.getHeight())) || // wall between kitchen and bedroom
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BRICK_SINGLE_VERTICAL.getWidth()
-                                            + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), 0, 10 * BRICK_SINGLE_HORIZONTAL
-                                            .getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight()
-                                            + WALL_SHORT.getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(GlobalVariables.getCanvas()
-                                            .getWidth() - BRICK_SINGLE_VERTICAL.getWidth(), 0, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), CANVAS_FAKE_HEIGHT + 40) || //right border
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BRICK_SINGLE_VERTICAL.getWidth()
-                                            + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight(), 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between bedroom and bathroom
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BRICK_SINGLE_VERTICAL.getWidth()
-                                            + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight(), 6 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between every rooms
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
-                                            .getWidth(), (3 * BRICK_SINGLE_VERTICAL.getHeight()) + (2 * WALL_COLON
-                                            .getHeight()) + BRICK_SINGLE_VERTICAL.getHeight() + 40, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), BRICK_SINGLE_VERTICAL.getHeight() * 2) || // wall between kitchen and bedroom(one brick)
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(BATHROOM_X - BRICK_SINGLE_VERTICAL
-                                            .getWidth(), BATHROOM_Y, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), BATHROOM_HEIGHT + 40)) { //wall between living room and bathroom
+                            if (intersectObject.intersect(GlobalVariables.getPlayer().rightBoundary())) {
 
                                 Player.checkIfPlayerCollidesUD();
                             } else {
@@ -292,55 +192,7 @@ public class ButtonEventsController {
                             }
                         }
                         if (GlobalVariables.getInput().contains("UP") && !GlobalVariables.getInput().contains("SPACE")) {
-                            if (GlobalVariables.getPlayer().upperBoundary().intersects(kitchenDresserBoundary) ||
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(kitchenSinkBoundary) ||
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(kitchenTableBoundary) ||
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(fridgeBoundary) ||
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(wardrobeBoundary) ||
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(stoveBoundary) ||
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(coffeeTableBoundary) ||
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(bedBoundary) ||
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(livingRoomChairBoundary) ||
-                                    GlobalVariables.getPlayer().rightBoundary().intersects(FurnitureObjects.getToilet()
-                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getToilet().getWidth(), 50) || //toilet
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(FurnitureObjects.getBathroomSink()
-                                            .getX(), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getBathroomSink().getWidth(), 70) || //bathroom sink
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(FurnitureObjects.getSofa()
-                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getSofa().getWidth(), ImageController.getCarpet().getHeight() / 2
-                                            + (2 * BRICK_SINGLE_HORIZONTAL.getHeight())) || // sofa
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(FurnitureObjects.getLivingDresser()
-                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getLivingDresser().getWidth(), ImageController.getCarpet().getHeight() / 4
-                                            + BRICK_SINGLE_HORIZONTAL.getHeight()) || //living room dresser
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(FurnitureObjects.getRubberPlant()
-                                            .getX(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL.getHeight(), FurnitureObjects
-                                            .getRubberPlant().getWidth(), ImageController.getCarpet().getHeight() / 4
-                                            + BRICK_SINGLE_HORIZONTAL.getHeight()) || //rubber plant
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), WALL_SHORT
-                                            .getHeight(), 10 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight(), 4 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between kitchen and living room
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight(), 6 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between every rooms
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight(), 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between bedroom and bathroom
-                                    GlobalVariables.getPlayer().upperBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
-                                            .getWidth(), 0, BRICK_SINGLE_VERTICAL.getWidth(), (3 * BRICK_SINGLE_VERTICAL
-                                            .getHeight()) + (2 * WALL_COLON.getHeight()))) { //wall between kitchen and bedroom
+                            if (intersectObject.intersect(GlobalVariables.getPlayer().upperBoundary())) {
 
                                 Player.checkIfPlayerCollidesLR();
                             } else {
@@ -349,50 +201,7 @@ public class ButtonEventsController {
                             }
                         }
                         if (GlobalVariables.getInput().contains("DOWN") && !GlobalVariables.getInput().contains("SPACE")) {
-                            if (GlobalVariables.getPlayer().bottomBoundary().intersects(kitchenTableBoundary) ||
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(livingRoomChairBoundary) ||
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(FurnitureObjects.getDesk()
-                                            .getX(), FurnitureObjects.getDesk().getY() + 40, FurnitureObjects.getDesk()
-                                            .getWidth(), FurnitureObjects.getDesk().getHeight()) || //desk
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(FurnitureObjects.getTv()
-                                            .getX(), FurnitureObjects.getTv().getY() + 100, FurnitureObjects.getTv()
-                                            .getWidth(), FurnitureObjects.getTv().getHeight()) || //tv
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(FurnitureObjects.getBathtub()
-                                            .getX(), FurnitureObjects.getBathtub().getY() + 100, FurnitureObjects.getBathtub()
-                                            .getWidth(), FurnitureObjects.getBathtub().getHeight()) || //bathtub
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, 0, BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight() + WALL_SHORT.getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), 0, 10 * BRICK_SINGLE_HORIZONTAL
-                                            .getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT
-                                            .getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth(), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight() - 5, 4 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between kitchen and living room
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), LIVING_ROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight() - 5, 6 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between every rooms
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
-                                            .getHeight() - 5, 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //wall between bedroom and bathroom
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, CANVAS_FAKE_HEIGHT - 10,
-                                            GlobalVariables.getCanvas().getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight()) || //down border
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(0, WALL_SHORT
-                                            .getHeight(), BRICK_SINGLE_VERTICAL.getWidth() + (4 * BRICK_SINGLE_HORIZONTAL
-                                            .getWidth()), BRICK_SINGLE_HORIZONTAL.getHeight()) || //upper wall left from entrance
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BRICK_SINGLE_VERTICAL
-                                            .getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth()), WALL_SHORT
-                                            .getHeight(), 10 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
-                                            .getHeight()) || //upper wall right from entrance
-                                    GlobalVariables.getPlayer().bottomBoundary().intersects(BEDROOM_X - BRICK_SINGLE_VERTICAL
-                                            .getWidth(), (3 * BRICK_SINGLE_VERTICAL.getHeight()) + (2 * WALL_COLON
-                                            .getHeight()) + BRICK_SINGLE_VERTICAL.getHeight() + 40, BRICK_SINGLE_VERTICAL
-                                            .getWidth(), BRICK_SINGLE_VERTICAL.getHeight() * 2)) { // wall between kitchen and bedroom(one brick)
-
+                            if (intersectObject.intersect(GlobalVariables.getPlayer().bottomBoundary())) {
                                 Player.checkIfPlayerCollidesLR();
                             } else {
                                 GlobalVariables.setDirection("down");
