@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5fb6fadf-7dc4-4617-a98d-d8e02f69b038" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerBack1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/bathtub.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/tv.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/not1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Buttons/ButtonEventsController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/dresser.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Achievments/GameMessage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerFront0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/wall.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/HomeEntertainment.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/brickHorizontal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerLeft0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Player/Player.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/SprayDown.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/desk.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/brickVertical.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerBack0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/monster1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/painting.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/SprayUp.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Player/Sprite.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sounds/sprayingSound.mp4" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerRight0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/coffeeTable.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Main.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Buttons/Blinker.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/monster.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/toilet.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerRight1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Graphics/FurnitureObjects.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sounds/pickup.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/sink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/monster2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/sofa.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Graphics/GraphicController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/brickShort.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Sounds/SoundController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Graphics/ImageController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/livingChair.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/brickShortVert.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/painting.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/07.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/13475846_Alt01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/wallShort.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/IntersectsObject.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/parquet.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/brickSingleVert.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/gardenGrass.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/robber plant_burned.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerLeft1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/kitchenDresser.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/soundOff.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/table_burned_burned.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/stove.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/statsBoard.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/carpet03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Achievments/Achievement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/wallColon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/siphon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Enemy/MonstersController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/kitchenSink.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sounds/walking.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sounds/running.mp4" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/not.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Buttons/ButtonController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/carpet.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerFront1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/soundOn.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/SprayRight.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerBack2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerLeft2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerRight2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/wardrobe_burned.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/tiles2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/MaleficentImage.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/playerFront2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/SprayLeft.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Graphics/GardenObjects.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/GlobalVariables.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/fridge.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/bed.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/monster.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/Achievments/AchievementController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/sounds/wall_hit.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/img/brickSingleHorizontal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/code/sample.fxml" afterPath="" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
+    <option name="width" value="1370" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5fb6fadf-7dc4-4617-a98d-d8e02f69b038" name="Default" comment="" />
+      <created>1488808026062</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1488808026062</updated>
+      <workItem from="1488808027548" duration="126000" />
+      <workItem from="1488808227035" duration="93000" />
+      <workItem from="1488808339053" duration="26000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="245000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25725192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+</project>
