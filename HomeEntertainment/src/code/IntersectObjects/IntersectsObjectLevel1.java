@@ -1,8 +1,8 @@
-package code;
+package code.IntersectObjects;
 
+import code.GlobalVariables;
 import code.Graphics.FurnitureObjects;
 import code.Graphics.ImageController;
-import code.Player.Sprite;
 import javafx.geometry.Rectangle2D;
 
 import java.util.ArrayList;
@@ -12,8 +12,7 @@ import java.util.List;
 import static code.GlobalVariables.*;
 import static code.Graphics.ImageController.*;
 
-public class IntersectsObject {
-    private List<Rectangle2D> rectangle2DList;
+public class IntersectsObjectLevel1 extends IntersectsObject{
     private Rectangle2D wardrobeBoundary = FurnitureObjects.getWardrobe().getBoundary();
     private Rectangle2D stoveBoundary = FurnitureObjects.getStove().getBoundary();
     private Rectangle2D kitchenDresserBoundary = FurnitureObjects.getKitchenDresser().getBoundary();
@@ -85,8 +84,8 @@ public class IntersectsObject {
             .getHeight() - 8, 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
             .getHeight());
 
-    public IntersectsObject() {
-        this.rectangle2DList = this.setIntersectObjects();
+    public IntersectsObjectLevel1() {
+        super.setRectangle2DList(this.setIntersectObjects());
     }
 
     private List<Rectangle2D> setIntersectObjects() {
@@ -95,23 +94,5 @@ public class IntersectsObject {
         Collections.addAll(rectangle2DList, wallBetweenBedroomAndBathroom, wallBetweenEveryRooms, wallBetweenKitchenAndBedroom, wallBetweenKitchenAndBedroomOneBrick, wallBetweenKitchenAndLivingRoom, wallBetweenLivingRoomAndBathroom, wardrobeBoundary, fridgeBoundary, stoveBoundary, bathroomSink, kitchenDresserBoundary, kitchenSinkBoundary, kitchenTableBoundary, livingRoomChairBoundary, livingRoomDresser, desk, toilet, tv, sofa, coffeeTable, coffeeTableBoundary, bedBoundary, rubberPlant, bathtub, downBorder, rightBorder, leftBorder, upperWallLeftFromEntrance, upperWallRightFromEntrance);
 
         return rectangle2DList;
-    }
-
-    public boolean intersect(Rectangle2D playerBoundry) {
-        for (Rectangle2D rectangle2D : this.rectangle2DList) {
-            if (playerBoundry.intersects(rectangle2D)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean intersect(Sprite monster) {
-        for (Rectangle2D rectangle2D : this.rectangle2DList) {
-            if (monster.intersects(rectangle2D)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

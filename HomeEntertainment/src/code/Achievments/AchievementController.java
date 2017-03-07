@@ -56,7 +56,7 @@ public class AchievementController {
 
     public void observe() {
 
-        switch ((int) this.player.score) {
+        switch ((int) this.player.getScore()) {
 
             case 200:
 

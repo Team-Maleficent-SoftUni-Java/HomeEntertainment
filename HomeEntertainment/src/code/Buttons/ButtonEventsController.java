@@ -3,7 +3,9 @@ package code.Buttons;
 import code.Enemy.MonstersController;
 import code.GlobalVariables;
 import code.Graphics.GraphicController;
-import code.IntersectsObject;
+import code.IntersectObjects.IntersectsObject;
+import code.IntersectObjects.IntersectsObjectLevel1;
+import code.IntersectObjects.IntersectsObjectLevel2;
 import code.Main;
 import code.Player.Player;
 import code.Sounds.SoundController;
@@ -99,6 +101,8 @@ public class ButtonEventsController {
                 GlobalVariables.setStepCounter(new AtomicInteger(0));
                 AtomicInteger monsterCounter = new AtomicInteger(0);
 
+                final int[] level = {1};
+
                 //The animation begins
                 new AnimationTimer() {
                     public void handle(long currentNanoTime) {
@@ -168,61 +172,44 @@ public class ButtonEventsController {
                             stop();
                         }
 
-                        IntersectsObject intersectObject = new IntersectsObject();
+                        IntersectsObjectLevel1 intersectsObjectLevel1 = new IntersectsObjectLevel1();
+                        IntersectsObjectLevel2 intersectsObjectLevel2 = new IntersectsObjectLevel2();
 
-                        // Player movement
-                        GlobalVariables.getPlayer().setVelocity(0, 0);
-                        if (GlobalVariables.getInput().contains("LEFT") && !GlobalVariables.getInput().contains("SPACE")) {
-                            if (intersectObject.intersect(GlobalVariables.getPlayer().leftBoundary())) {
-
-                                Player.checkIfPlayerCollidesUD();
-
-                            } else {
-                                GlobalVariables.setDirection("left");
-                                Player.move(-180, 0, GlobalVariables.getDirection(), -90, 0);
-                            }
-                        }
-                        if (GlobalVariables.getInput().contains("RIGHT") && !GlobalVariables.getInput().contains("SPACE")) {
-                            if (intersectObject.intersect(GlobalVariables.getPlayer().rightBoundary())) {
-
-                                Player.checkIfPlayerCollidesUD();
-                            } else {
-                                GlobalVariables.setDirection("right");
-                                Player.move(180, 0, GlobalVariables.getDirection(), 90, 0);
-                            }
-                        }
-                        if (GlobalVariables.getInput().contains("UP") && !GlobalVariables.getInput().contains("SPACE")) {
-                            if (intersectObject.intersect(GlobalVariables.getPlayer().upperBoundary())) {
-
-                                Player.checkIfPlayerCollidesLR();
-                            } else {
-                                GlobalVariables.setDirection("up");
-                                Player.move(0, -180, GlobalVariables.getDirection(), 0, -90);
-                            }
-                        }
-                        if (GlobalVariables.getInput().contains("DOWN") && !GlobalVariables.getInput().contains("SPACE")) {
-                            if (intersectObject.intersect(GlobalVariables.getPlayer().bottomBoundary())) {
-                                Player.checkIfPlayerCollidesLR();
-                            } else {
-                                GlobalVariables.setDirection("down");
-                                Player.move(0, 180, GlobalVariables.getDirection(), 0, 90);
-                            }
-                        }
                         //Stops sound effects while standing in place
                         SoundController.stopSoundEffects();
                         GlobalVariables.getPlayer().update(elapsedTime);
 
-                        // draw obstacles
-                        GraphicController.drawWalls();
+                        if (GlobalVariables.getPlayer().getScore() < 1 && level[0] == 1) {
 
-                        // show monsters
-                        MonstersController.displayMonsters(monsterCounter);
+                            // Player movement
+                            playerMovement(intersectsObjectLevel1);
 
-                        //Spraying the monsters
-                        Player.sprayMonsters();
+                            // draw obstacles
+                            GraphicController.drawWalls();
 
-                        // Check collision with monsters
-                        MonstersController.checkCollision(this);
+                            // show monsters
+                            MonstersController.displayMonsters(monsterCounter);
+
+                            //Spraying the monsters
+                            Player.sprayMonsters();
+
+                            // Check collision with monsters
+                            MonstersController.checkCollision(this);
+                        } else {
+                            if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= -80) {
+                                level[0] = 2;
+                                playerMovement(intersectsObjectLevel2);
+                                GraphicController.drawGarden();
+                            } else if (level[0] == 1){
+                                playerMovement(intersectsObjectLevel1);
+
+                                // draw obstacles
+                                GraphicController.drawWalls();
+                            } else if(level[0] == 2){
+                                playerMovement(intersectsObjectLevel2);
+                                GraphicController.drawGarden();
+                            }
+                        }
                     }
                 }.start();
             }
@@ -248,5 +235,45 @@ public class ButtonEventsController {
         GlobalVariables.getRoot().getChildren().add(ButtonController.getKeyboardGuideTitle());
         GlobalVariables.getRoot().getChildren().add(ButtonController.getKeyboardGuide());
         GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonSound());
+    }
+
+    private static void playerMovement(IntersectsObject intersectObject) {
+        GlobalVariables.getPlayer().setVelocity(0, 0);
+        if (GlobalVariables.getInput().contains("LEFT") && !GlobalVariables.getInput().contains("SPACE")) {
+            if (intersectObject.intersect(GlobalVariables.getPlayer().leftBoundary())) {
+
+                Player.checkIfPlayerCollidesUD();
+
+            } else {
+                GlobalVariables.setDirection("left");
+                Player.move(-180, 0, GlobalVariables.getDirection(), -90, 0);
+            }
+        }
+        if (GlobalVariables.getInput().contains("RIGHT") && !GlobalVariables.getInput().contains("SPACE")) {
+            if (intersectObject.intersect(GlobalVariables.getPlayer().rightBoundary())) {
+
+                Player.checkIfPlayerCollidesUD();
+            } else {
+                GlobalVariables.setDirection("right");
+                Player.move(180, 0, GlobalVariables.getDirection(), 90, 0);
+            }
+        }
+        if (GlobalVariables.getInput().contains("UP") && !GlobalVariables.getInput().contains("SPACE")) {
+            if (intersectObject.intersect(GlobalVariables.getPlayer().upperBoundary())) {
+
+                Player.checkIfPlayerCollidesLR();
+            } else {
+                GlobalVariables.setDirection("up");
+                Player.move(0, -180, GlobalVariables.getDirection(), 0, -90);
+            }
+        }
+        if (GlobalVariables.getInput().contains("DOWN") && !GlobalVariables.getInput().contains("SPACE")) {
+            if (intersectObject.intersect(GlobalVariables.getPlayer().bottomBoundary())) {
+                Player.checkIfPlayerCollidesLR();
+            } else {
+                GlobalVariables.setDirection("down");
+                Player.move(0, 180, GlobalVariables.getDirection(), 0, 90);
+            }
+        }
     }
 }

@@ -13,20 +13,22 @@ import static code.Graphics.ImageController.BRICK_SINGLE_HORIZONTAL;
 
 public class Player extends Sprite {
     private double health;
+    private int score;
 
     public Player(){
-        health = 100;
+        this.health = 100;
     }
 
     public double getPlayerHealth(){
-        return health;
+        return this.health;
     }
 
+    public int getScore() {
+        return this.score;
+    }
     public void subtractPlayerHealth(){
         this.health -= 0.10;
     }
-
-    public int score = 0;
 
     public ArrayList<Achievement> achievements = new ArrayList<>();
 

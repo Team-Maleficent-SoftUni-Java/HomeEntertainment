@@ -8,12 +8,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static code.GlobalVariables.*;
 import static code.Graphics.ImageController.*;
 
 public class GraphicController {
 
-    public static void displayObjects (){
+    private static List<Plant> plants = new ArrayList<>();
+
+    public static void displayObjects() {
         //The kitchenDresser object
         Image kitchenDresserImage = new Image(
                 "img/kitchenDresser.png", 80, 135, false, false);
@@ -146,9 +151,9 @@ public class GraphicController {
         GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, BATHROOM_Y + BATHROOM_HEIGHT / 2);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X, LIVING_ROOM_Y);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X,  LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(),
-                LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2 , LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
+                LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), 0, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), 600, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100);
 
@@ -249,8 +254,9 @@ public class GraphicController {
 
         //Render the bricks
         //Left border
-        for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {GlobalVariables
-                .getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, 0, i * BRICK_SINGLE_VERTICAL.getHeight());
+        for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {
+            GlobalVariables
+                    .getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, 0, i * BRICK_SINGLE_VERTICAL.getHeight());
         }
 
         FurnitureObjects.getSofa().render(GlobalVariables.getGraphicContext());
@@ -283,10 +289,10 @@ public class GraphicController {
 
         for (int i = 0; i < GlobalVariables.getCanvas().getWidth() / BRICK_SINGLE_HORIZONTAL.getWidth(); i++) {
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
-                    + wallUpBorder1 + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()),
+                            + wallUpBorder1 + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()),
                     CANVAS_FAKE_HEIGHT - BRICK_SINGLE_HORIZONTAL.getHeight());
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
-                    + wallUpBorder1 + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()),
+                            + wallUpBorder1 + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()),
                     CANVAS_FAKE_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
         }
 
@@ -297,7 +303,7 @@ public class GraphicController {
         }
 
         //Display scores on the stats board
-        String pointsText = "Points: " + GlobalVariables.getPlayer().score;
+        String pointsText = "Points: " + GlobalVariables.getPlayer().getScore();
         GlobalVariables.getGraphicContext().fillText(pointsText, GlobalVariables.getCanvas().getWidth()
                 - ImageController.getStatsBoard().getWidth() + 5, GlobalVariables.getCanvas().getLayoutY() + 40);
 
@@ -306,5 +312,79 @@ public class GraphicController {
 
         GlobalVariables.getGraphicContext().fillText(healthText, GlobalVariables.getCanvas().getWidth()
                 - ImageController.getStatsBoard().getWidth() + 5, GlobalVariables.getCanvas().getLayoutY() + 20);
+    }
+
+    public static void drawGarden() {
+
+        //draw garden
+        GlobalVariables.getGraphicContext().clearRect(0, 0, 1024, 768);
+        //draw garden grass
+        int y = 0;
+        for (int i = 0; i < 5; i++) {
+            int x = 0;
+            for (int j = 0; j < 5; j++) {
+                GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), x, y);
+                x += GlobalVariables.getCanvas().getWidth() / 5;
+            }
+            y += GlobalVariables.getCanvas().getHeight() / 5;
+        }
+
+        Image firstTree = new Image("img/Tree1.png", 150, 200, false, false);
+        Image secondTree = new Image("img/Tree2.png", 150, 200, false, false);
+        Image thirdTree = new Image("img/Tree3.png", 150, 200, false, false);
+        Image paprat = new Image("img/paprat.png", 70, 100, false, false);
+        Image firstFlower = new Image("img/flower1.png", 150, 100, false, false);
+        Image secondFlower = new Image("img/flower2.png", 150, 100, false, false);
+        Image thirdFlower = new Image("img/flower3.png", 150, 100, false, false);
+        Image dwarf1 = new Image("img/dwarf1.png", 50, 80, false, false);
+        Image dwarf2 = new Image("img/dwarf2.png", 50, 80, false, false);
+        Image rock = new Image("img/rock.png", 30, 20, false, false);
+        Image rock1 = new Image("img/rock.png", 60, 40, false, false);
+        Image fontan = new Image("img/fontan.png", 150, 100, false, false);
+
+        Plant tree = new Plant();
+
+        if (GlobalVariables.getInput().contains("Q")) {
+            tree = plant(firstTree);
+        } else if (GlobalVariables.getInput().contains("W")) {
+            tree = plant(secondTree);
+        } else if (GlobalVariables.getInput().contains("E")) {
+            tree = plant(thirdTree);
+        } else if (GlobalVariables.getInput().contains("R")) {
+            tree = plant(paprat);
+        } else if (GlobalVariables.getInput().contains("T")) {
+            tree = plant(firstFlower);
+        } else if (GlobalVariables.getInput().contains("Y")) {
+            tree = plant(secondFlower);
+        } else if (GlobalVariables.getInput().contains("U")) {
+            tree = plant(thirdFlower);
+        } else if (GlobalVariables.getInput().contains("I")) {
+            tree = plant(dwarf1);
+        } else if (GlobalVariables.getInput().contains("O")) {
+            tree = plant(dwarf2);
+        } else if (GlobalVariables.getInput().contains("S")) {
+            tree = plant(rock);
+        } else if (GlobalVariables.getInput().contains("A")) {
+            tree = plant(fontan);
+        } else if (GlobalVariables.getInput().contains("D")) {
+            tree = plant(rock1);
+        }
+        plants.add(tree);
+
+        for (Plant plant : plants) {
+            plant.getTree().render(GlobalVariables.getGraphicContext());
+        }
+
+        GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+    }
+
+    private static Plant plant(Image treeImage) {
+
+        Plant tree = new Plant();
+        tree.getTree().setImage(treeImage);
+        tree.getTree().setPosition(GlobalVariables.getPlayer().getX() + 20, GlobalVariables.getPlayer().getY() + 20);
+        tree.getTree().render(GlobalVariables.getGraphicContext());
+
+        return tree;
     }
 }

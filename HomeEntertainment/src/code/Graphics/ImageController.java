@@ -1,5 +1,6 @@
 package code.Graphics;
 
+import code.GlobalVariables;
 import javafx.scene.image.Image;
 
 import java.util.ArrayDeque;
@@ -31,7 +32,7 @@ public class ImageController {
         carpet2 = new Image("img/carpet03.jpg", BEDROOM_WIDTH, BEDROOM_HEIGHT / 2, false, false);
         siphon = new Image("img/siphon.png", 40, 40, false, false);
         statsBoard = new Image("img/statsBoard.png");
-        gardenGrass = new Image("img/gardenGrass.jpg", 600 , 200 , false, false);
+        gardenGrass = new Image("img/gardenGrass.jpg", GlobalVariables.getCanvas().getWidth() / 5, GlobalVariables.getCanvas().getHeight() / 5, false, false);
     }
 
     public static ArrayDeque<String> getPlayerDownImages() {

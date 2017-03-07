@@ -81,7 +81,7 @@ public class Main extends Application {
         // Load sounds
         SoundController.loadSounds();
 
-       //CreateButtons
+        //CreateButtons
         ButtonController.createButtons();
 
         //Set all buttons parameters

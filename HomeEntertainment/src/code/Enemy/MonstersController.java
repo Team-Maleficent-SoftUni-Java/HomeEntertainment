@@ -4,7 +4,7 @@ import code.Achievments.AchievementController;
 import code.Achievments.GameMessage;
 import code.Buttons.ButtonController;
 import code.GlobalVariables;
-import code.IntersectsObject;
+import code.IntersectObjects.IntersectsObjectLevel1;
 import code.Player.Sprite;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
@@ -64,7 +64,7 @@ public class MonstersController {
     }
 
     public static void displayMonsters(AtomicInteger monsterCounter) {
-        IntersectsObject intersectObject = new IntersectsObject();
+        IntersectsObjectLevel1 intersectObject = new IntersectsObjectLevel1();
 
         monsterCounter.addAndGet(1);
         if (monsterCounter.get() == 200) {
@@ -82,9 +82,5 @@ public class MonstersController {
         for (Sprite monster : GlobalVariables.getMonstersToRender()) {
             monster.render(GlobalVariables.getGraphicContext());
         }
-    }
-
-    public static ArrayDeque<String> getMonstersImages() {
-        return monstersImages;
     }
 }
