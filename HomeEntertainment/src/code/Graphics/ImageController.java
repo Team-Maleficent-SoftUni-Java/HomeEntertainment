@@ -99,7 +99,7 @@ public class ImageController {
         return siphon;
     }
 
-    static Image getStatsBoard() {
+    public static Image getStatsBoard() {
         return statsBoard;
     }
 

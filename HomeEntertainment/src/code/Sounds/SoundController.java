@@ -15,6 +15,7 @@ public class SoundController {
         pickup = new AudioClip(Paths.get(GlobalVariables.getProjectPath() + "/HomeEntertainment/src/sounds/pickup.wav").toUri().toString());
         GlobalVariables.setWalking(new AudioClip(Paths.get(GlobalVariables.getProjectPath() + "/HomeEntertainment/src/sounds/walking.wav").toUri().toString()));
         GlobalVariables.setRunning(new AudioClip(Paths.get(GlobalVariables.getProjectPath() + "/HomeEntertainment/src/sounds/running.mp4").toUri().toString()));
+        GlobalVariables.setAttack(new AudioClip(Paths.get(GlobalVariables.getProjectPath() + "/HomeEntertainment/src/sounds/attack.wav").toUri().toString()));
         spraying = new AudioClip(Paths.get(GlobalVariables.getProjectPath() + "/HomeEntertainment/src/sounds/sprayingSound.mp4").toUri().toString());
     }
 
@@ -24,6 +25,7 @@ public class SoundController {
                 .contains("DOWN")) || GlobalVariables.getInput().contains("SPACE")) {
             GlobalVariables.getWalking().stop();
             GlobalVariables.getRunning().stop();
+            GlobalVariables.getAttack().stop();
         }
     }
 

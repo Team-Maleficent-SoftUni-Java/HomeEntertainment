@@ -1,7 +1,10 @@
 package code.Buttons;
 
+import code.Achievments.GameMessage;
 import code.Enemy.MonstersController;
 import code.GlobalVariables;
+import code.Graphics.DrawLevel2;
+import code.Graphics.FurnitureObjects;
 import code.Graphics.GraphicController;
 import code.IntersectObjects.IntersectsObject;
 import code.IntersectObjects.IntersectsObjectLevel1;
@@ -175,6 +178,8 @@ public class ButtonEventsController {
                         IntersectsObjectLevel1 intersectsObjectLevel1 = new IntersectsObjectLevel1();
                         IntersectsObjectLevel2 intersectsObjectLevel2 = new IntersectsObjectLevel2();
 
+                        GameMessage GM = new GameMessage(GlobalVariables.getPlayer(), GlobalVariables.getRoot());
+
                         //Stops sound effects while standing in place
                         SoundController.stopSoundEffects();
                         GlobalVariables.getPlayer().update(elapsedTime);
@@ -198,16 +203,17 @@ public class ButtonEventsController {
                         } else {
                             if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= -80) {
                                 level[0] = 2;
-                                playerMovement(intersectsObjectLevel2);
-                                GraphicController.drawGarden();
-                            } else if (level[0] == 1){
-                                playerMovement(intersectsObjectLevel1);
 
+                                playerMovement(intersectsObjectLevel2);
+                                DrawLevel2.drawGarden();
+                            } else if (level[0] == 1){
+                                GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!", 1, Color.RED, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects.getKitchenTable().getWidth() + 20, FurnitureObjects.getKitchenTable().getY() + 100);
+                                playerMovement(intersectsObjectLevel1);
                                 // draw obstacles
                                 GraphicController.drawWalls();
                             } else if(level[0] == 2){
                                 playerMovement(intersectsObjectLevel2);
-                                GraphicController.drawGarden();
+                                DrawLevel2.drawGarden();
                             }
                         }
                     }

@@ -46,7 +46,7 @@ public class GlobalVariables {
     private static Group root = new Group();
     private static Player _player;
     private static ArrayList<String> _input;
-    private static AudioClip _walking, _running, _wallHit;
+    private static AudioClip _walking, _running, _wallHit, _attack;
     private static AtomicInteger _stepCounter;
     private static Canvas _canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     private static String _direction;
@@ -90,8 +90,16 @@ public class GlobalVariables {
         return _wallHit;
     }
 
+    public static AudioClip getAttack() {
+        return _attack;
+    }
+
     public static void setWallHit(AudioClip wallHit) {
         _wallHit = wallHit;
+    }
+
+    public static void setAttack(AudioClip attack) {
+        _attack = attack;
     }
 
     public static AtomicInteger getStepCounter() {

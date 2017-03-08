@@ -1,5 +1,9 @@
 package code.Achievments;
 
+import code.GlobalVariables;
+import code.Graphics.FurnitureObjects;
+import code.Graphics.GraphicController;
+import code.Graphics.ImageController;
 import code.Player.Player;
 import javafx.animation.FadeTransition;
 import javafx.scene.Group;
@@ -14,6 +18,7 @@ public class GameMessage {
     private final Player player;
     private final int achievementX;
     private final int achievementY;
+    private FadeTransition ft;
 
     public GameMessage(Player player, Group root) {
         
@@ -39,9 +44,9 @@ public class GameMessage {
 
     }
 
-    public void renderMessage(String text, int duration, Color color) {
+    public void renderMessage(String text, int duration, Color color, double x, double y) {
 
-        Text t = new Text(this.achievementX, this.achievementY, text);
+        Text t = new Text(x, y, text);
         FadeTransition ft = new FadeTransition(Duration.millis(duration), t);
         t.setFont(Font.font ("Verdana", 25));
         t.setFill(color);
@@ -51,4 +56,6 @@ public class GameMessage {
         ft.setCycleCount(1);
         ft.play();
     }
+
+
 }

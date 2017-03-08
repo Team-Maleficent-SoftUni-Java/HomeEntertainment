@@ -4,6 +4,7 @@ import code.Achievments.AchievementController;
 import code.Achievments.GameMessage;
 import code.Buttons.ButtonController;
 import code.GlobalVariables;
+import code.Graphics.FurnitureObjects;
 import code.IntersectObjects.IntersectsObjectLevel1;
 import code.Player.Sprite;
 import javafx.animation.AnimationTimer;
@@ -43,10 +44,13 @@ public class MonstersController {
         for (Sprite monster : GlobalVariables.getMonstersToRender()) {
             if (GlobalVariables.getPlayer().intersects(monster)) {
 
-                GM.renderMessage("Ouch!", 1000, Color.RED);
+                GM.renderMessage("Ouch!", 2, Color.RED, GlobalVariables.getPlayer().getX(), GlobalVariables.getPlayer().getY());
+                if (!GlobalVariables.getMute()[0]) {
+                    GlobalVariables.getAttack().play(1, 0, 1.0, 0.0, -5);
+                }
 
                 if ((int) GlobalVariables.getPlayer().getPlayerHealth() <= 0)
-                    GM.renderMessage("Bugs owned the house and ate you, Game Over!", 10000000, Color.RED);
+                    GM.renderMessage("Bugs owned the house and ate you, Game Over!", 1000000000, Color.RED, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects.getKitchenTable().getWidth() + 20, FurnitureObjects.getKitchenTable().getY() + 100);
 
                 GlobalVariables.getPlayer().subtractPlayerHealth();
 
