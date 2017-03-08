@@ -6,6 +6,7 @@ import code.GlobalVariables;
 import code.Graphics.DrawLevel2;
 import code.Graphics.FurnitureObjects;
 import code.Graphics.GraphicController;
+import code.Graphics.ImageController;
 import code.IntersectObjects.IntersectsObject;
 import code.IntersectObjects.IntersectsObjectLevel1;
 import code.IntersectObjects.IntersectsObjectLevel2;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static code.GlobalVariables.CANVAS_FAKE_HEIGHT;
+import static code.Graphics.ImageController.DOOR_IMAGE;
 
 public class ButtonEventsController {
 
@@ -190,7 +192,7 @@ public class ButtonEventsController {
                             playerMovement(intersectsObjectLevel1);
 
                             // draw obstacles
-                            GraphicController.drawWalls();
+                            GraphicController.drawWalls(true);
 
                             // show monsters
                             MonstersController.displayMonsters(monsterCounter);
@@ -211,11 +213,17 @@ public class ButtonEventsController {
                                 DrawLevel2.drawGarden();
                             } else if (level[0] == 1){
                                 GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!",
-                                        1, Color.RED, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects
+                                        1, Color.GREEN, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects
                                                 .getKitchenTable().getWidth() - 100, FurnitureObjects.getKitchenTable().getY() + 100);
-                                playerMovement(intersectsObjectLevel1);
+
+                                // remove door
+                                intersectsObjectLevel1.setIntersectObjectsWithoutDoor();
+
                                 // draw obstacles
-                                GraphicController.drawWalls();
+                                GraphicController.drawWalls(false);
+
+                                playerMovement(intersectsObjectLevel1);
+
                             } else if(level[0] == 2){
                                 playerMovement(intersectsObjectLevel2);
                                 DrawLevel2.drawGarden();

@@ -13,6 +13,8 @@ import static code.GlobalVariables.*;
 import static code.Graphics.ImageController.*;
 
 public class IntersectsObjectLevel1 extends IntersectsObject{
+    private List<Rectangle2D> rectangle2DList = new ArrayList<>();
+
     private Rectangle2D wardrobeBoundary = FurnitureObjects.getWardrobe().getBoundary();
     private Rectangle2D stoveBoundary = FurnitureObjects.getStove().getBoundary();
     private Rectangle2D kitchenDresserBoundary = FurnitureObjects.getKitchenDresser().getBoundary();
@@ -83,20 +85,31 @@ public class IntersectsObjectLevel1 extends IntersectsObject{
             + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
             .getHeight() - 8, 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
             .getHeight());
+    public Rectangle2D door = new Rectangle2D(270, - 20, 110, 120);
 
-    public IntersectsObjectLevel1() {
-        super.setRectangle2DList(this.setIntersectObjects());
+    private void setIntersectObjects() {
+        Collections.addAll(rectangle2DList, wallBetweenBedroomAndBathroom, wallBetweenEveryRooms, wallBetweenKitchenAndBedroom,
+                wallBetweenKitchenAndBedroomOneBrick, wallBetweenKitchenAndLivingRoom, wallBetweenLivingRoomAndBathroom, wardrobeBoundary,
+                fridgeBoundary, stoveBoundary, bathroomSink, kitchenDresserBoundary, kitchenSinkBoundary, kitchenTableBoundary,
+                livingRoomChairBoundary, livingRoomDresser, desk, toilet, tv, sofa, coffeeTable, coffeeTableBoundary, bedBoundary,
+                rubberPlant, bathtub, downBorder, rightBorder, leftBorder, upperWallLeftFromEntrance, upperWallRightFromEntrance, door);
     }
 
-    private List<Rectangle2D> setIntersectObjects() {
-        List<Rectangle2D> rectangle2DList = new ArrayList<>();
-
+    public void setIntersectObjectsWithoutDoor() {
+        rectangle2DList.clear();
         Collections.addAll(rectangle2DList, wallBetweenBedroomAndBathroom, wallBetweenEveryRooms, wallBetweenKitchenAndBedroom,
                 wallBetweenKitchenAndBedroomOneBrick, wallBetweenKitchenAndLivingRoom, wallBetweenLivingRoomAndBathroom, wardrobeBoundary,
                 fridgeBoundary, stoveBoundary, bathroomSink, kitchenDresserBoundary, kitchenSinkBoundary, kitchenTableBoundary,
                 livingRoomChairBoundary, livingRoomDresser, desk, toilet, tv, sofa, coffeeTable, coffeeTableBoundary, bedBoundary,
                 rubberPlant, bathtub, downBorder, rightBorder, leftBorder, upperWallLeftFromEntrance, upperWallRightFromEntrance);
+    }
 
+    private List<Rectangle2D> getIntersectObjects() {
         return rectangle2DList;
+    }
+
+    public IntersectsObjectLevel1() {
+        this.setIntersectObjects();
+        super.setRectangle2DList(getIntersectObjects());
     }
 }

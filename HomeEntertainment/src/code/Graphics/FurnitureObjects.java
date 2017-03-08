@@ -20,6 +20,7 @@ public class FurnitureObjects {
     private static Sprite toilet = new Sprite();
     private static Sprite bathtub = new Sprite();
     private static Sprite bathroomSink = new Sprite();
+    private static Sprite entryDoor = new Sprite();
 
     public static Sprite getKitchenDresser() {
         return kitchenDresser;
@@ -87,5 +88,9 @@ public class FurnitureObjects {
 
     public static Sprite getBathroomSink() {
         return bathroomSink;
+    }
+
+    public static Sprite getEntryDoor() {
+        return entryDoor;
     }
 }

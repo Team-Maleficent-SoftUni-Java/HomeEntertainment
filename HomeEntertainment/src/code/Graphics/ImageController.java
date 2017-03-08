@@ -14,6 +14,7 @@ public class ImageController {
     public final static Image BRICK_SINGLE_VERTICAL = new Image("img/brickSingleVert.png");
     public final static Image WALL_SHORT = new Image("img/wallShort.png");
     public final static Image WALL_COLON = new Image("img/wallColon.png");
+    public final static Image DOOR_IMAGE = new Image("img/door.png");
 
     private static ArrayDeque<String> _playerDownImages, _playerRightImages, _playerLeftImages, _playerUpImages;
     private static Image parquet;
@@ -24,6 +25,7 @@ public class ImageController {
     private static Image statsBoard;
     private static Image gardenGrass;
     private static Image gardenWall;
+    private static Image smallGardenGrass;
 
     public static void defineImages () {
         parquet = new Image("img/parquet.jpg", KITCHEN_WIDTH, KITCHEN_HEIGHT / 2, false, false);
@@ -36,6 +38,7 @@ public class ImageController {
         gardenGrass = new Image("img/gardenGrass.jpg", GlobalVariables.getCanvas().getWidth() / 5,
                 GlobalVariables.getCanvas().getHeight() / 5, false, false);
         gardenWall = new Image("img/gardenFence.png", 100, 50, false, false);
+        smallGardenGrass = new Image("img/gardenGrass.jpg", 150, 120, false, false);
     }
 
     public static ArrayDeque<String> getPlayerDownImages() {
@@ -106,7 +109,11 @@ public class ImageController {
         return statsBoard;
     }
 
-    static Image getGardenGrass() { return gardenGrass; }
+    public static Image getGardenGrass() { return gardenGrass; }
 
     static Image getGardenFence() { return gardenWall; }
+
+    public static Image getSmallGardenGrass() {
+        return smallGardenGrass;
+    }
 }
