@@ -3,6 +3,7 @@ package code.Graphics;
 import code.GlobalVariables;
 import code.Player.Player;
 import code.Player.Sprite;
+import jdk.nashorn.internal.objects.Global;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,14 @@ public class DrawLevel2 {
         } else if (GlobalVariables.getInput().contains("S")) {
             plants.add(plant().getBigRock());
             //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+        } else if (GlobalVariables.getInput().contains("D")) {
+            plants.add(plant().getFourthTree());
+            //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+        } else if (GlobalVariables.getInput().contains("F")) {
+            plants.add(plant().getFifthTree());
+            //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+        } else if (GlobalVariables.getInput().contains("Z")) {
+            plants.remove(plants.size() - 1);
         }
 
         for (Sprite plant1 : plants) {

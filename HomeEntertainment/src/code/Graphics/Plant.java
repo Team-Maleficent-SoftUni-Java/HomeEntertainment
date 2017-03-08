@@ -9,14 +9,16 @@ public class Plant {
     private static final Image FIRST_TREE_IMAGE = new Image("img/Tree1.png", 150, 200, false, false);
     private static final Image SECOND_TREE_IMAGE = new Image("img/Tree2.png", 150, 200, false, false);
     private static final Image THIRD_TREE_IMAGE = new Image("img/Tree3.png", 150, 200, false, false);
+    private static final Image FOURTH_TREE_IMAGE = new Image("img/bor.png", 150, 200, false, false);
+    private static final Image FIFTH_TREE_IMAGE = new Image("img/peach.png", 150, 200, false, false);
     private static final Image FERN_IMAGE = new Image("img/paprat.png", 70, 100, false, false);
     private static final Image FIRST_FLOWER_IMAGE = new Image("img/flower1.png", 150, 100, false, false);
-    private static final Image SECOND_FLOWER_IMAGE = new Image("img/flower2.png", 150, 100, false, false);
-    private static final Image THIRD_FLOWER_IMAGE = new Image("img/flower3.png", 150, 100, false, false);
+    private static final Image SECOND_FLOWER_IMAGE = new Image("img/flower2.png", 90, 50, false, false);
+    private static final Image THIRD_FLOWER_IMAGE = new Image("img/flower3.png", 100, 60, false, false);
     private static final Image DWARF_IMAGE = new Image("img/dwarf1.png", 50, 80, false, false);
     private static final Image SMALL_ROCK_IMAGE = new Image("img/rock.png", 30, 20, false, false);
     private static final Image BIG_ROCK_IMAGE = new Image("img/rock.png", 60, 40, false, false);
-    private static final Image FOUNTAIN_IMAGE = new Image("img/fontan.png", 150, 100, false, false);
+    private static final Image FOUNTAIN_IMAGE = new Image("img/fontan.png", 250, 180, false, false);
     public static final int TREE_POINTS = 3;
     public static final int FLOWER_POINTS = 2;
     public static final int FOUNTAIN_POINTS = 5;
@@ -28,6 +30,8 @@ public class Plant {
     private Sprite firstTree = new Sprite();
     private Sprite secondTree = new Sprite();
     private Sprite thirdTree = new Sprite();
+    private Sprite fourthTree = new Sprite();
+    private Sprite fifthTree = new Sprite();
     private Sprite firstFlower = new Sprite();
     private Sprite secondFlower = new Sprite();
     private Sprite thirdFlower = new Sprite();
@@ -41,6 +45,8 @@ public class Plant {
         this.setFirstTree(x, y);
         this.setSecondTree(x, y);
         this.setThirdTree(x, y);
+        this.setFourthTree(x, y);
+        this.setFifthTree(x, y);
         this.setFirstFlower(x, y);
         this.setSecondFlower(x, y);
         this.setThirdFlower(x, y);
@@ -61,6 +67,14 @@ public class Plant {
 
     public Sprite getThirdTree() {
         return this.thirdTree;
+    }
+
+    public Sprite getFourthTree() {
+        return this.fourthTree;
+    }
+
+    public Sprite getFifthTree() {
+        return this.fifthTree;
     }
 
     public Sprite getFirstFlower() {
@@ -108,6 +122,16 @@ public class Plant {
     private void setThirdTree(double x, double y) {
         this.thirdTree.setImage(THIRD_TREE_IMAGE);
         this.thirdTree.setPosition(x, y);
+    }
+
+    public void setFourthTree(double x, double y) {
+        this.fourthTree.setImage(FOURTH_TREE_IMAGE);
+        this.fourthTree.setPosition(x, y);
+    }
+
+    public void setFifthTree(double x, double y) {
+        this.fifthTree.setImage(FIFTH_TREE_IMAGE);
+        this.fifthTree.setPosition(x, y);
     }
 
     private void setFirstFlower(double x, double y) {
