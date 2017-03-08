@@ -3,20 +3,26 @@ package code;
 import code.Buttons.ButtonEventsController;
 import code.Buttons.ButtonController;
 import code.Enemy.MonstersController;
-import code.Graphics.GraphicController;
+import code.Graphics.DrawLevel1;
 import code.Graphics.ImageController;
+import code.IntersectObjects.IntersectsObject;
+import code.IntersectObjects.IntersectsObjectLevel2;
 import code.Player.Player;
 import code.Sounds.SoundController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+
+
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -29,6 +35,7 @@ public class Main extends Application {
         //Set stage properties
         theStage.setTitle("Home entertainment");
         GlobalVariables.setRoot(new Group());
+        GlobalVariables.setIntersectsObject(new IntersectsObject());
         Scene theScene = new Scene(GlobalVariables.getRoot(), 1024, 768, Color.WHITESMOKE);
         theStage.setScene(theScene);
         GlobalVariables.getRoot().getChildren().add(GlobalVariables.getCanvas());
@@ -73,10 +80,10 @@ public class Main extends Application {
                 });
 
         //Display introduce on Main page
-        GraphicController.displayIntroduce();
+        DrawLevel1.displayIntroduce();
 
         //Display all objects in the house.
-        GraphicController.displayObjects();
+        DrawLevel1.displayObjects();
 
         // Load sounds
         SoundController.loadSounds();

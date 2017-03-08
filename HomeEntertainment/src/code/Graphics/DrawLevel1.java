@@ -15,7 +15,7 @@ import java.util.List;
 import static code.GlobalVariables.*;
 import static code.Graphics.ImageController.*;
 
-public class GraphicController {
+public class DrawLevel1 {
 
     public static void displayObjects() {
         //The kitchenDresser object

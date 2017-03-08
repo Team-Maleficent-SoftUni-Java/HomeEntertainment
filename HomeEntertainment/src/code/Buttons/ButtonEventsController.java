@@ -5,8 +5,7 @@ import code.Enemy.MonstersController;
 import code.GlobalVariables;
 import code.Graphics.DrawLevel2;
 import code.Graphics.FurnitureObjects;
-import code.Graphics.GraphicController;
-import code.Graphics.ImageController;
+import code.Graphics.DrawLevel1;
 import code.IntersectObjects.IntersectsObject;
 import code.IntersectObjects.IntersectsObjectLevel1;
 import code.IntersectObjects.IntersectsObjectLevel2;
@@ -29,7 +28,6 @@ import javafx.stage.Stage;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static code.GlobalVariables.CANVAS_FAKE_HEIGHT;
-import static code.Graphics.ImageController.DOOR_IMAGE;
 
 public class ButtonEventsController {
 
@@ -178,7 +176,6 @@ public class ButtonEventsController {
                         }
 
                         IntersectsObjectLevel1 intersectsObjectLevel1 = new IntersectsObjectLevel1();
-                        IntersectsObjectLevel2 intersectsObjectLevel2 = new IntersectsObjectLevel2();
 
                         GameMessage GM = new GameMessage(GlobalVariables.getPlayer(), GlobalVariables.getRoot());
 
@@ -192,7 +189,7 @@ public class ButtonEventsController {
                             playerMovement(intersectsObjectLevel1);
 
                             // draw obstacles
-                            GraphicController.drawWalls(true);
+                            DrawLevel1.drawWalls(true);
 
                             // show monsters
                             MonstersController.displayMonsters(monsterCounter);
@@ -209,7 +206,7 @@ public class ButtonEventsController {
                                 //set Player position in garden
                                 GlobalVariables.getPlayer().setPosition(380, 630);
 
-                                playerMovement(intersectsObjectLevel2);
+                                playerMovement(GlobalVariables.getIntersectsObject());
                                 DrawLevel2.drawGarden();
                             } else if (level[0] == 1){
                                 GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!",
@@ -220,12 +217,12 @@ public class ButtonEventsController {
                                 intersectsObjectLevel1.setIntersectObjectsWithoutDoor();
 
                                 // draw obstacles
-                                GraphicController.drawWalls(false);
+                                DrawLevel1.drawWalls(false);
 
                                 playerMovement(intersectsObjectLevel1);
 
                             } else if(level[0] == 2){
-                                playerMovement(intersectsObjectLevel2);
+                                playerMovement(GlobalVariables.getIntersectsObject());
                                 DrawLevel2.drawGarden();
                             }
                         }

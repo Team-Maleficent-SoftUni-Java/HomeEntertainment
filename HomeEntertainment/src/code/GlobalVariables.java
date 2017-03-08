@@ -1,5 +1,7 @@
 package code;
 
+import code.IntersectObjects.IntersectsObject;
+import code.IntersectObjects.IntersectsObjectLevel2;
 import code.Player.Player;
 import code.Player.Sprite;
 import javafx.scene.Group;
@@ -53,10 +55,15 @@ public class GlobalVariables {
     private static GraphicsContext gc = _canvas.getGraphicsContext2D();
     private static ArrayList<Sprite> monstersToRender;
     private static ArrayDeque<Sprite> monsterList;
+    private static IntersectsObject _intersectsObject;
 
     public static Player getPlayer() {
         return _player;
     }
+
+    public static IntersectsObject getIntersectsObject() { return _intersectsObject; }
+
+    public static void setIntersectsObject(IntersectsObject intersectsObject) { _intersectsObject = intersectsObject; }
 
     public static void setPlayer(Player player) {
         _player = player;

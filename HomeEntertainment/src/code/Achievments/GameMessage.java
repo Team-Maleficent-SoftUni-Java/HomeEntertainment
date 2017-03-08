@@ -1,9 +1,5 @@
 package code.Achievments;
 
-import code.GlobalVariables;
-import code.Graphics.FurnitureObjects;
-import code.Graphics.GraphicController;
-import code.Graphics.ImageController;
 import code.Player.Player;
 import javafx.animation.FadeTransition;
 import javafx.scene.Group;
