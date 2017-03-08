@@ -13,8 +13,10 @@ public class DrawLevel2 {
     private static List<Sprite> plants = new ArrayList<>();
 
     public static void drawGarden() {
+
         //draw garden
         GlobalVariables.getGraphicContext().clearRect(0, 0, 1024, 768);
+
         //draw garden grass
         int y = 0;
         for (int i = 0; i < 5; i++) {
@@ -24,6 +26,13 @@ public class DrawLevel2 {
                 x += GlobalVariables.getCanvas().getWidth() / 5;
             }
             y += GlobalVariables.getCanvas().getHeight() / 5;
+        }
+
+        //draw gardenFence
+        int x = 0;
+        for (int i = 0; i < 15; i++) {
+            GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenFence(), x, 0);
+            x += 90;
         }
 
         //Stats board

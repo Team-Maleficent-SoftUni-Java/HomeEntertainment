@@ -67,7 +67,10 @@ public class ButtonController {
         menuSoundText1 = new Text("Sound ON");
         menuSoundText2 = new Text("Affects all sounds and music");
         keyboardGuideTitle = new Text("Keyboard guide:\n");
-        keyboardGuide = new Text("\t-'P' button - pause;\n\t-'Esc' button - show menu;\n\t-'Left' button - player moving left;\n\t-'Right' button - player moving right;\n\t-'Up' button - player moving up;\n\t-'Down' button - player moving down;\n\t-'Shift' button with combination('Left', 'Right', 'Up', or 'Down' buttons) - player start running;");
+        keyboardGuide = new Text("\t-'P' button - pause;\n\t-'Esc' button - show menu;" +
+                "\n\t-'Left' button - player moving left;\n\t-'Right' button - player moving right;" +
+                "\n\t-'Up' button - player moving up;\n\t-'Down' button - player moving down;" +
+                "\n\t-'Shift' button with combination('Left', 'Right', 'Up', or 'Down' buttons) - player start running;");
         buttonClose = new Button();
         buttonSound = new Button();
         buttonStartNewGame = new Button("New Game");

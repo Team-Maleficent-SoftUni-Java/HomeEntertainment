@@ -23,6 +23,7 @@ public class ImageController {
     private static Image siphon;
     private static Image statsBoard;
     private static Image gardenGrass;
+    private static Image gardenWall;
 
     public static void defineImages () {
         parquet = new Image("img/parquet.jpg", KITCHEN_WIDTH, KITCHEN_HEIGHT / 2, false, false);
@@ -32,7 +33,9 @@ public class ImageController {
         carpet2 = new Image("img/carpet03.jpg", BEDROOM_WIDTH, BEDROOM_HEIGHT / 2, false, false);
         siphon = new Image("img/siphon.png", 40, 40, false, false);
         statsBoard = new Image("img/statsBoard.png");
-        gardenGrass = new Image("img/gardenGrass.jpg", GlobalVariables.getCanvas().getWidth() / 5, GlobalVariables.getCanvas().getHeight() / 5, false, false);
+        gardenGrass = new Image("img/gardenGrass.jpg", GlobalVariables.getCanvas().getWidth() / 5,
+                GlobalVariables.getCanvas().getHeight() / 5, false, false);
+        gardenWall = new Image("img/gardenFence.png", 100, 50, false, false);
     }
 
     public static ArrayDeque<String> getPlayerDownImages() {
@@ -99,9 +102,11 @@ public class ImageController {
         return siphon;
     }
 
-    public static Image getStatsBoard() {
+    static Image getStatsBoard() {
         return statsBoard;
     }
 
     static Image getGardenGrass() { return gardenGrass; }
+
+    static Image getGardenFence() { return gardenWall; }
 }

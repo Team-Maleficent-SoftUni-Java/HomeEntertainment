@@ -278,7 +278,7 @@ public class GraphicController {
         FurnitureObjects.getTv().render(GlobalVariables.getGraphicContext());
 
         //Down border
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < GlobalVariables.getCanvas().getWidth() ; i++) {
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
                     + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, CANVAS_FAKE_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight()) + 20);
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
@@ -286,14 +286,14 @@ public class GraphicController {
             wallKitchenLivingRoomWidth += BRICK_SINGLE_HORIZONTAL.getWidth();
         }
 
-        for (int i = 0; i < GlobalVariables.getCanvas().getWidth() / BRICK_SINGLE_HORIZONTAL.getWidth(); i++) {
+      /*  for (int i = 0; i < GlobalVariables.getCanvas().getWidth() / BRICK_SINGLE_HORIZONTAL.getWidth(); i++) {
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
                             + wallUpBorder1 + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()),
                     CANVAS_FAKE_HEIGHT - BRICK_SINGLE_HORIZONTAL.getHeight());
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
                             + wallUpBorder1 + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()),
                     CANVAS_FAKE_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
-        }
+        }*/
 
         //Right border
         for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {

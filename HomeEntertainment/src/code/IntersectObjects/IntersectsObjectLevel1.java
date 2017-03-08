@@ -91,7 +91,11 @@ public class IntersectsObjectLevel1 extends IntersectsObject{
     private List<Rectangle2D> setIntersectObjects() {
         List<Rectangle2D> rectangle2DList = new ArrayList<>();
 
-        Collections.addAll(rectangle2DList, wallBetweenBedroomAndBathroom, wallBetweenEveryRooms, wallBetweenKitchenAndBedroom, wallBetweenKitchenAndBedroomOneBrick, wallBetweenKitchenAndLivingRoom, wallBetweenLivingRoomAndBathroom, wardrobeBoundary, fridgeBoundary, stoveBoundary, bathroomSink, kitchenDresserBoundary, kitchenSinkBoundary, kitchenTableBoundary, livingRoomChairBoundary, livingRoomDresser, desk, toilet, tv, sofa, coffeeTable, coffeeTableBoundary, bedBoundary, rubberPlant, bathtub, downBorder, rightBorder, leftBorder, upperWallLeftFromEntrance, upperWallRightFromEntrance);
+        Collections.addAll(rectangle2DList, wallBetweenBedroomAndBathroom, wallBetweenEveryRooms, wallBetweenKitchenAndBedroom,
+                wallBetweenKitchenAndBedroomOneBrick, wallBetweenKitchenAndLivingRoom, wallBetweenLivingRoomAndBathroom, wardrobeBoundary,
+                fridgeBoundary, stoveBoundary, bathroomSink, kitchenDresserBoundary, kitchenSinkBoundary, kitchenTableBoundary,
+                livingRoomChairBoundary, livingRoomDresser, desk, toilet, tv, sofa, coffeeTable, coffeeTableBoundary, bedBoundary,
+                rubberPlant, bathtub, downBorder, rightBorder, leftBorder, upperWallLeftFromEntrance, upperWallRightFromEntrance);
 
         return rectangle2DList;
     }

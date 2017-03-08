@@ -204,10 +204,15 @@ public class ButtonEventsController {
                             if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= -80) {
                                 level[0] = 2;
 
+                                //set Player position in garden
+                                GlobalVariables.getPlayer().setPosition(380, 630);
+
                                 playerMovement(intersectsObjectLevel2);
                                 DrawLevel2.drawGarden();
                             } else if (level[0] == 1){
-                                GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!", 1, Color.RED, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects.getKitchenTable().getWidth() + 20, FurnitureObjects.getKitchenTable().getY() + 100);
+                                GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!",
+                                        1, Color.RED, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects
+                                                .getKitchenTable().getWidth() - 100, FurnitureObjects.getKitchenTable().getY() + 100);
                                 playerMovement(intersectsObjectLevel1);
                                 // draw obstacles
                                 GraphicController.drawWalls();

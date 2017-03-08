@@ -29,7 +29,7 @@ public class Main extends Application {
         //Set stage properties
         theStage.setTitle("Home entertainment");
         GlobalVariables.setRoot(new Group());
-        Scene theScene = new Scene(GlobalVariables.getRoot(), 1024, 1000, Color.WHITESMOKE);
+        Scene theScene = new Scene(GlobalVariables.getRoot(), 1024, 768, Color.WHITESMOKE);
         theStage.setScene(theScene);
         GlobalVariables.getRoot().getChildren().add(GlobalVariables.getCanvas());
 
