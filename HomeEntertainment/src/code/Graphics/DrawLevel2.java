@@ -54,14 +54,14 @@ public class DrawLevel2 {
 
         if (plants.size() == 0) {
             GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+
+            GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getDownBorder());
+            GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getUpperBorder());
+            GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getLeftBorder());
+            GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getRightBorder());
         }
 
         createPlant();
-
-        GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getDownBorder());
-        GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getUpperBorder());
-        GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getLeftBorder());
-        GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getRightBorder());
 
         GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
 
@@ -141,7 +141,9 @@ public class DrawLevel2 {
             //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
         } else if (GlobalVariables.getInput().contains("Z")) {
             removeIntersectObjectLevel2();
-            plants.remove(plants.size() - 1);
+            if (!plants.isEmpty()) {
+                plants.remove(plants.size() - 1);
+            }
         }
     }
 
@@ -150,25 +152,32 @@ public class DrawLevel2 {
         Rectangle2D rectangle2D = null;
         switch (type) {
             case "tree":
-                rectangle2D = new Rectangle2D(gardenObject.getX() + gardenObject.getWidth() / 2 - 20, gardenObject.getY() + gardenObject.getHeight() - 20, 20, 20);
+                rectangle2D = new Rectangle2D(gardenObject.getX() + gardenObject.getWidth() / 2 - 20,
+                        gardenObject.getY() + gardenObject.getHeight() - 20, 20, 20);
                 break;
             case "flower":
-                rectangle2D = new Rectangle2D(gardenObject.getX(), gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                rectangle2D = new Rectangle2D(gardenObject.getX(),
+                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
                 break;
             case "dwarf":
-                rectangle2D = new Rectangle2D(gardenObject.getX(), gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                rectangle2D = new Rectangle2D(gardenObject.getX(),
+                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
                 break;
             case "bigRock":
-                rectangle2D = new Rectangle2D(gardenObject.getX(), gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                rectangle2D = new Rectangle2D(gardenObject.getX(),
+                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
                 break;
             case "smallRock":
-                rectangle2D = new Rectangle2D(gardenObject.getX(), gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                rectangle2D = new Rectangle2D(gardenObject.getX(),
+                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
                 break;
             case "fern":
-                rectangle2D = new Rectangle2D(gardenObject.getX(), gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                rectangle2D = new Rectangle2D(gardenObject.getX(),
+                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
                 break;
             case "fountain":
-                rectangle2D = new Rectangle2D(gardenObject.getX(), gardenObject.getY() + gardenObject.getHeight() - 50, gardenObject.getWidth(), 50);
+                rectangle2D = new Rectangle2D(gardenObject.getX(),
+                        gardenObject.getY() + gardenObject.getHeight() - 50, gardenObject.getWidth(), 50);
                 break;
         }
         if(rectangle2D != null) {
@@ -177,8 +186,8 @@ public class DrawLevel2 {
     }
 
     private static void removeIntersectObjectLevel2() {
-        Rectangle2D rectangle2D = GlobalVariables.getIntersectsObject().getRectangle2DList().get(GlobalVariables.getIntersectsObject().getRectangle2DList().size() - 1);
+        Rectangle2D rectangle2D = GlobalVariables.getIntersectsObject().getRectangle2DList()
+                .get(GlobalVariables.getIntersectsObject().getRectangle2DList().size() - 1);
         GlobalVariables.getIntersectsObject().removeElement(rectangle2D);
-
     }
 }

@@ -19,7 +19,6 @@ public class IntersectsObject {
         return this.rectangle2DList;
     }
 
-
     public void addElement(Rectangle2D rect) {
         this.getRectangle2DList().add(rect);
     }
@@ -28,8 +27,7 @@ public class IntersectsObject {
         this.getRectangle2DList().remove(rectangle2D);
     }
 
-
-    public void setRectangle2DList(List<Rectangle2D> rectangle2DList) {
+    void setRectangle2DList(List<Rectangle2D> rectangle2DList) {
         this.rectangle2DList = rectangle2DList;
     }
 

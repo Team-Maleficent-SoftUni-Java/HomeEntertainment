@@ -6,17 +6,14 @@ import code.Enemy.MonstersController;
 import code.Graphics.DrawLevel1;
 import code.Graphics.ImageController;
 import code.IntersectObjects.IntersectsObject;
-import code.IntersectObjects.IntersectsObjectLevel2;
 import code.Player.Player;
 import code.Sounds.SoundController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.ArrayDeque;

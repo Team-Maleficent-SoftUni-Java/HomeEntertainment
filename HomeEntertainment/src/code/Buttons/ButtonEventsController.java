@@ -207,7 +207,6 @@ public class ButtonEventsController {
                                 GlobalVariables.getPlayer().setPosition(380, 630);
 
                                 playerMovement(GlobalVariables.getIntersectsObject());
-                                DrawLevel2.drawGarden();
                             } else if (level[0] == 1){
                                 GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!",
                                         1, Color.GREEN, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects

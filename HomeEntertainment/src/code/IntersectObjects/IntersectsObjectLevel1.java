@@ -85,7 +85,7 @@ public class IntersectsObjectLevel1 extends IntersectsObject{
             + (14 * BRICK_SINGLE_HORIZONTAL.getWidth()), BATHROOM_Y - BRICK_SINGLE_HORIZONTAL
             .getHeight() - 8, 2 * BRICK_SINGLE_HORIZONTAL.getWidth(), BRICK_SINGLE_HORIZONTAL
             .getHeight());
-    public Rectangle2D door = new Rectangle2D(270, - 20, 110, 120);
+    private Rectangle2D door = new Rectangle2D(270, - 20, 110, 120);
 
     private void setIntersectObjects() {
         Collections.addAll(rectangle2DList, wallBetweenBedroomAndBathroom, wallBetweenEveryRooms, wallBetweenKitchenAndBedroom,
