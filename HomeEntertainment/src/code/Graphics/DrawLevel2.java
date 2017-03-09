@@ -87,59 +87,165 @@ public class DrawLevel2 {
     }
 
     private static void createPlant() {
+        boolean intersects = false;
         if (GlobalVariables.getInput().contains("Q")) {
-            plants.add(plant().getFirstTree());
-            addIntersectObjectLevel2("tree");
-            //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getFirstTree() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getFirstTree());
+                addIntersectObjectLevel2("tree");
+                //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("W")) {
-            plants.add(plant().getSecondTree());
-            addIntersectObjectLevel2("tree");
-            //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getSecondTree() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getSecondTree());
+                addIntersectObjectLevel2("tree");
+                //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("E")) {
-            plants.add(plant().getThirdTree());
-            addIntersectObjectLevel2("tree");
-            //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getThirdTree() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getThirdTree());
+                addIntersectObjectLevel2("tree");
+                //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("R")) {
-            plants.add(plant().getFirstFlower());
-            addIntersectObjectLevel2("flower");
-            //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getFirstFlower() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getFirstFlower());
+                addIntersectObjectLevel2("flower");
+                //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("T")) {
-            plants.add(plant().getSecondFlower());
-            addIntersectObjectLevel2("flower");
-            //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getSecondFlower() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getSecondFlower());
+                addIntersectObjectLevel2("flower");
+                //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("Y")) {
-            plants.add(plant().getThirdFlower());
-            addIntersectObjectLevel2("flower");
-            //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getThirdFlower() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getThirdFlower());
+                addIntersectObjectLevel2("flower");
+                //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("U")) {
-            plants.add(plant().getDwarf());
-            addIntersectObjectLevel2("dwarf");
-            //GlobalVariables.getPlayer().addScore(Plant.DWARF_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getDwarf() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getDwarf());
+                addIntersectObjectLevel2("dwarf");
+                //GlobalVariables.getPlayer().addScore(Plant.DWARF_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("I")) {
-            plants.add(plant().getFountain());
-            addIntersectObjectLevel2("fountain");
-            //GlobalVariables.getPlayer().addScore(Plant.FOUNTAIN_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getFountain() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getFountain());
+                addIntersectObjectLevel2("fountain");
+                //GlobalVariables.getPlayer().addScore(Plant.FOUNTAIN_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("O")) {
-            plants.add(plant().getFern());
-            addIntersectObjectLevel2("fern");
-            //GlobalVariables.getPlayer().addScore(Plant.FERN_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getFern() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getFern());
+                addIntersectObjectLevel2("fern");
+                //GlobalVariables.getPlayer().addScore(Plant.FERN_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("A")) {
-            plants.add(plant().getSmallRock());
-            addIntersectObjectLevel2("smallRock");
-            //GlobalVariables.getPlayer().addScore(Plant.SMALL_ROCK_POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getSmallRock() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getSmallRock());
+                addIntersectObjectLevel2("smallRock");
+                //GlobalVariables.getPlayer().addScore(Plant.SMALL_ROCK_POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("S")) {
-            plants.add(plant().getBigRock());
-            addIntersectObjectLevel2("bigRock");
-            //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getBigRock() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getBigRock());
+                addIntersectObjectLevel2("bigRock");
+                //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("D")) {
-            plants.add(plant().getFourthTree());
-            addIntersectObjectLevel2("tree");
-            //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getFourthTree() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getFourthTree());
+                addIntersectObjectLevel2("tree");
+                //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("F")) {
-            plants.add(plant().getFifthTree());
-            addIntersectObjectLevel2("tree");
-            //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+            GlobalVariables.getInput().clear();
+            for (Sprite plant : plants) {
+                if (plant().getFifthTree() .intersects(plant)) {
+                    intersects = true;
+                }
+            }
+            if (!intersects) {
+                plants.add(plant().getFifthTree());
+                addIntersectObjectLevel2("tree");
+                //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
+            }
         } else if (GlobalVariables.getInput().contains("Z")) {
+            GlobalVariables.getInput().clear();
             removeIntersectObjectLevel2();
             if (!plants.isEmpty()) {
                 plants.remove(plants.size() - 1);

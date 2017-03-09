@@ -19,8 +19,6 @@ import javafx.stage.Stage;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
-
-
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
