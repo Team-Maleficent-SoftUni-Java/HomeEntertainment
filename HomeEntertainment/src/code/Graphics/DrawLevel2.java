@@ -98,7 +98,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getFirstTree());
                 addIntersectObjectLevel2("tree");
-                //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("W")) {
             GlobalVariables.getInput().clear();
@@ -110,7 +109,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getSecondTree());
                 addIntersectObjectLevel2("tree");
-                //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("E")) {
             GlobalVariables.getInput().clear();
@@ -122,7 +120,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getThirdTree());
                 addIntersectObjectLevel2("tree");
-                //GlobalVariables.getPlayer().addScore(Plant.TREE_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("R")) {
             GlobalVariables.getInput().clear();
@@ -134,7 +131,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getFirstFlower());
                 addIntersectObjectLevel2("flower");
-                //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("T")) {
             GlobalVariables.getInput().clear();
@@ -146,7 +142,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getSecondFlower());
                 addIntersectObjectLevel2("flower");
-                //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("Y")) {
             GlobalVariables.getInput().clear();
@@ -158,7 +153,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getThirdFlower());
                 addIntersectObjectLevel2("flower");
-                //GlobalVariables.getPlayer().addScore(Plant.FLOWER_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("U")) {
             GlobalVariables.getInput().clear();
@@ -170,7 +164,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getDwarf());
                 addIntersectObjectLevel2("dwarf");
-                //GlobalVariables.getPlayer().addScore(Plant.DWARF_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("I")) {
             GlobalVariables.getInput().clear();
@@ -182,7 +175,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getFountain());
                 addIntersectObjectLevel2("fountain");
-                //GlobalVariables.getPlayer().addScore(Plant.FOUNTAIN_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("O")) {
             GlobalVariables.getInput().clear();
@@ -194,7 +186,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getFern());
                 addIntersectObjectLevel2("fern");
-                //GlobalVariables.getPlayer().addScore(Plant.FERN_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("A")) {
             GlobalVariables.getInput().clear();
@@ -206,7 +197,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getSmallRock());
                 addIntersectObjectLevel2("smallRock");
-                //GlobalVariables.getPlayer().addScore(Plant.SMALL_ROCK_POINTS);
             }
         } else if (GlobalVariables.getInput().contains("S")) {
             GlobalVariables.getInput().clear();
@@ -218,7 +208,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getBigRock());
                 addIntersectObjectLevel2("bigRock");
-                //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
             }
         } else if (GlobalVariables.getInput().contains("D")) {
             GlobalVariables.getInput().clear();
@@ -230,7 +219,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getFourthTree());
                 addIntersectObjectLevel2("tree");
-                //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
             }
         } else if (GlobalVariables.getInput().contains("F")) {
             GlobalVariables.getInput().clear();
@@ -242,7 +230,6 @@ public class DrawLevel2 {
             if (!intersects) {
                 plants.add(plant().getFifthTree());
                 addIntersectObjectLevel2("tree");
-                //GlobalVariables.getPlayer().addScore(Plant.BIG_ROCK__POINTS);
             }
         } else if (GlobalVariables.getInput().contains("Z")) {
             GlobalVariables.getInput().clear();
