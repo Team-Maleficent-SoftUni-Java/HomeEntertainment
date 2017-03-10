@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 public class GameMessage {
@@ -24,34 +25,17 @@ public class GameMessage {
         this.achievementY = 100;
     }
 
-    public void watch() {
-
-        // Headshot
-
-        // Multi kill
-
-        // Rampage
-
-        // Killingspree
-
-        // Unstoppable
-
-        // Holy shit
-
-    }
-
     public void renderMessage(String text, int duration, Color color, double x, double y) {
 
         Text t = new Text(x, y, text);
         FadeTransition ft = new FadeTransition(Duration.millis(duration), t);
         t.setFont(Font.font ("Verdana", 25));
         t.setFill(color);
+        t.setTextAlignment(TextAlignment.CENTER);
         root.getChildren().add(t);
         ft.setFromValue(1);
         ft.setToValue(0);
         ft.setCycleCount(1);
         ft.play();
     }
-
-
 }

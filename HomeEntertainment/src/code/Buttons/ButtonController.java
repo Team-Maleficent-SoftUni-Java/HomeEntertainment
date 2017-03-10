@@ -33,7 +33,7 @@ public class ButtonController {
 
     public static void createButtons() {
         //Button menu
-        buttonMenu = new Button("Menu");
+        buttonMenu = new Button("Settings");
         buttonMenu.setPrefHeight(50);
         buttonMenu.setPrefWidth(150);
         buttonMenu.setLayoutX((GlobalVariables.getCanvas().getWidth() - (3 * buttonMenu.getPrefWidth()) - (2 * 50)) / 2 + 15);
@@ -63,11 +63,11 @@ public class ButtonController {
         Timeline blinker = Blinker.createBlinker(buttonStart);
         blinkedButton = new SequentialTransition(buttonStart, blinker);
 
-        menuTitle = new Text("Menu");
+        menuTitle = new Text("Settings");
         menuSoundText1 = new Text("Sound ON");
         menuSoundText2 = new Text("Affects all sounds and music");
         keyboardGuideTitle = new Text("Keyboard guide:\n");
-        keyboardGuide = new Text("\t-'P' button - pause;\n\t-'Esc' button - show menu;" +
+        keyboardGuide = new Text("\t-'P' button - pause;\n\t-'Esc' button - show settings;" +
                 "\n\t-'Left' button - player moving left;\n\t-'Right' button - player moving right;" +
                 "\n\t-'Up' button - player moving up;\n\t-'Down' button - player moving down;" +
                 "\n\t-'Shift' button with combination('Left', 'Right', 'Up', or 'Down' buttons) - player start running;");
@@ -90,7 +90,7 @@ public class ButtonController {
         Font menuTitleFont = Font.font(java.awt.Font.MONOSPACED, 43);
         ButtonController.getMenuTitle().setFont(menuTitleFont);
         ButtonController.getMenuTitle().setFill(Color.MEDIUMVIOLETRED);
-        ButtonController.getMenuTitle().setX(GlobalVariables.getCanvas().getWidth() / 2 - 20);
+        ButtonController.getMenuTitle().setX(GlobalVariables.getCanvas().getWidth() / 2 - 80);
         ButtonController.getMenuTitle().setY(menuY + 50);
 
         //Menu Sound control
@@ -108,11 +108,11 @@ public class ButtonController {
         ButtonController.getKeyboardGuideTitle().setFill(Color.MEDIUMVIOLETRED);
         ButtonController.getKeyboardGuideTitle().setX(menuX + 10);
         ButtonController.getKeyboardGuideTitle().setY(menuY + 180);
-        ButtonController.getKeyboardGuideTitle().setFont(menuSound2);
-        ButtonController.getKeyboardGuideTitle().setFill(Color.MEDIUMVIOLETRED);
-        ButtonController.getKeyboardGuideTitle().setX(menuX + 10);
-        ButtonController.getKeyboardGuideTitle().setY(menuY + 200);
-        ButtonController.getKeyboardGuideTitle().setWrappingWidth(menu.getWidth() - 20);
+        ButtonController.getKeyboardGuide().setFont(menuSound2);
+        ButtonController.getKeyboardGuide().setFill(Color.MEDIUMVIOLETRED);
+        ButtonController.getKeyboardGuide().setX(menuX + 10);
+        ButtonController.getKeyboardGuide().setY(menuY + 200);
+        ButtonController.getKeyboardGuide().setWrappingWidth(menu.getWidth() - 20);
 
         //Button Sound
         ButtonController.getButtonSound().setGraphic(new ImageView(ButtonController.getImageSound()[0]));

@@ -45,7 +45,7 @@ public class MonstersController {
             if (GlobalVariables.getPlayer().intersects(monster)) {
 
                 GM.renderMessage("Ouch!", 2, Color.RED, GlobalVariables.getPlayer().getX(), GlobalVariables.getPlayer().getY());
-                if (!GlobalVariables.getMute()[0]) {
+                if (!GlobalVariables.getMute()[0]  && !GlobalVariables.getAttack().isPlaying()) {
                     GlobalVariables.getAttack().play(1, 0, 1.0, 0.0, -5);
                 }
 

@@ -209,7 +209,7 @@ public class ButtonEventsController {
                                 playerMovement(GlobalVariables.getIntersectsObject());
                             } else if (level[0] == 1){
                                 GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!",
-                                        1, Color.GREEN, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects
+                                        1, Color.DEEPSKYBLUE, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects
                                                 .getKitchenTable().getWidth() - 100, FurnitureObjects.getKitchenTable().getY() + 100);
 
                                 // remove door

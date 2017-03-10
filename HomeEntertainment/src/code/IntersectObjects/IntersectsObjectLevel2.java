@@ -24,10 +24,6 @@ public class IntersectsObjectLevel2 extends IntersectsObject {
     private static final Rectangle2D upperBorder = new Rectangle2D(0, 0, GlobalVariables.getCanvas().getWidth(),
             WALL_SHORT.getHeight());
 
-    public IntersectsObjectLevel2() {
-
-    }
-
     public static Rectangle2D getLeftBorder() {
         return leftBorder;
     }

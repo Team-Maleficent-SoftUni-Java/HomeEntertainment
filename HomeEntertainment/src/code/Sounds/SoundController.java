@@ -25,7 +25,6 @@ public class SoundController {
                 .contains("DOWN")) || GlobalVariables.getInput().contains("SPACE")) {
             GlobalVariables.getWalking().stop();
             GlobalVariables.getRunning().stop();
-            GlobalVariables.getAttack().stop();
         }
     }
 
