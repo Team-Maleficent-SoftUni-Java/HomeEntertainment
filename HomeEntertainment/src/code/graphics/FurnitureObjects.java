@@ -1,6 +1,6 @@
-package code.Graphics;
+package code.graphics;
 
-import code.Player.Sprite;
+import code.player.Sprite;
 
 public class FurnitureObjects {
     private static Sprite kitchenDresser = new Sprite();

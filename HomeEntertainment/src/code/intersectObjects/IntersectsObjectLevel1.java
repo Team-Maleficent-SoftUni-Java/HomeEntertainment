@@ -1,16 +1,16 @@
-package code.IntersectObjects;
+package code.intersectObjects;
 
-import code.GlobalVariables;
-import code.Graphics.FurnitureObjects;
-import code.Graphics.ImageController;
+import code.global.GlobalVariables;
+import code.graphics.FurnitureObjects;
+import code.graphics.ImageController;
 import javafx.geometry.Rectangle2D;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static code.GlobalVariables.*;
-import static code.Graphics.ImageController.*;
+import static code.global.GlobalVariables.*;
+import static code.graphics.ImageController.*;
 
 public class IntersectsObjectLevel1 extends IntersectsObject{
     private List<Rectangle2D> rectangle2DList = new ArrayList<>();

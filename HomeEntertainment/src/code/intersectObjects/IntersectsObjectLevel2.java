@@ -1,16 +1,12 @@
-package code.IntersectObjects;
+package code.intersectObjects;
 
-import code.GlobalVariables;
+import code.global.GlobalVariables;
 import javafx.geometry.Rectangle2D;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static code.GlobalVariables.CANVAS_FAKE_HEIGHT;
-import static code.Graphics.ImageController.BRICK_SINGLE_HORIZONTAL;
-import static code.Graphics.ImageController.BRICK_SINGLE_VERTICAL;
-import static code.Graphics.ImageController.WALL_SHORT;
+import static code.global.GlobalVariables.CANVAS_FAKE_HEIGHT;
+import static code.graphics.ImageController.BRICK_SINGLE_HORIZONTAL;
+import static code.graphics.ImageController.BRICK_SINGLE_VERTICAL;
+import static code.graphics.ImageController.WALL_SHORT;
 
 public class IntersectsObjectLevel2 extends IntersectsObject {
 

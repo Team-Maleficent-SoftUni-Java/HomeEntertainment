@@ -1,11 +1,11 @@
-package code.Graphics;
+package code.graphics;
 
-import code.GlobalVariables;
+import code.global.GlobalVariables;
 import javafx.scene.image.Image;
 
 import java.util.ArrayDeque;
 
-import static code.GlobalVariables.*;
+import static code.global.GlobalVariables.*;
 
 public class ImageController {
 
@@ -14,7 +14,7 @@ public class ImageController {
     public final static Image BRICK_SINGLE_VERTICAL = new Image("img/brickSingleVert.png");
     public final static Image WALL_SHORT = new Image("img/wallShort.png");
     public final static Image WALL_COLON = new Image("img/wallColon.png");
-    public final static Image DOOR_IMAGE = new Image("img/door.png");
+    final static Image DOOR_IMAGE = new Image("img/door.png");
 
     private static ArrayDeque<String> _playerDownImages, _playerRightImages, _playerLeftImages, _playerUpImages;
     private static Image parquet;
@@ -109,11 +109,11 @@ public class ImageController {
         return statsBoard;
     }
 
-    public static Image getGardenGrass() { return gardenGrass; }
+    static Image getGardenGrass() { return gardenGrass; }
 
     static Image getGardenFence() { return gardenWall; }
 
-    public static Image getSmallGardenGrass() {
+    static Image getSmallGardenGrass() {
         return smallGardenGrass;
     }
 }

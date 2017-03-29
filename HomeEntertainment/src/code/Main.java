@@ -1,13 +1,14 @@
 package code;
 
-import code.Buttons.ButtonEventsController;
-import code.Buttons.ButtonController;
-import code.Enemy.MonstersController;
-import code.Graphics.DrawLevel1;
-import code.Graphics.ImageController;
-import code.IntersectObjects.IntersectsObject;
-import code.Player.Player;
-import code.Sounds.SoundController;
+import code.buttons.ButtonEventsController;
+import code.buttons.ButtonController;
+import code.enemy.MonstersController;
+import code.graphics.DrawLevel1;
+import code.graphics.ImageController;
+import code.intersectObjects.IntersectsObject;
+import code.player.Player;
+import code.sounds.SoundController;
+import code.global.GlobalVariables;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;

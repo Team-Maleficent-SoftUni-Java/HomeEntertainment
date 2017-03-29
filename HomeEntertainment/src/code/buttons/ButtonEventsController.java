@@ -1,17 +1,16 @@
-package code.Buttons;
+package code.buttons;
 
-import code.Achievments.GameMessage;
-import code.Enemy.MonstersController;
-import code.GlobalVariables;
-import code.Graphics.DrawLevel2;
-import code.Graphics.FurnitureObjects;
-import code.Graphics.DrawLevel1;
-import code.IntersectObjects.IntersectsObject;
-import code.IntersectObjects.IntersectsObjectLevel1;
-import code.IntersectObjects.IntersectsObjectLevel2;
+import code.achievments.GameMessage;
+import code.enemy.MonstersController;
+import code.global.GlobalVariables;
+import code.graphics.DrawLevel2;
+import code.graphics.FurnitureObjects;
+import code.graphics.DrawLevel1;
+import code.intersectObjects.IntersectsObject;
+import code.intersectObjects.IntersectsObjectLevel1;
 import code.Main;
-import code.Player.Player;
-import code.Sounds.SoundController;
+import code.player.Player;
+import code.sounds.SoundController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -27,7 +26,7 @@ import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static code.GlobalVariables.CANVAS_FAKE_HEIGHT;
+import static code.global.GlobalVariables.CANVAS_FAKE_HEIGHT;
 
 public class ButtonEventsController {
 
@@ -185,7 +184,7 @@ public class ButtonEventsController {
 
                         if (GlobalVariables.getPlayer().getScore() < 1 && level[0] == 1) {
 
-                            // Player movement
+                            // player movement
                             playerMovement(intersectsObjectLevel1);
 
                             // draw obstacles
@@ -203,7 +202,7 @@ public class ButtonEventsController {
                             if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= -80) {
                                 level[0] = 2;
 
-                                //set Player position in garden
+                                //set player position in garden
                                 GlobalVariables.getPlayer().setPosition(380, 630);
 
                                 playerMovement(GlobalVariables.getIntersectsObject());

@@ -1,11 +1,11 @@
-package code.Player;
+package code.player;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Sprite {
-    boolean hasAlreadyHit = false;
+    private boolean hasAlreadyHit;
     private Image image;
     private double positionX;
     private double positionY;
@@ -15,16 +15,25 @@ public class Sprite {
     private double height;
 
     public Sprite() {
-        positionX = 0;
-        positionY = 0;
-        velocityX = 0;
-        velocityY = 0;
+        this.positionX = 0;
+        this.positionY = 0;
+        this.velocityX = 0;
+        this.velocityY = 0;
+        this.setHasAlreadyHit(false);
     }
 
     public void setImage(Image i) {
-        image = i;
-        width = i.getWidth();
-        height = i.getHeight();
+        this.image = i;
+        this.width = i.getWidth();
+        this.height = i.getHeight();
+    }
+
+    void setHasAlreadyHit(boolean hasAlreadyHit) {
+        this.hasAlreadyHit = hasAlreadyHit;
+    }
+
+    boolean getHasAlreadyHit() {
+        return hasAlreadyHit;
     }
 
     void setImage(String filename) {
@@ -38,47 +47,47 @@ public class Sprite {
     }
 
     Rectangle2D sprayBoundary() {
-        return new Rectangle2D(positionX, positionY, width+50, height+50);
+        return new Rectangle2D(this.positionX, this.positionY, this.width+50, this.height+50);
     }
 
     public void setPosition(double x, double y) {
-        positionX = x;
-        positionY = y;
+        this.positionX = x;
+        this.positionY = y;
     }
 
     public double getX(){
-        return positionX;
+        return this.positionX;
     }
 
     public double getY(){
-        return positionY;
+        return this.positionY;
     }
 
     public double getWidth(){
-        return width;
+        return this.width;
     }
 
     public double getHeight(){
-        return height;
+        return this.height;
     }
 
     public void setVelocity(double x, double y) {
-        velocityX = x;
-        velocityY = y;
+        this.velocityX = x;
+        this.velocityY = y;
     }
 
     void addVelocity(double x, double y) {
-        velocityX += x;
-        velocityY += y;
+        this.velocityX += x;
+        this.velocityY += y;
     }
 
     public void update(double time) {
-        positionX += velocityX * time;
-        positionY += velocityY * time;
+        this.positionX += this.velocityX * time;
+        this.positionY += this.velocityY * time;
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(image, positionX, positionY);
+        gc.drawImage(this.image, this.positionX, this.positionY);
     }
 
     public Rectangle2D getBoundary() {
@@ -94,23 +103,22 @@ public class Sprite {
     }
 
     public String toString() {
-        return " Position: [" + positionX + "," + positionY + "]"
-                + " Velocity: [" + velocityX + "," + velocityY + "]";
+        return " Position: [" + this.positionX + "," + this.positionY + "]"
+                + " Velocity: [" + this.velocityX + "," + this.velocityY + "]";
     }
     public Rectangle2D bottomBoundary(){
-        return new Rectangle2D(positionX+2, positionY+height,width-4,0);
+        return new Rectangle2D(this.positionX+2, this.positionY+height,this.width-4,0);
     }
 
     public Rectangle2D upperBoundary(){
-        return new Rectangle2D(positionX+2,positionY+height-20,width-4,0);
+        return new Rectangle2D(this.positionX+2,this.positionY+height-20,this.width-4,0);
     }
 
     public Rectangle2D leftBoundary(){
-        return new Rectangle2D(positionX,positionY+height-18,0,14);
+        return new Rectangle2D(this.positionX,this.positionY+height-18,0,14);
     }
 
     public Rectangle2D rightBoundary(){
-        return new Rectangle2D(positionX+width,positionY+height-18,0,14);
+        return new Rectangle2D(this.positionX + this.width,this.positionY + this.height-18,0,14);
     }
-
 }

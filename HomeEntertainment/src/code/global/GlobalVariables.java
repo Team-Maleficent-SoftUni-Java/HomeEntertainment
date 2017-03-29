@@ -1,9 +1,8 @@
-package code;
+package code.global;
 
-import code.IntersectObjects.IntersectsObject;
-import code.IntersectObjects.IntersectsObjectLevel2;
-import code.Player.Player;
-import code.Player.Sprite;
+import code.intersectObjects.IntersectsObject;
+import code.player.Player;
+import code.player.Sprite;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -73,7 +72,7 @@ public class GlobalVariables {
         return _input;
     }
 
-    static void setInput(ArrayList<String> input) {
+    public static void setInput(ArrayList<String> input) {
         _input = input;
     }
 
@@ -153,7 +152,7 @@ public class GlobalVariables {
         return root;
     }
 
-    static void setRoot(Group root) {
+    public static void setRoot(Group root) {
         GlobalVariables.root = root;
     }
 
@@ -161,7 +160,7 @@ public class GlobalVariables {
         return monstersToRender;
     }
 
-    static void setMonstersToRender(ArrayList<Sprite> monstersToRender) {
+    public static void setMonstersToRender(ArrayList<Sprite> monstersToRender) {
         GlobalVariables.monstersToRender = monstersToRender;
     }
 

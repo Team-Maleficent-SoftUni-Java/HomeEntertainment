@@ -1,15 +1,11 @@
-package code.Graphics;
+package code.graphics;
 
-import code.GlobalVariables;
-import code.IntersectObjects.IntersectsObject;
-import code.IntersectObjects.IntersectsObjectLevel2;
-import code.Player.Player;
-import code.Player.Sprite;
+import code.global.GlobalVariables;
+import code.intersectObjects.IntersectsObjectLevel2;
+import code.player.Sprite;
 import javafx.geometry.Rectangle2D;
-import jdk.nashorn.internal.objects.Global;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DrawLevel2 {

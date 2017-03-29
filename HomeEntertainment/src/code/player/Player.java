@@ -1,17 +1,18 @@
-package code.Player;
+package code.player;
 
-import code.Achievments.Achievement;
-import code.GlobalVariables;
-import code.Graphics.ImageController;
-import code.Sounds.SoundController;
+import code.achievments.Achievement;
+import code.global.GlobalVariables;
+import code.graphics.ImageController;
+import code.sounds.SoundController;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static code.Graphics.ImageController.BRICK_SINGLE_HORIZONTAL;
+import static code.graphics.ImageController.BRICK_SINGLE_HORIZONTAL;
 
 public class Player extends Sprite {
+
     private double health;
     private int score;
 
@@ -93,38 +94,38 @@ public class Player extends Sprite {
             Player.changeImage(direction);
             GlobalVariables.getStepCounter().set(0);
         }
-        GlobalVariables.getPlayer().hasAlreadyHit = false;
+        GlobalVariables.getPlayer().setHasAlreadyHit(false);
     }
 
     public static void checkIfPlayerCollidesLR() {
         //checks if LEFT or RIGHT is already pressed; prevents sound spam
         if (GlobalVariables.getInput().contains("LEFT") || GlobalVariables.getInput().contains("RIGHT")) {
-            GlobalVariables.getPlayer().hasAlreadyHit = true;
+            GlobalVariables.getPlayer().setHasAlreadyHit(true);
         }
-        if (!GlobalVariables.getPlayer().hasAlreadyHit) {
+        if (!GlobalVariables.getPlayer().getHasAlreadyHit()) {
             GlobalVariables.getWalking().stop();
             GlobalVariables.getRunning().stop();
             if (!GlobalVariables.getMute()[0]) {
                 GlobalVariables.getWallHit().play(1);
             }
         }
-        GlobalVariables.getPlayer().hasAlreadyHit = true;
+        GlobalVariables.getPlayer().setHasAlreadyHit(true);
         GlobalVariables.getPlayer().addVelocity(0, 0);
     }
 
     public static void checkIfPlayerCollidesUD() {
         //checks if UP or DOWN is already pressed; prevents sound spam
         if (GlobalVariables.getInput().contains("UP") || GlobalVariables.getInput().contains("DOWN")) {
-            GlobalVariables.getPlayer().hasAlreadyHit = true;
+            GlobalVariables.getPlayer().setHasAlreadyHit(true);
         }
-        if (!GlobalVariables.getPlayer().hasAlreadyHit) {
+        if (!GlobalVariables.getPlayer().getHasAlreadyHit()) {
             GlobalVariables.getWalking().stop();
             GlobalVariables.getRunning().stop();
             if (!GlobalVariables.getMute()[0]) {
                 GlobalVariables.getWallHit().play(1);
             }
         }
-        GlobalVariables.getPlayer().hasAlreadyHit = true;
+        GlobalVariables.getPlayer().setHasAlreadyHit(true);
         GlobalVariables.getPlayer().addVelocity(0, 0);
     }
 

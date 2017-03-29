@@ -1,6 +1,6 @@
-package code.Buttons;
+package code.buttons;
 
-import code.GlobalVariables;
+import code.global.GlobalVariables;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.scene.control.Button;
@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import static code.GlobalVariables.CANVAS_FAKE_HEIGHT;
+import static code.global.GlobalVariables.CANVAS_FAKE_HEIGHT;
 
 public class ButtonController {
     private static final Image[] imageSound = {new Image("img/soundOn.png", 30, 30, false, false)};

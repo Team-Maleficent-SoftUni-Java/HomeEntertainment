@@ -1,6 +1,6 @@
-package code.Graphics;
+package code.graphics;
 
-import code.Player.Sprite;
+import code.player.Sprite;
 import javafx.scene.image.Image;
 
 

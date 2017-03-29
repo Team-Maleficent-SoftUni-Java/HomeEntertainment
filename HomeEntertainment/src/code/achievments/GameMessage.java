@@ -1,6 +1,6 @@
-package code.Achievments;
+package code.achievments;
 
-import code.Player.Player;
+import code.player.Player;
 import javafx.animation.FadeTransition;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;

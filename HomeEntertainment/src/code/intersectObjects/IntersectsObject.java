@@ -1,10 +1,9 @@
-package code.IntersectObjects;
+package code.intersectObjects;
 
-import code.Player.Sprite;
+import code.player.Sprite;
 import javafx.geometry.Rectangle2D;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class IntersectsObject {

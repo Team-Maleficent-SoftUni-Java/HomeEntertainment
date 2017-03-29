@@ -1,7 +1,6 @@
-package code.Graphics;
+package code.graphics;
 
-import code.GlobalVariables;
-import code.Player.Sprite;
+import code.global.GlobalVariables;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -9,11 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static code.GlobalVariables.*;
-import static code.Graphics.ImageController.*;
+import static code.global.GlobalVariables.*;
+import static code.graphics.ImageController.*;
 
 public class DrawLevel1 {
 
@@ -271,7 +267,7 @@ public class DrawLevel1 {
         GlobalVariables.getGraphicContext().drawImage(ImageController.getSiphon(), BATHROOM_X + (BATHROOM_WIDTH / 2)
                 - (ImageController.getSiphon().getWidth() / 2), BATHROOM_Y + 100);
 
-        //Player above the middle wall and the obstacles in the low middle part of the screen
+        //player above the middle wall and the obstacles in the low middle part of the screen
         if (GlobalVariables.getPlayer().bottomBoundary().intersects(0, BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT.getHeight()
                 + KITCHEN_HEIGHT, GlobalVariables.getCanvas().getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight() + LIVING_ROOM_HEIGHT + 40)) {
             GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());

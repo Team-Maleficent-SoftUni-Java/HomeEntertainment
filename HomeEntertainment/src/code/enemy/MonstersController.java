@@ -1,12 +1,12 @@
-package code.Enemy;
+package code.enemy;
 
-import code.Achievments.AchievementController;
-import code.Achievments.GameMessage;
-import code.Buttons.ButtonController;
-import code.GlobalVariables;
-import code.Graphics.FurnitureObjects;
-import code.IntersectObjects.IntersectsObjectLevel1;
-import code.Player.Sprite;
+import code.achievments.AchievementController;
+import code.achievments.GameMessage;
+import code.buttons.ButtonController;
+import code.global.GlobalVariables;
+import code.graphics.FurnitureObjects;
+import code.intersectObjects.IntersectsObjectLevel1;
+import code.player.Sprite;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
