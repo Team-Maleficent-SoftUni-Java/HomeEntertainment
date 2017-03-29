@@ -8,9 +8,14 @@ import javafx.geometry.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import static code.global.GlobalVariables.CANVAS_FAKE_HEIGHT;
+import static code.graphics.ImageController.*;
+import static code.graphics.ImageController.BRICK_SINGLE_HORIZONTAL;
+import static code.graphics.ImageController.BRICK_SINGLE_VERTICAL;
+
 public class DrawLevel2 {
 
-    private static List<Sprite> plants = new ArrayList<>();
+    public static List<Sprite> plants = new ArrayList<>();
 
     public static List<Rectangle2D> getPlants() {
         return convertSpriteToRectList();
@@ -60,6 +65,17 @@ public class DrawLevel2 {
         createPlant();
 
         GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+
+        //draw down border
+        for (int i = 0; i < 4 ; i++) {
+            GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, CANVAS_FAKE_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight() - 20));
+        }
+
+        for (int i = 6; i < GlobalVariables.getCanvas().getWidth() ; i++) {
+            GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, CANVAS_FAKE_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight() - 20));
+        }
 
         for (Sprite plant1 : plants) {
             if (plant1.intersects(GlobalVariables.getPlayer())) {

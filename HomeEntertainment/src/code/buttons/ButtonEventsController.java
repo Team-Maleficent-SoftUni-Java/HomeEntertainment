@@ -128,6 +128,8 @@ public class ButtonEventsController {
 
                         ButtonController.getButtonStartNewGame().setOnAction(__ -> {
                             theStage.close();
+                            //remove old plants from level 2
+                            DrawLevel2.plants.clear();
                             Platform.runLater(() -> new Main().start(new Stage()));
                         });
 
@@ -199,11 +201,11 @@ public class ButtonEventsController {
                             // Check collision with monsters
                             MonstersController.checkCollision(this);
                         } else {
-                            if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= -80) {
+                            if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= -50) {
                                 level[0] = 2;
 
                                 //set player position in garden
-                                GlobalVariables.getPlayer().setPosition(380, 630);
+                                GlobalVariables.getPlayer().setPosition(300, 630);
 
                                 playerMovement(GlobalVariables.getIntersectsObject());
                             } else if (level[0] == 1){
@@ -222,6 +224,11 @@ public class ButtonEventsController {
                             } else if(level[0] == 2){
                                 playerMovement(GlobalVariables.getIntersectsObject());
                                 DrawLevel2.drawGarden();
+                                if (GlobalVariables.getPlayer().getX() > 270 &&  GlobalVariables.getPlayer().getX() < 330
+                                        && GlobalVariables.getPlayer().getY() > 630) {
+                                    level[0] = 1;
+                                    GlobalVariables.getPlayer().setPosition(300, 20);
+                                }
                             }
                         }
                     }
