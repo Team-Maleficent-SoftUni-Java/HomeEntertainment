@@ -1,6 +1,6 @@
 package code;
 
-import code.buttons.ButtonEventsController;
+import code.buttons.GameActionController;
 import code.buttons.ButtonController;
 import code.enemy.MonstersController;
 import code.graphics.DrawLevel1;
@@ -21,6 +21,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 public class Main extends Application {
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -32,7 +33,8 @@ public class Main extends Application {
         theStage.setTitle("Home entertainment");
         GlobalVariables.setRoot(new Group());
         GlobalVariables.setIntersectsObject(new IntersectsObject());
-        Scene theScene = new Scene(GlobalVariables.getRoot(), 1024, 768, Color.WHITESMOKE);
+        Scene theScene = new Scene(GlobalVariables.getRoot(), GlobalVariables.CANVAS_WIDTH,
+                GlobalVariables.CANVAS_HEIGHT, Color.WHITESMOKE);
         theStage.setScene(theScene);
         GlobalVariables.getRoot().getChildren().add(GlobalVariables.getCanvas());
 
@@ -91,12 +93,12 @@ public class Main extends Application {
         ButtonController.setButtonsParameters();
 
         //Set all buttons events
-        ButtonEventsController.attachSoundButtonEvent();
-        ButtonEventsController.attachCloseButtonEvent();
-        ButtonEventsController.attachButtonMenuAction();
-        ButtonEventsController.attachButtonQuitAction(theStage);
-        ButtonEventsController.attachButtonStartAction(theStage);
+        GameActionController.attachSoundButtonEvent();
+        GameActionController.attachCloseButtonEvent();
+        GameActionController.attachButtonMenuAction();
+        GameActionController.attachButtonQuitAction(theStage);
+        GameActionController.attachButtonStartAction(theStage);
         theStage.show();
-        ButtonController.getBlinkedButton().play();
+        ButtonController.blinkedButton.play();
     }
 }

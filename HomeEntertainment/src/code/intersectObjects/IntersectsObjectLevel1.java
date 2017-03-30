@@ -50,11 +50,11 @@ public class IntersectsObjectLevel1 extends IntersectsObject{
             .getLivingDresser().getWidth(), ImageController.getCarpet().getHeight() / 4
             + BRICK_SINGLE_HORIZONTAL.getHeight());
     private Rectangle2D leftBorder = new Rectangle2D(0, 0, BRICK_SINGLE_VERTICAL
-            .getWidth(), CANVAS_FAKE_HEIGHT + WALL_SHORT.getHeight());
+            .getWidth(), GlobalVariables.CANVAS_HEIGHT + WALL_SHORT.getHeight());
     private Rectangle2D rightBorder = new Rectangle2D(GlobalVariables.getCanvas()
             .getWidth() - BRICK_SINGLE_VERTICAL.getWidth(), 0, BRICK_SINGLE_VERTICAL
-            .getWidth(), CANVAS_FAKE_HEIGHT + 40);
-    private Rectangle2D downBorder = new Rectangle2D(0, CANVAS_FAKE_HEIGHT - 10,
+            .getWidth(), GlobalVariables.CANVAS_HEIGHT + 40);
+    private Rectangle2D downBorder = new Rectangle2D(0, GlobalVariables.CANVAS_HEIGHT - 10,
             GlobalVariables.getCanvas().getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight());
     private Rectangle2D upperWallLeftFromEntrance = new Rectangle2D(0, 0, BRICK_SINGLE_VERTICAL
             .getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL

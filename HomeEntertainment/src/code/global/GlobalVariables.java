@@ -15,9 +15,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class GlobalVariables {
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");
-    public static final int CANVAS_FAKE_HEIGHT = 768;
-    private static final int CANVAS_HEIGHT = 768;
-    private static final int CANVAS_WIDTH = 1024;
+    public static final int CANVAS_HEIGHT = 768;
+    public static final int CANVAS_WIDTH = 1024;
 
     //borders Kitchen
     public static final double KITCHEN_X = 20;

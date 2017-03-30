@@ -4,7 +4,6 @@ import code.achievments.GameMessage;
 import code.enemy.MonstersController;
 import code.global.GlobalVariables;
 import code.graphics.DrawLevel2;
-import code.graphics.FurnitureObjects;
 import code.graphics.DrawLevel1;
 import code.intersectObjects.IntersectsObject;
 import code.intersectObjects.IntersectsObjectLevel1;
@@ -26,12 +25,30 @@ import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static code.global.GlobalVariables.CANVAS_FAKE_HEIGHT;
+public class GameActionController {
 
-public class ButtonEventsController {
+    private static final int IMAGE_SOUND_REQUESTED_SIZE = 30;
+    private static final int SCORE_FONT_SIZE = 20;
+    private static final int BUTTONS_HEIGHT = 50;
+    private static final int BUTTONS_WIDTH = 150;
+    private static final int ATOMIC_INTEGER_INITIAL_VALUE = 0;
+    private static final int BUTTON_START_NEW_GAME_X = 252;
+    private static final int BUTTONS_Y = 588;
+    private static final int BUTTONS_X = 452;
+    private static final int PAUSE_Y = 518;
+    private static final int PLAYER_INITIAL_POSITION_X = 300;
+    private static final int PLAYER_INITIAL_GARDEN_POSITION_Y = 630;
+    private static final int PLAYER_INITIAL_HOUSE_POSITION_Y = 20;
+    private static final int DOOR_LEFT_X = 240;
+    private static final int DOOR_RIGHT_X = 320;
+    private static final int GARDEN_DOOR_Y = 630;
+    private static final int HOUSE_DOOR_Y = -50;
+    private static final int COMPLETE_LEVEL1_MESSAGE_X = 197;
+    private static final int COMPLETE_LEVEL1_MESSAGE_Y = 299;
+    private static final double NANO_TIME_DIVIDER = 1000000000.0;
 
     public static void attachSoundButtonEvent() {
-        ButtonController.getButtonSound().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.buttonSound.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (GlobalVariables.getMute()[0]) {
@@ -42,44 +59,44 @@ public class ButtonEventsController {
             }
 
             private void changeSoundMode(boolean b, String soundStatus, String url) {
-                ButtonController.getImageSound()[0] = new Image(
-                        url, 30, 30, false, false);
-                ButtonController.getButtonSound().setGraphic(new ImageView(ButtonController.getImageSound()[0]));
-                ButtonController.getMenuSoundText1().setText(soundStatus);
+                ButtonController.IMAGE_SOUND[0] = new Image(
+                        url, IMAGE_SOUND_REQUESTED_SIZE, IMAGE_SOUND_REQUESTED_SIZE, false, false);
+                ButtonController.buttonSound.setGraphic(new ImageView(ButtonController.IMAGE_SOUND[0]));
+                ButtonController.menuSoundText1.setText(soundStatus);
                 GlobalVariables.setMute(b);
             }
         });
     }
 
     public static void attachCloseButtonEvent() {
-        ButtonController.getButtonClose().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.buttonClose.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (ButtonController.getIsMainWindow()[0]) {
-                    GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonMenu());
+                if (ButtonController.IS_MAIN_WINDOW[0]) {
+                    GlobalVariables.getRoot().getChildren().add(ButtonController.buttonMenu);
                 } else {
-                    GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonQuit());
+                    GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonQuit);
                 }
                 removeButtonsFromRoot();
-                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonStartNewGame());
-                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonResume());
+                GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonStartNewGame);
+                GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonResume);
             }
         });
     }
 
     public static void attachButtonMenuAction() {
-        ButtonController.getButtonMenu().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.buttonMenu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonMenu());
+                GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonMenu);
                 addButtonsToRoot();
-                GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonClose());
+                GlobalVariables.getRoot().getChildren().add(ButtonController.buttonClose);
             }
         });
     }
 
     public static void attachButtonQuitAction(Stage theStage) {
-        ButtonController.getButtonQuit().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.buttonQuit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 theStage.close();
@@ -88,20 +105,20 @@ public class ButtonEventsController {
     }
 
     public static void attachButtonStartAction(Stage theStage) {
-        ButtonController.getButtonStart().setOnAction(new EventHandler<ActionEvent>() {
+        ButtonController.buttonStart.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ButtonController.getIsMainWindow()[0] = false;
+                ButtonController.IS_MAIN_WINDOW[0] = false;
 
                 //Prepare the score text
-                Font scoreFont = Font.font("Arial", FontWeight.NORMAL, 20);
+                Font scoreFont = Font.font("Arial", FontWeight.NORMAL, SCORE_FONT_SIZE);
                 GlobalVariables.getGraphicContext().setFont(scoreFont);
                 GlobalVariables.getGraphicContext().setStroke(Color.BLACK);
                 GlobalVariables.getGraphicContext().setLineWidth(1);
                 GlobalVariables.getGraphicContext().setTextAlign(TextAlignment.LEFT);
                 final Long[] lastNanoTime = {System.nanoTime()};
-                GlobalVariables.setStepCounter(new AtomicInteger(0));
-                AtomicInteger monsterCounter = new AtomicInteger(0);
+                GlobalVariables.setStepCounter(new AtomicInteger(ATOMIC_INTEGER_INITIAL_VALUE));
+                AtomicInteger monsterCounter = new AtomicInteger(ATOMIC_INTEGER_INITIAL_VALUE);
 
                 final int[] level = {1};
 
@@ -109,24 +126,23 @@ public class ButtonEventsController {
                 new AnimationTimer() {
                     public void handle(long currentNanoTime) {
                         // calculate time since last update.
-                        double elapsedTime = (currentNanoTime - lastNanoTime[0]) / 1000000000.0;
+                        double elapsedTime = (currentNanoTime - lastNanoTime[0]) / NANO_TIME_DIVIDER;
                         lastNanoTime[0] = currentNanoTime;
 
                         removeButtonsFromRoot();
-                        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonStart());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonMenu());
-                        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonQuit());
+                        GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonStart);
+                        GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonMenu);
+                        GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonQuit);
                         GlobalVariables.getGraphicContext().setEffect(null);
 
                         //Button start new game
-                        ButtonController.getButtonStartNewGame().setPrefHeight(50);
-                        ButtonController.getButtonStartNewGame().setPrefWidth(150);
-                        ButtonController.getButtonStartNewGame().setLayoutX((GlobalVariables.getCanvas().getWidth()
-                                - (3 * ButtonController.getButtonMenu().getPrefWidth()) - (2 * 50)) / 2 + 15);
-                        ButtonController.getButtonStartNewGame().setLayoutY(CANVAS_FAKE_HEIGHT - 180);
-                        ButtonController.getButtonStartNewGame().setStyle("-fx-font: 22 arial");
+                        ButtonController.buttonStartNewGame.setPrefHeight(BUTTONS_HEIGHT);
+                        ButtonController.buttonStartNewGame.setPrefWidth(BUTTONS_WIDTH);
+                        ButtonController.buttonStartNewGame.setLayoutX(BUTTON_START_NEW_GAME_X);
+                        ButtonController.buttonStartNewGame.setLayoutY(BUTTONS_Y);
+                        ButtonController.buttonStartNewGame.setStyle("-fx-font: 22 arial");
 
-                        ButtonController.getButtonStartNewGame().setOnAction(__ -> {
+                        ButtonController.buttonStartNewGame.setOnAction(__ -> {
                             theStage.close();
                             //remove old plants from level 2
                             DrawLevel2.plants.clear();
@@ -134,28 +150,27 @@ public class ButtonEventsController {
                         });
 
                         //Button Resume game
-                        ButtonController.getButtonResume().setPrefHeight(50);
-                        ButtonController.getButtonResume().setPrefWidth(150);
-                        ButtonController.getButtonResume().setLayoutX(ButtonController.getButtonMenu().getLayoutX()
-                                + ButtonController.getButtonMenu().getPrefWidth() + 50);
-                        ButtonController.getButtonResume().setLayoutY(CANVAS_FAKE_HEIGHT - 180);
-                        ButtonController.getButtonResume().setStyle("-fx-font: 22 arial");
+                        ButtonController.buttonResume.setPrefHeight(BUTTONS_HEIGHT);
+                        ButtonController.buttonResume.setPrefWidth(BUTTONS_WIDTH);
+                        ButtonController.buttonResume.setLayoutX(BUTTONS_X);
+                        ButtonController.buttonResume.setLayoutY(BUTTONS_Y);
+                        ButtonController.buttonResume.setStyle("-fx-font: 22 arial");
 
                         //Button Pause game
                         Button pause = new Button("Pause");
-                        pause.setPrefHeight(50);
-                        pause.setPrefWidth(150);
-                        pause.setLayoutX(ButtonController.getButtonMenu().getLayoutX() + ButtonController.getButtonMenu().getPrefWidth() + 50);
-                        pause.setLayoutY(ButtonController.getButtonResume().getLayoutY() - 20 - ButtonController.getButtonResume().getPrefHeight());
+                        pause.setPrefHeight(BUTTONS_HEIGHT);
+                        pause.setPrefWidth(BUTTONS_WIDTH);
+                        pause.setLayoutX(BUTTONS_X);
+                        pause.setLayoutY(PAUSE_Y);
                         pause.setStyle("-fx-font: 22 arial");
 
-                        ButtonController.getButtonResume().setOnAction(new EventHandler<ActionEvent>() {
+                        ButtonController.buttonResume.setOnAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
                                 removeButtonsFromRoot();
-                                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonResume());
+                                GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonResume);
                                 GlobalVariables.getRoot().getChildren().remove(pause);
-                                GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonStartNewGame());
+                                GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonStartNewGame);
                                 start();
                             }
                         });
@@ -163,16 +178,16 @@ public class ButtonEventsController {
                         //show menu
                         if (GlobalVariables.getInput().contains("ESCAPE")) {
                             addButtonsToRoot();
-                            GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonQuit());
-                            GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonResume());
-                            GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonStartNewGame());
+                            GlobalVariables.getRoot().getChildren().add(ButtonController.buttonQuit);
+                            GlobalVariables.getRoot().getChildren().add(ButtonController.buttonResume);
+                            GlobalVariables.getRoot().getChildren().add(ButtonController.buttonStartNewGame);
                             stop();
                         }
 
                         //Pause control
                         if (GlobalVariables.getInput().contains("P")) {
                             GlobalVariables.getRoot().getChildren().add(pause);
-                            GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonResume());
+                            GlobalVariables.getRoot().getChildren().add(ButtonController.buttonResume);
                             stop();
                         }
 
@@ -201,17 +216,16 @@ public class ButtonEventsController {
                             // Check collision with monsters
                             MonstersController.checkCollision(this);
                         } else {
-                            if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= -50) {
+                            if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= HOUSE_DOOR_Y) {
                                 level[0] = 2;
 
                                 //set player position in garden
-                                GlobalVariables.getPlayer().setPosition(300, 630);
+                                GlobalVariables.getPlayer().setPosition(PLAYER_INITIAL_POSITION_X, PLAYER_INITIAL_GARDEN_POSITION_Y);
 
                                 playerMovement(GlobalVariables.getIntersectsObject());
                             } else if (level[0] == 1){
                                 GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!",
-                                        1, Color.DEEPSKYBLUE, FurnitureObjects.getKitchenTable().getX() + FurnitureObjects
-                                                .getKitchenTable().getWidth() - 100, FurnitureObjects.getKitchenTable().getY() + 100);
+                                        1, Color.DEEPSKYBLUE, COMPLETE_LEVEL1_MESSAGE_X, COMPLETE_LEVEL1_MESSAGE_Y);
 
                                 // remove door
                                 intersectsObjectLevel1.setIntersectObjectsWithoutDoor();
@@ -224,10 +238,10 @@ public class ButtonEventsController {
                             } else if(level[0] == 2){
                                 playerMovement(GlobalVariables.getIntersectsObject());
                                 DrawLevel2.drawGarden();
-                                if (GlobalVariables.getPlayer().getX() > 270 &&  GlobalVariables.getPlayer().getX() < 330
-                                        && GlobalVariables.getPlayer().getY() > 630) {
+                                if (GlobalVariables.getPlayer().getX() > DOOR_LEFT_X &&  GlobalVariables.getPlayer().getX() < DOOR_RIGHT_X
+                                        && GlobalVariables.getPlayer().getY() > GARDEN_DOOR_Y) {
                                     level[0] = 1;
-                                    GlobalVariables.getPlayer().setPosition(300, 20);
+                                    GlobalVariables.getPlayer().setPosition(PLAYER_INITIAL_POSITION_X, PLAYER_INITIAL_HOUSE_POSITION_Y);
                                 }
                             }
                         }
@@ -238,24 +252,24 @@ public class ButtonEventsController {
     }
 
     private static void removeButtonsFromRoot() {
-        GlobalVariables.getRoot().getChildren().remove(ButtonController.getMenu());
-        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonClose());
-        GlobalVariables.getRoot().getChildren().remove(ButtonController.getMenuTitle());
-        GlobalVariables.getRoot().getChildren().remove(ButtonController.getMenuSoundText1());
-        GlobalVariables.getRoot().getChildren().remove(ButtonController.getMenuSoundText2());
-        GlobalVariables.getRoot().getChildren().remove(ButtonController.getButtonSound());
-        GlobalVariables.getRoot().getChildren().remove(ButtonController.getKeyboardGuideTitle());
-        GlobalVariables.getRoot().getChildren().remove(ButtonController.getKeyboardGuide());
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.menu);
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonClose);
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.menuTitle);
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.menuSoundText1);
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.menuSoundText2);
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonSound);
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.keyboardGuideTitle);
+        GlobalVariables.getRoot().getChildren().remove(ButtonController.keyboardGuide);
     }
 
     private static void addButtonsToRoot() {
-        GlobalVariables.getRoot().getChildren().add(ButtonController.getMenu());
-        GlobalVariables.getRoot().getChildren().add(ButtonController.getMenuTitle());
-        GlobalVariables.getRoot().getChildren().add(ButtonController.getMenuSoundText1());
-        GlobalVariables.getRoot().getChildren().add(ButtonController.getMenuSoundText2());
-        GlobalVariables.getRoot().getChildren().add(ButtonController.getKeyboardGuideTitle());
-        GlobalVariables.getRoot().getChildren().add(ButtonController.getKeyboardGuide());
-        GlobalVariables.getRoot().getChildren().add(ButtonController.getButtonSound());
+        GlobalVariables.getRoot().getChildren().add(ButtonController.menu);
+        GlobalVariables.getRoot().getChildren().add(ButtonController.menuTitle);
+        GlobalVariables.getRoot().getChildren().add(ButtonController.menuSoundText1);
+        GlobalVariables.getRoot().getChildren().add(ButtonController.menuSoundText2);
+        GlobalVariables.getRoot().getChildren().add(ButtonController.keyboardGuideTitle);
+        GlobalVariables.getRoot().getChildren().add(ButtonController.keyboardGuide);
+        GlobalVariables.getRoot().getChildren().add(ButtonController.buttonSound);
     }
 
     private static void playerMovement(IntersectsObject intersectObject) {

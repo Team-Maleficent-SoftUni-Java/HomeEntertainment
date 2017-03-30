@@ -8,34 +8,43 @@ import javafx.scene.Node;
 import javafx.util.Duration;
 
 class Blinker {
+
+    private static final int FIRST_DURATION_SECONDS = 0;
+    private static final int FIRST_END_VALUE = 1;
+    private static final double SECOND_DURATION_SECONDS = 0.5;
+    private static final int SECOND_END_VALUE = 0;
+    private static final int THIRD_DURATION_SECONDS = 1;
+    private static final int THIRD_END_VALUE = 1;
+    private static final int BLINKER_CYCLE_COUNT = 1000;
+
     static Timeline createBlinker(Node node) {
         Timeline blink = new Timeline(
                 new KeyFrame(
-                        Duration.seconds(0),
+                        Duration.seconds(FIRST_DURATION_SECONDS),
                         new KeyValue(
                                 node.opacityProperty(),
-                                1,
+                                FIRST_END_VALUE,
                                 Interpolator.DISCRETE
                         )
                 ),
                 new KeyFrame(
-                        Duration.seconds(0.5),
+                        Duration.seconds(SECOND_DURATION_SECONDS),
                         new KeyValue(
                                 node.opacityProperty(),
-                                0,
+                                SECOND_END_VALUE,
                                 Interpolator.DISCRETE
                         )
                 ),
                 new KeyFrame(
-                        Duration.seconds(1),
+                        Duration.seconds(THIRD_DURATION_SECONDS),
                         new KeyValue(
                                 node.opacityProperty(),
-                                1,
+                                THIRD_END_VALUE,
                                 Interpolator.DISCRETE
                         )
                 )
         );
-        blink.setCycleCount(1000);
+        blink.setCycleCount(BLINKER_CYCLE_COUNT);
 
         return blink;
     }

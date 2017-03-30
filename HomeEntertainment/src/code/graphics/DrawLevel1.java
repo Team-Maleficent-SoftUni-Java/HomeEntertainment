@@ -81,7 +81,7 @@ public class DrawLevel1 {
         //The desk object
         Image deskImage = new Image("img/desk.png", 180, 140, false, false);
         FurnitureObjects.getDesk().setImage(deskImage);
-        FurnitureObjects.getDesk().setPosition(BEDROOM_X + 10, CANVAS_FAKE_HEIGHT / 2 - 60);
+        FurnitureObjects.getDesk().setPosition(BEDROOM_X + 10, GlobalVariables.CANVAS_HEIGHT / 2 - 60);
 
         //The bed object
         Image bedImage = new Image("img/bed.png", 200, 170, false, false);
@@ -113,7 +113,7 @@ public class DrawLevel1 {
 
     public static void displayIntroduce() {
         Image mainImage = new Image("img/07.jpg", GlobalVariables.getCanvas()
-                .getWidth(), CANVAS_FAKE_HEIGHT, false, false);
+                .getWidth(), GlobalVariables.CANVAS_HEIGHT, false, false);
         GlobalVariables.getGraphicContext().drawImage(mainImage, 0, 0);
 
         //Introduce title
@@ -125,7 +125,7 @@ public class DrawLevel1 {
         GlobalVariables.getGraphicContext().setFill(Color.CADETBLUE);
         String text = "Team Maleficent introduce Home Entertainment";
         GlobalVariables.getGraphicContext()
-                .fillText(text, GlobalVariables.getCanvas().getWidth() / 2, CANVAS_FAKE_HEIGHT - 50);
+                .fillText(text, GlobalVariables.getCanvas().getWidth() / 2, GlobalVariables.CANVAS_HEIGHT - 50);
     }
 
     public static void drawWalls(boolean drawDoor) {
@@ -214,9 +214,9 @@ public class DrawLevel1 {
         //wall between kitchen and livingRoom(draw 4 bricks)
         for (int i = 0; i < 4; i++) {
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), CANVAS_FAKE_HEIGHT / 2);
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), GlobalVariables.CANVAS_HEIGHT / 2);
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), (CANVAS_FAKE_HEIGHT / 2)
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), (GlobalVariables.CANVAS_HEIGHT / 2)
                     + BRICK_SINGLE_HORIZONTAL.getHeight());
             wallKitchenLivingRoomWidth += BRICK_SINGLE_HORIZONTAL.getWidth();
         }
@@ -225,10 +225,10 @@ public class DrawLevel1 {
         for (int i = 0; i < 6; i++) {
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
                     + wallKitchenLivingRoomWidth + doorWidth
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), CANVAS_FAKE_HEIGHT / 2);
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), GlobalVariables.CANVAS_HEIGHT / 2);
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
                     + wallKitchenLivingRoomWidth + doorWidth
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), (CANVAS_FAKE_HEIGHT / 2)
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), (GlobalVariables.CANVAS_HEIGHT / 2)
                     + BRICK_SINGLE_HORIZONTAL.getHeight());
             wallKitchenLivingRoomBedroomBathroomWidth += BRICK_SINGLE_HORIZONTAL.getWidth();
         }
@@ -237,22 +237,22 @@ public class DrawLevel1 {
         for (int i = 0; i < 2; i++) {
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
                     + wallKitchenLivingRoomWidth + doorWidth + wallKitchenLivingRoomBedroomBathroomWidth + doorWidth
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), CANVAS_FAKE_HEIGHT / 2);
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), GlobalVariables.CANVAS_HEIGHT / 2);
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
                     + wallKitchenLivingRoomWidth + doorWidth + wallKitchenLivingRoomBedroomBathroomWidth
-                    + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), (CANVAS_FAKE_HEIGHT / 2)
+                    + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), (GlobalVariables.CANVAS_HEIGHT / 2)
                     + BRICK_SINGLE_HORIZONTAL.getHeight());
         }
 
         //wall between living room and bathroom
         for (int i = 0; i < 6; i++) {
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, 2 * (GlobalVariables.getCanvas().getWidth() / 3)
-                    - BRICK_SINGLE_HORIZONTAL.getWidth(), CANVAS_FAKE_HEIGHT / 2 + (i * BRICK_SINGLE_VERTICAL.getHeight()));
+                    - BRICK_SINGLE_HORIZONTAL.getWidth(), GlobalVariables.CANVAS_HEIGHT / 2 + (i * BRICK_SINGLE_VERTICAL.getHeight()));
         }
 
         //Render the bricks
         //Left border
-        for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {
+        for (int i = 0; i < GlobalVariables.CANVAS_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {
             GlobalVariables
                     .getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, 0, i * BRICK_SINGLE_VERTICAL.getHeight());
         }
@@ -279,14 +279,14 @@ public class DrawLevel1 {
         //Down border
         for (int i = 0; i < GlobalVariables.getCanvas().getWidth() ; i++) {
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, CANVAS_FAKE_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight()) + 20);
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, GlobalVariables.CANVAS_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight()) + 20);
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, CANVAS_FAKE_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, GlobalVariables.CANVAS_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
             wallKitchenLivingRoomWidth += BRICK_SINGLE_HORIZONTAL.getWidth();
         }
 
         //Right border
-        for (int i = 0; i < CANVAS_FAKE_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {
+        for (int i = 0; i < GlobalVariables.CANVAS_HEIGHT / BRICK_SINGLE_VERTICAL.getHeight() - 1; i++) {
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, GlobalVariables.getCanvas().getWidth()
                     - BRICK_SINGLE_VERTICAL.getWidth(), i * BRICK_SINGLE_VERTICAL.getHeight());
         }
