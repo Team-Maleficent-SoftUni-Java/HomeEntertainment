@@ -13,119 +13,205 @@ import static code.graphics.ImageController.*;
 
 public class DrawLevel1 {
 
+    private static final int KITCHEN_DRESSER_WIDTH = 80;
+    private static final int KITCHEN_DRESSER_HEIGHT = 135;
+    private static final double KITCHEN_DRESSER_X = BRICK_SINGLE_VERTICAL.getWidth() + 5;
+    private static final int KITCHEN_DRESSER_Y = 25;
+    private static final int STOVE_WIDTH = 80;
+    private static final int STOVE_HEIGHT = 110;
+    private static final double STOVE_X = BRICK_SINGLE_VERTICAL.getWidth() + FurnitureObjects.getKitchenDresser().getWidth() + 5;
+    private static final int STOVE_Y = 50;
+    private static final int KITCHEN_SINK_WIDTH = 80;
+    private static final int KITCHEN_SINK_HEIGHT = 120;
+    private static final double KITCHEN_SINK_X = FurnitureObjects.getStove().getX() + FurnitureObjects.getStove().getWidth() + 5;
+    private static final int KITCHEN_SINK_Y = 36;
+    private static final int FRIDGE_WIDTH = 70;
+    private static final int FRIDGE_HEIGHT = 125;
+    private static final double FRIDGE_X = FurnitureObjects.getKitchenSink().getX()
+            + FurnitureObjects.getKitchenSink().getWidth() + (2 * BRICK_SINGLE_HORIZONTAL.getWidth()) + 20;
+    private static final int FRIDGE_Y = 30;
+    private static final int TABLE_WIDTH = 267;
+    private static final int TABLE_HEIGHT = 151;
+    private static final int TABLE_X = 30;
+    private static final int TABLE_Y = 199;
+    private static final int SOFA_WIDTH = 240;
+    private static final int SOFA_HEIGHT = 140;
+    private static final double SOFA_X = GlobalVariables.LIVING_ROOM_X + LIVING_ROOM_WIDTH - FurnitureObjects.getSofa().getWidth() + 5;
+    private static final double SOFA_Y = LIVING_ROOM_Y - 80;
+    private static final int COFFEE_TABLE_WIDTH = 150;
+    private static final int COFFEE_TABLE_HEIGHT = 100;
+    private static final double LIVING_ROOM_X = LIVING_ROOM_WIDTH - FurnitureObjects.getCoffeeTable().getWidth() - 70;
+    private static final int LIVING_ROOM_CHAIR_WIDTH = 150;
+    private static final int LIVING_ROOM_CHAIR_HEIGHT = 100;
+    private static final double LIVING_ROOM_CHAIR_X = LIVING_ROOM_WIDTH - FurnitureObjects
+            .getLivingRoomChair().getWidth() - 20;
+    private static final double LIVING_ROOM_CHAIR_Y = LIVING_ROOM_Y + FurnitureObjects.getLivingRoomChair().getHeight();
+    private static final int DRESSER_WIDTH = 150;
+    private static final int DRESSER_HEIGHT = 100;
+    private static final double DRESSER_X = GlobalVariables.LIVING_ROOM_X + 20;
+    private static final double DRESSER_Y = LIVING_ROOM_Y - 60;
+    private static final int PLANT_WIDTH = 65;
+    private static final int PLANT_HEIGHT = 90;
+    private static final double PLANT_X = GlobalVariables.LIVING_ROOM_X + FurnitureObjects.getLivingDresser().getWidth() + 25;
+    private static final double PLANT_Y = LIVING_ROOM_Y - 60;
+    private static final int TV_WIDTH = 180;
+    private static final int TV_HEIGHT = 150;
+    private static final double TV_Y = LIVING_ROOM_Y + 130;
+    private static final int DESK_WIDTH = 180;
+    private static final int DESK_HEIGHT = 140;
+    private static final double DESK_X = BEDROOM_X + 10;
+    private static final int DESK_Y = GlobalVariables.CANVAS_HEIGHT / 2 - 60;
+    private static final int BED_WIDTH = 200;
+    private static final int BED_HEIGHT = 170;
+    private static final int BED_Y = 50;
+    private static final int WARDROBE_WIDTH = 150;
+    private static final int WARDROBE_HEIGHT = 150;
+    private static final double WARDROBE_X = FurnitureObjects.getBed().getX() - FurnitureObjects.getWardrobe().getWidth() - 90;
+    private static final int WARDROBE_Y = 23;
+    private static final int TOILET_WIDTH = 100;
+    private static final int TOILET_HEIGHT = 110;
+    private static final double TOILET_X = GlobalVariables.getCanvas()
+            .getWidth() - FurnitureObjects.getToilet().getWidth() - BRICK_SINGLE_VERTICAL.getWidth();
+    private static final double TOILET_Y = BATHROOM_Y - 70;
+    private static final double BATHTUB_WIDTH = BATHROOM_WIDTH - 50;
+    private static final int BATHTUB_HEIGHT = 170;
+    private static final double BATHTUB_X = BATHROOM_X + 30;
+    private static final double BATHTUB_Y = BATHROOM_Y + 120;
+    private static final int SINK_WIDTH = 110;
+    private static final int SINK_HEIGHT = 130;
+    private static final double SINK_X = BATHROOM_X + 10;
+    private static final double SINK_Y = BATHROOM_Y - 70;
+    private static final int INTRODUCE_IMAGE_X_AND_Y = 0;
+    private static final int FONT_INTRODUCE_SIZE = 43;
+
+    private static final String IMG_TV_PNG = "img/tv.png";
+    private static final String IMG_ROBBER_PLANT_BURNED_PNG = "img/robber plant_burned.png";
+    private static final String IMG_DRESSER_PNG = "img/dresser.png";
+    private static final String IMG_LIVING_CHAIR_PNG = "img/livingChair.png";
+    private static final String IMG_COFFEE_TABLE_PNG = "img/coffeeTable.png";
+    private static final String IMG_SOFA_PNG = "img/sofa.png";
+    private static final String IMG_TABLE_BURNED_BURNED_PNG = "img/table_burned_burned.png";
+    private static final String IMG_KITCHEN_DRESSER_PNG = "img/kitchenDresser.png";
+    private static final String IMG_STOVE_PNG = "img/stove.png";
+    private static final String IMG_KITCHEN_SINK_PNG = "img/kitchenSink.png";
+    private static final String IMG_FRIDGE_PNG = "img/fridge.png";
+    private static final String IMG_DESK_PNG = "img/desk.png";
+    private static final String INTRODUCE_IMAGE_URL = "img/07.jpg";
+    private static final String IMG_BED_PNG = "img/bed.png";
+    private static final String IMG_WARDROBE_BURNED_PNG = "img/wardrobe_burned.png";
+    private static final String IMG_TOILET_PNG = "img/toilet.png";
+    private static final String IMG_BATHTUB_PNG = "img/bathtub.png";
+    private static final String IMG_SINK_PNG = "img/sink.png";
+    private static final String INTRODUCE_TEXT = "Team Maleficent introduce Home Entertainment";
+
     public static void displayObjects() {
         //The kitchenDresser object
         Image kitchenDresserImage = new Image(
-                "img/kitchenDresser.png", 80, 135, false, false);
+                IMG_KITCHEN_DRESSER_PNG, KITCHEN_DRESSER_WIDTH, KITCHEN_DRESSER_HEIGHT, false, false);
         FurnitureObjects.getKitchenDresser().setImage(kitchenDresserImage);
-        FurnitureObjects.getKitchenDresser().setPosition(BRICK_SINGLE_VERTICAL.getWidth() + 5, 25);
+        FurnitureObjects.getKitchenDresser().setPosition(KITCHEN_DRESSER_X, KITCHEN_DRESSER_Y);
 
         //The stove object
-        Image stoveImage = new Image("img/stove.png", 80, 110, false, false);
+        Image stoveImage = new Image(IMG_STOVE_PNG, STOVE_WIDTH, STOVE_HEIGHT, false, false);
         FurnitureObjects.getStove().setImage(stoveImage);
         FurnitureObjects.getStove()
-                .setPosition(BRICK_SINGLE_VERTICAL.getWidth() + FurnitureObjects.getKitchenDresser().getWidth() + 5, 50);
+                .setPosition(STOVE_X, STOVE_Y);
 
         //The kitchenSink object
-        Image kitchenSinkImage = new Image("img/kitchenSink.png", 80, 120, false, false);
+        Image kitchenSinkImage = new Image(IMG_KITCHEN_SINK_PNG, KITCHEN_SINK_WIDTH, KITCHEN_SINK_HEIGHT, false, false);
         FurnitureObjects.getKitchenSink().setImage(kitchenSinkImage);
         FurnitureObjects.getKitchenSink()
-                .setPosition(FurnitureObjects.getStove().getX() + FurnitureObjects.getStove().getWidth() + 5, 36);
+                .setPosition(KITCHEN_SINK_X, KITCHEN_SINK_Y);
 
         //The fridge object
-        Image fridgeImage = new Image("img/fridge.png", 70, 125, false, false);
+        Image fridgeImage = new Image(IMG_FRIDGE_PNG, FRIDGE_WIDTH, FRIDGE_HEIGHT, false, false);
         FurnitureObjects.getFridge().setImage(fridgeImage);
-        FurnitureObjects.getFridge().setPosition(FurnitureObjects.getKitchenSink().getX()
-                + FurnitureObjects.getKitchenSink().getWidth() + (2 * BRICK_SINGLE_HORIZONTAL.getWidth()) + 20, 30);
+        FurnitureObjects.getFridge().setPosition(FRIDGE_X, FRIDGE_Y);
 
         //The kitchenTable object
         Image kitchenTableImage = new Image(
-                "img/table_burned_burned.png", 267, 151, false, false);
+                IMG_TABLE_BURNED_BURNED_PNG, TABLE_WIDTH, TABLE_HEIGHT, false, false);
         FurnitureObjects.getKitchenTable().setImage(kitchenTableImage);
-        FurnitureObjects.getKitchenTable().setPosition(30, 199);
+        FurnitureObjects.getKitchenTable().setPosition(TABLE_X, TABLE_Y);
 
         //The sofa object
-        Image sofaImage = new Image("img/sofa.png", 240, 140, false, false);
+        Image sofaImage = new Image(IMG_SOFA_PNG, SOFA_WIDTH, SOFA_HEIGHT, false, false);
         FurnitureObjects.getSofa().setImage(sofaImage);
-        FurnitureObjects.getSofa()
-                .setPosition(LIVING_ROOM_X + LIVING_ROOM_WIDTH - FurnitureObjects.getSofa().getWidth() + 5, LIVING_ROOM_Y - 80);
+        FurnitureObjects.getSofa().setPosition(SOFA_X, SOFA_Y);
 
         //The coffeeTable object
-        Image coffeeTableImage = new Image("img/coffeeTable.png", 150, 100, false, false);
+        Image coffeeTableImage = new Image(IMG_COFFEE_TABLE_PNG, COFFEE_TABLE_WIDTH, COFFEE_TABLE_HEIGHT, false, false);
         FurnitureObjects.getCoffeeTable().setImage(coffeeTableImage);
-        FurnitureObjects.getCoffeeTable().setPosition(LIVING_ROOM_WIDTH - FurnitureObjects.getCoffeeTable().getWidth() - 70, LIVING_ROOM_Y);
+        FurnitureObjects.getCoffeeTable().setPosition(LIVING_ROOM_X, LIVING_ROOM_Y);
 
         //The livingRoomChair object
-        Image livingRoomChairImage = new Image("img/livingChair.png", 150, 100, false, false);
+        Image livingRoomChairImage = new Image(IMG_LIVING_CHAIR_PNG, LIVING_ROOM_CHAIR_WIDTH, LIVING_ROOM_CHAIR_HEIGHT, false, false);
         FurnitureObjects.getLivingRoomChair().setImage(livingRoomChairImage);
-        FurnitureObjects.getLivingRoomChair().setPosition(LIVING_ROOM_WIDTH - FurnitureObjects
-                .getLivingRoomChair().getWidth() - 20, LIVING_ROOM_Y + FurnitureObjects.getLivingRoomChair().getHeight());
+        FurnitureObjects.getLivingRoomChair().setPosition(LIVING_ROOM_CHAIR_X, LIVING_ROOM_CHAIR_Y);
 
         //The livingDresser object
-        Image livingDresserImage = new Image("img/dresser.png", 150, 100, false, false);
+        Image livingDresserImage = new Image(IMG_DRESSER_PNG, DRESSER_WIDTH, DRESSER_HEIGHT, false, false);
         FurnitureObjects.getLivingDresser().setImage(livingDresserImage);
-        FurnitureObjects.getLivingDresser().setPosition(LIVING_ROOM_X + 20, LIVING_ROOM_Y - 60);
+        FurnitureObjects.getLivingDresser().setPosition(DRESSER_X, DRESSER_Y);
 
         //The rubberPlant object
         Image rubberPlantImage = new Image(
-                "img/robber plant_burned.png", 65, 90, false, false);
+                IMG_ROBBER_PLANT_BURNED_PNG, PLANT_WIDTH, PLANT_HEIGHT, false, false);
         FurnitureObjects.getRubberPlant().setImage(rubberPlantImage);
         FurnitureObjects.getRubberPlant()
-                .setPosition(LIVING_ROOM_X + FurnitureObjects.getLivingDresser().getWidth() + 25, LIVING_ROOM_Y - 60);
+                .setPosition(PLANT_X, PLANT_Y);
 
         //The tv object
-        Image tvImage = new Image("img/tv.png", 180, 150, false, false);
+        Image tvImage = new Image(IMG_TV_PNG, TV_WIDTH, TV_HEIGHT, false, false);
         FurnitureObjects.getTv().setImage(tvImage);
-        FurnitureObjects.getTv().setPosition(LIVING_ROOM_X, LIVING_ROOM_Y + 130);
+        FurnitureObjects.getTv().setPosition(GlobalVariables.LIVING_ROOM_X, TV_Y);
 
         //The desk object
-        Image deskImage = new Image("img/desk.png", 180, 140, false, false);
+        Image deskImage = new Image(IMG_DESK_PNG, DESK_WIDTH, DESK_HEIGHT, false, false);
         FurnitureObjects.getDesk().setImage(deskImage);
-        FurnitureObjects.getDesk().setPosition(BEDROOM_X + 10, GlobalVariables.CANVAS_HEIGHT / 2 - 60);
+        FurnitureObjects.getDesk().setPosition(DESK_X, DESK_Y);
 
         //The bed object
-        Image bedImage = new Image("img/bed.png", 200, 170, false, false);
+        Image bedImage = new Image(IMG_BED_PNG, BED_WIDTH, BED_HEIGHT, false, false);
         FurnitureObjects.getBed().setImage(bedImage);
-        FurnitureObjects.getBed().setPosition(GlobalVariables.getCanvas()
-                .getWidth() - bedImage.getWidth() - BRICK_SINGLE_VERTICAL.getWidth() - 10, 50);
+        FurnitureObjects.getBed().setPosition(GlobalVariables.getCanvas().getWidth() - bedImage.getWidth()
+                - BRICK_SINGLE_VERTICAL.getWidth() - 10, BED_Y);
 
         //The wardrobe object
-        Image wardrobeImage = new Image("img/wardrobe_burned.png", 150, 150, false, false);
+        Image wardrobeImage = new Image(IMG_WARDROBE_BURNED_PNG, WARDROBE_WIDTH, WARDROBE_HEIGHT, false, false);
         FurnitureObjects.getWardrobe().setImage(wardrobeImage);
-        FurnitureObjects.getWardrobe().setPosition(FurnitureObjects.getBed().getX() - FurnitureObjects.getWardrobe().getWidth() - 90, 23);
+        FurnitureObjects.getWardrobe().setPosition(WARDROBE_X, WARDROBE_Y);
 
         //The toilet object
-        Image toiletImage = new Image("img/toilet.png", 100, 110, false, false);
+        Image toiletImage = new Image(IMG_TOILET_PNG, TOILET_WIDTH, TOILET_HEIGHT, false, false);
         FurnitureObjects.getToilet().setImage(toiletImage);
-        FurnitureObjects.getToilet().setPosition(GlobalVariables.getCanvas()
-                .getWidth() - FurnitureObjects.getToilet().getWidth() - BRICK_SINGLE_VERTICAL.getWidth(), BATHROOM_Y - 70);
+        FurnitureObjects.getToilet().setPosition(TOILET_X, TOILET_Y);
 
         //The bathtub object
-        Image bathtubImage = new Image("img/bathtub.png", BATHROOM_WIDTH - 50, 170, false, false);
+        Image bathtubImage = new Image(IMG_BATHTUB_PNG, BATHTUB_WIDTH, BATHTUB_HEIGHT, false, false);
         FurnitureObjects.getBathtub().setImage(bathtubImage);
-        FurnitureObjects.getBathtub().setPosition(BATHROOM_X + 30, BATHROOM_Y + 120);
+        FurnitureObjects.getBathtub().setPosition(BATHTUB_X, BATHTUB_Y);
 
         //The bathroomSink object
-        Image sinkImage = new Image("img/sink.png", 110, 130, false, false);
+        Image sinkImage = new Image(IMG_SINK_PNG, SINK_WIDTH, SINK_HEIGHT, false, false);
         FurnitureObjects.getBathroomSink().setImage(sinkImage);
-        FurnitureObjects.getBathroomSink().setPosition(BATHROOM_X + 10, BATHROOM_Y - 70);
+        FurnitureObjects.getBathroomSink().setPosition(SINK_X, SINK_Y);
     }
 
     public static void displayIntroduce() {
-        Image mainImage = new Image("img/07.jpg", GlobalVariables.getCanvas()
+        Image mainImage = new Image(INTRODUCE_IMAGE_URL, GlobalVariables.getCanvas()
                 .getWidth(), GlobalVariables.CANVAS_HEIGHT, false, false);
-        GlobalVariables.getGraphicContext().drawImage(mainImage, 0, 0);
+        GlobalVariables.getGraphicContext().drawImage(mainImage, INTRODUCE_IMAGE_X_AND_Y, INTRODUCE_IMAGE_X_AND_Y);
 
         //Introduce title
-        Font introduce = Font.font(java.awt.Font.DIALOG, 43);
+        Font introduce = Font.font(java.awt.Font.DIALOG, FONT_INTRODUCE_SIZE);
         GlobalVariables.getGraphicContext().setTextAlign(TextAlignment.CENTER);
         GlobalVariables.getGraphicContext().setFont(introduce);
         final Effect glow = new Glow(1.0);
         GlobalVariables.getGraphicContext().setEffect(glow);
         GlobalVariables.getGraphicContext().setFill(Color.CADETBLUE);
-        String text = "Team Maleficent introduce Home Entertainment";
         GlobalVariables.getGraphicContext()
-                .fillText(text, GlobalVariables.getCanvas().getWidth() / 2, GlobalVariables.CANVAS_HEIGHT - 50);
+                .fillText(INTRODUCE_TEXT, GlobalVariables.getCanvas().getWidth() / 2, GlobalVariables.CANVAS_HEIGHT - 50);
     }
 
     public static void drawWalls(boolean drawDoor) {
@@ -144,11 +230,11 @@ public class DrawLevel1 {
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet2(), BEDROOM_X, BEDROOM_Y + BEDROOM_HEIGHT / 2);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, BATHROOM_Y);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, BATHROOM_Y + BATHROOM_HEIGHT / 2);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X, LIVING_ROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), LIVING_ROOM_X, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), GlobalVariables.LIVING_ROOM_X, LIVING_ROOM_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), GlobalVariables.LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), GlobalVariables.LIVING_ROOM_X, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(),
-                LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
+                GlobalVariables.LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), 0, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), 600, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100);
 
@@ -203,7 +289,6 @@ public class DrawLevel1 {
         FurnitureObjects.getDesk().render(GlobalVariables.getGraphicContext());
 
         //wall between kitchen and bedroom(single brick)
-        //POSITION MUST BE HERE!!!
         for (int i = 0; i < 2; i++) {
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_VERTICAL, BRICK_SINGLE_VERTICAL.getWidth()
                     + wallUpBorder1 + doorWidth + (2 * BRICK_SINGLE_HORIZONTAL.getWidth()), wallKitchenBedroomHeight

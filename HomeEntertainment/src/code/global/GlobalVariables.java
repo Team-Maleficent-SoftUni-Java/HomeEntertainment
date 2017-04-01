@@ -42,101 +42,102 @@ public class GlobalVariables {
     public static final double BATHROOM_WIDTH = 364;
     public static final double BATHROOM_HEIGHT = 244;
 
-    private static final boolean[] _mute = {false};
+    private static final boolean[] MUTE = {false};
+
     private static Group root = new Group();
-    private static Player _player;
-    private static ArrayList<String> _input;
-    private static AudioClip _walking, _running, _wallHit, _attack;
-    private static AtomicInteger _stepCounter;
-    private static Canvas _canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-    private static String _direction;
-    private static GraphicsContext gc = _canvas.getGraphicsContext2D();
+    private static Player player;
+    private static ArrayList<String> input;
+    private static AudioClip walking, running, wallHit, attack;
+    private static AtomicInteger stepCounter;
+    private static Canvas canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+    private static String direction;
+    private static GraphicsContext gc = canvas.getGraphicsContext2D();
     private static ArrayList<Sprite> monstersToRender;
     private static ArrayDeque<Sprite> monsterList;
-    private static IntersectsObject _intersectsObject;
+    private static IntersectsObject intersectsObject;
 
     public static Player getPlayer() {
-        return _player;
+        return player;
     }
 
-    public static IntersectsObject getIntersectsObject() { return _intersectsObject; }
+    public static IntersectsObject getIntersectsObject() { return intersectsObject; }
 
-    public static void setIntersectsObject(IntersectsObject intersectsObject) { _intersectsObject = intersectsObject; }
+    public static void setIntersectsObject(IntersectsObject intersectsObject) { GlobalVariables.intersectsObject = intersectsObject; }
 
     public static void setPlayer(Player player) {
-        _player = player;
+        GlobalVariables.player = player;
     }
 
     public static ArrayList<String> getInput() {
-        return _input;
+        return input;
     }
 
     public static void setInput(ArrayList<String> input) {
-        _input = input;
+        GlobalVariables.input = input;
     }
 
     public static AudioClip getWalking() {
-        return _walking;
+        return walking;
     }
 
     public static void setWalking(AudioClip walking) {
-        _walking = walking;
+        GlobalVariables.walking = walking;
     }
 
     public static AudioClip getRunning() {
-        return _running;
+        return running;
     }
 
     public static void setRunning(AudioClip running) {
-        _running = running;
+        GlobalVariables.running = running;
     }
 
     public static AudioClip getWallHit() {
-        return _wallHit;
+        return wallHit;
     }
 
     public static AudioClip getAttack() {
-        return _attack;
+        return attack;
     }
 
     public static void setWallHit(AudioClip wallHit) {
-        _wallHit = wallHit;
+        GlobalVariables.wallHit = wallHit;
     }
 
     public static void setAttack(AudioClip attack) {
-        _attack = attack;
+        GlobalVariables.attack = attack;
     }
 
     public static AtomicInteger getStepCounter() {
-        return _stepCounter;
+        return stepCounter;
     }
 
     public static void setStepCounter(AtomicInteger stepCounter) {
-        _stepCounter = stepCounter;
+        GlobalVariables.stepCounter = stepCounter;
     }
 
     public static boolean[] getMute() {
-        return _mute;
+        return MUTE;
     }
 
     public static void setMute(boolean mute) {
-         _mute[0] = mute;
+         MUTE[0] = mute;
     }
 
     public static Canvas getCanvas() {
-        return _canvas;
+        return canvas;
     }
 
     public static void setCanvas(Canvas canvas) {
-        _canvas = canvas;
+        GlobalVariables.canvas = canvas;
     }
 
     public static String getDirection() {
-        return _direction;
+        return direction;
     }
 
     public static void setDirection(String direction) {
-        _direction = direction;
+        GlobalVariables.direction = direction;
     }
 
     public static String getProjectPath() {
