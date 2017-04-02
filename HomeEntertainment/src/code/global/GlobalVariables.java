@@ -44,6 +44,7 @@ public class GlobalVariables {
     public static final double BATHROOM_HEIGHT = 244;
 
     private static final boolean[] MUTE = {false};
+    public static boolean beenInSecondLevel = false;
 
     private static Group root = new Group();
     private static Player player;

@@ -6,39 +6,48 @@ import javafx.scene.image.Image;
 
 public class Plant {
 
-    private static final Image FIRST_TREE_IMAGE = new Image("img/Tree1.png",
-            150, 200, false, false);
-    private static final Image SECOND_TREE_IMAGE = new Image("img/Tree2.png",
-            150, 200, false, false);
-    private static final Image THIRD_TREE_IMAGE = new Image("img/Tree3.png",
-            150, 200, false, false);
-    private static final Image FOURTH_TREE_IMAGE = new Image("img/bor.png",
-            150, 200, false, false);
-    private static final Image FIFTH_TREE_IMAGE = new Image("img/peach.png",
-            150, 200, false, false);
-    private static final Image FERN_IMAGE = new Image("img/paprat.png",
-            70, 100, false, false);
-    private static final Image FIRST_FLOWER_IMAGE = new Image("img/flower1.png",
-            150, 100, false, false);
-    private static final Image SECOND_FLOWER_IMAGE = new Image("img/flower2.png",
-            90, 50, false, false);
-    private static final Image THIRD_FLOWER_IMAGE = new Image("img/flower3.png",
-            100, 60, false, false);
-    private static final Image DWARF_IMAGE = new Image("img/dwarf1.png",
-            50, 80, false, false);
-    private static final Image SMALL_ROCK_IMAGE = new Image("img/rock.png",
-            30, 20, false, false);
-    private static final Image BIG_ROCK_IMAGE = new Image("img/rock.png",
-            60, 40, false, false);
-    private static final Image FOUNTAIN_IMAGE = new Image("img/fontan.png",
-            250, 180, false, false);
-    public static final int TREE_POINTS = 3;
-    public static final int FLOWER_POINTS = 2;
-    public static final int FOUNTAIN_POINTS = 5;
-    public static final double SMALL_ROCK_POINTS = 0.5;
-    public static final int BIG_ROCK__POINTS = 1;
-    public static final int FERN_POINTS = 1;
-    public static final double DWARF_POINTS = 0.5;
+    private static final String IMG_TREE1_URL = "img/Tree1.png";
+    private static final String IMG_TREE2_URL = "img/Tree2.png";
+    private static final String IMG_TREE3_URL = "img/Tree3.png";
+    private static final String IMG_BOR_URL = "img/bor.png";
+    private static final String IMG_PEACH_URL = "img/peach.png";
+    private static final String IMG_FERN_URL = "img/paprat.png";
+    private static final String IMG_FLOWER1_URL = "img/flower1.png";
+    private static final String IMG_FLOWER2_URL = "img/flower2.png";
+    private static final String IMG_FLOWER3_URL = "img/flower3.png";
+    private static final String IMG_DWARF1_URL = "img/dwarf1.png";
+    private static final String IMG_ROCK_URL = "img/rock.png";
+    private static final String IMG_FOUNTAIN_URL = "img/fontan.png";
+    private static final int TREE_WIDTH = 150;
+    private static final int TREE_HEIGHT = 200;
+    private static final int FERN_WIDTH = 70;
+    private static final int FERN_HEIGHT = 100;
+    private static final int FLOWER2_WIDTH = 90;
+    private static final int FLOWER2_HEIGHT = 50;
+    private static final int FLOWER3_WIDTH = 100;
+    private static final int FLOWER3_HEIGHT = 60;
+    private static final int DWARF_HEIGHT = 80;
+    private static final int DWARF_WIDTH = 50;
+    private static final int SMALL_ROCK_WIDTH = 30;
+    private static final int SMALL_ROCK_HEIGHT = 20;
+    private static final int BIG_ROCK_WIDTH = 60;
+    private static final int BIG_ROCK_HEIGHT = 40;
+    private static final int FOUNTAIN_WIDTH = 250;
+    private static final int FOUNTAIN_HEIGHT = 180;
+
+    private static final Image BIG_ROCK_IMAGE = new Image(IMG_ROCK_URL, BIG_ROCK_WIDTH, BIG_ROCK_HEIGHT, false, false);
+    private static final Image SMALL_ROCK_IMAGE = new Image(IMG_ROCK_URL, SMALL_ROCK_WIDTH, SMALL_ROCK_HEIGHT, false, false);
+    private static final Image DWARF_IMAGE = new Image(IMG_DWARF1_URL, DWARF_WIDTH, DWARF_HEIGHT, false, false);
+    private static final Image THIRD_FLOWER_IMAGE = new Image(IMG_FLOWER3_URL, FLOWER3_WIDTH, FLOWER3_HEIGHT, false, false);
+    private static final Image SECOND_FLOWER_IMAGE = new Image(IMG_FLOWER2_URL, FLOWER2_WIDTH, FLOWER2_HEIGHT, false, false);
+    private static final Image FIRST_TREE_IMAGE = new Image(IMG_TREE1_URL, TREE_WIDTH, TREE_HEIGHT, false, false);
+    private static final Image SECOND_TREE_IMAGE = new Image(IMG_TREE2_URL, TREE_WIDTH, TREE_HEIGHT, false, false);
+    private static final Image THIRD_TREE_IMAGE = new Image(IMG_TREE3_URL, TREE_WIDTH, TREE_HEIGHT, false, false);
+    private static final Image FOURTH_TREE_IMAGE = new Image(IMG_BOR_URL, TREE_WIDTH, TREE_HEIGHT, false, false);
+    private static final Image FIFTH_TREE_IMAGE = new Image(IMG_PEACH_URL, TREE_WIDTH, TREE_HEIGHT, false, false);
+    private static final Image FERN_IMAGE = new Image(IMG_FERN_URL, FERN_WIDTH, FERN_HEIGHT, false, false);
+    private static final Image FIRST_FLOWER_IMAGE = new Image(IMG_FLOWER1_URL, TREE_WIDTH, FERN_HEIGHT, false, false);
+    private static final Image FOUNTAIN_IMAGE = new Image(IMG_FOUNTAIN_URL, FOUNTAIN_WIDTH, FOUNTAIN_HEIGHT, false, false);
 
     private Sprite firstTree = new Sprite();
     private Sprite secondTree = new Sprite();

@@ -240,8 +240,10 @@ public class GameActionController {
 
                                 playerMovement(GlobalVariables.getIntersectsObject());
                             } else if (level[0] == 1){
-                                GM.renderMessage(FIRST_LEVEL_CONGRATS_MESSAGE,
-                                        1, Color.DEEPSKYBLUE, COMPLETE_LEVEL1_MESSAGE_X, COMPLETE_LEVEL1_MESSAGE_Y);
+                                if (!GlobalVariables.beenInSecondLevel) {
+                                    GM.renderMessage(FIRST_LEVEL_CONGRATS_MESSAGE,
+                                            1, Color.DEEPSKYBLUE, COMPLETE_LEVEL1_MESSAGE_X, COMPLETE_LEVEL1_MESSAGE_Y);
+                                }
 
                                 // remove door
                                 intersectsObjectLevel1.setIntersectObjectsWithoutDoor();
@@ -259,6 +261,7 @@ public class GameActionController {
                                     level[0] = 1;
                                     GlobalVariables.getPlayer().setPosition(PLAYER_INITIAL_POSITION_X, PLAYER_INITIAL_HOUSE_POSITION_Y);
                                 }
+                                GlobalVariables.beenInSecondLevel = true;
                             }
                         }
                     }

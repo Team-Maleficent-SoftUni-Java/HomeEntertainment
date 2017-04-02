@@ -19,16 +19,15 @@ public class DrawLevel1 {
     private static final int KITCHEN_DRESSER_Y = 25;
     private static final int STOVE_WIDTH = 80;
     private static final int STOVE_HEIGHT = 110;
-    private static final double STOVE_X = BRICK_SINGLE_VERTICAL.getWidth() + FurnitureObjects.getKitchenDresser().getWidth() + 5;
+    private static final double STOVE_X = KITCHEN_DRESSER_X + 80;
     private static final int STOVE_Y = 50;
     private static final int KITCHEN_SINK_WIDTH = 80;
     private static final int KITCHEN_SINK_HEIGHT = 120;
-    private static final double KITCHEN_SINK_X = FurnitureObjects.getStove().getX() + FurnitureObjects.getStove().getWidth() + 5;
+    private static final double KITCHEN_SINK_X = STOVE_X + 80;
     private static final int KITCHEN_SINK_Y = 36;
     private static final int FRIDGE_WIDTH = 70;
     private static final int FRIDGE_HEIGHT = 125;
-    private static final double FRIDGE_X = FurnitureObjects.getKitchenSink().getX()
-            + FurnitureObjects.getKitchenSink().getWidth() + (2 * BRICK_SINGLE_HORIZONTAL.getWidth()) + 20;
+    private static final double FRIDGE_X = KITCHEN_SINK_X + 230;
     private static final int FRIDGE_Y = 30;
     private static final int TABLE_WIDTH = 267;
     private static final int TABLE_HEIGHT = 151;
@@ -36,19 +35,18 @@ public class DrawLevel1 {
     private static final int TABLE_Y = 199;
     private static final int SOFA_WIDTH = 240;
     private static final int SOFA_HEIGHT = 140;
-    private static final double SOFA_X = GlobalVariables.LIVING_ROOM_X + LIVING_ROOM_WIDTH - FurnitureObjects.getSofa().getWidth() + 5;
+    private static final double SOFA_X = 385;
     private static final double SOFA_Y = LIVING_ROOM_Y - 80;
     private static final int COFFEE_TABLE_WIDTH = 150;
     private static final int COFFEE_TABLE_HEIGHT = 100;
-    private static final double LIVING_ROOM_X = LIVING_ROOM_WIDTH - FurnitureObjects.getCoffeeTable().getWidth() - 70;
+    private static final int COFEE_TABLE_X = 375;
     private static final int LIVING_ROOM_CHAIR_WIDTH = 150;
     private static final int LIVING_ROOM_CHAIR_HEIGHT = 100;
-    private static final double LIVING_ROOM_CHAIR_X = LIVING_ROOM_WIDTH - FurnitureObjects
-            .getLivingRoomChair().getWidth() - 20;
-    private static final double LIVING_ROOM_CHAIR_Y = LIVING_ROOM_Y + FurnitureObjects.getLivingRoomChair().getHeight();
+    private static final double LIVING_ROOM_CHAIR_X = 300;
+    private static final double LIVING_ROOM_CHAIR_Y = 580;
     private static final int DRESSER_WIDTH = 150;
     private static final int DRESSER_HEIGHT = 100;
-    private static final double DRESSER_X = GlobalVariables.LIVING_ROOM_X + 20;
+    private static final double DRESSER_X = 110;
     private static final double DRESSER_Y = LIVING_ROOM_Y - 60;
     private static final int PLANT_WIDTH = 65;
     private static final int PLANT_HEIGHT = 90;
@@ -66,12 +64,11 @@ public class DrawLevel1 {
     private static final int BED_Y = 50;
     private static final int WARDROBE_WIDTH = 150;
     private static final int WARDROBE_HEIGHT = 150;
-    private static final double WARDROBE_X = FurnitureObjects.getBed().getX() - FurnitureObjects.getWardrobe().getWidth() - 90;
+    private static final double WARDROBE_X = 550;
     private static final int WARDROBE_Y = 23;
     private static final int TOILET_WIDTH = 100;
     private static final int TOILET_HEIGHT = 110;
-    private static final double TOILET_X = GlobalVariables.getCanvas()
-            .getWidth() - FurnitureObjects.getToilet().getWidth() - BRICK_SINGLE_VERTICAL.getWidth();
+    private static final double TOILET_X = 900;
     private static final double TOILET_Y = BATHROOM_Y - 70;
     private static final double BATHTUB_WIDTH = BATHROOM_WIDTH - 50;
     private static final int BATHTUB_HEIGHT = 170;
@@ -141,8 +138,7 @@ public class DrawLevel1 {
         //The stove object
         Image stoveImage = new Image(IMG_STOVE_PNG, STOVE_WIDTH, STOVE_HEIGHT, false, false);
         FurnitureObjects.getStove().setImage(stoveImage);
-        FurnitureObjects.getStove()
-                .setPosition(STOVE_X, STOVE_Y);
+        FurnitureObjects.getStove().setPosition(STOVE_X, STOVE_Y);
 
         //The kitchenSink object
         Image kitchenSinkImage = new Image(IMG_KITCHEN_SINK_PNG, KITCHEN_SINK_WIDTH, KITCHEN_SINK_HEIGHT, false, false);
@@ -169,7 +165,7 @@ public class DrawLevel1 {
         //The coffeeTable object
         Image coffeeTableImage = new Image(IMG_COFFEE_TABLE_PNG, COFFEE_TABLE_WIDTH, COFFEE_TABLE_HEIGHT, false, false);
         FurnitureObjects.getCoffeeTable().setImage(coffeeTableImage);
-        FurnitureObjects.getCoffeeTable().setPosition(LIVING_ROOM_X, LIVING_ROOM_Y);
+        FurnitureObjects.getCoffeeTable().setPosition(COFEE_TABLE_X, LIVING_ROOM_Y);
 
         //The livingRoomChair object
         Image livingRoomChairImage = new Image(IMG_LIVING_CHAIR_PNG, LIVING_ROOM_CHAIR_WIDTH, LIVING_ROOM_CHAIR_HEIGHT, false, false);

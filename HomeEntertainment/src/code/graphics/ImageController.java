@@ -9,12 +9,46 @@ import static code.global.GlobalVariables.*;
 
 public class ImageController {
 
+    private static final double CARPET_REQUESTED_HEIGHT = LIVING_ROOM_HEIGHT / 2 + 60;
+    private static final double CARPET_REQUESTED_WIDTH = LIVING_ROOM_WIDTH / 2;
+    private static final int SIPHON_REQUESTED_WIDTH = 40;
+    private static final int SIPHON_REQUESTED_HEIGHT = 40;
+    private static final int GARDEN_WALL_WIDTH = 100;
+    private static final int SMALL_GARDEN_GRASS_WIDTH = 150;
+    private static final int SMALL_GARDEN_GRASS_HEIGHT1 = 120;
+    private static final int GARDEN_WALL_HEIGHT = 50;
+    private static final String IMG_BRICK_SINGLE_HORIZONTAL_URL = "img/brickSingleHorizontal.png";
+    private static final String IMG_BRICK_SINGLE_VERTICAL_URL = "img/brickSingleVert.png";
+    private static final String IMG_WALL_SHORT_URL = "img/wallShort.png";
+    private static final String IMG_WALL_COLON_URL = "img/wallColon.png";
+    private static final String IMG_DOOR_URL = "img/door.png";
+    private static final String IMG_PARQUET_URL = "img/parquet.jpg";
+    private static final String IMG_TILES2_URL = "img/tiles2.jpg";
+    private static final String IMG_CARPET_URL = "img/carpet.jpg";
+    private static final String IMG_CARPET03_URL = "img/carpet03.jpg";
+    private static final String IMG_SIPHON_URL = "img/siphon.png";
+    private static final String IMG_STATS_BOARD_URL = "img/statsBoard.png";
+    private static final String IMG_GARDEN_FENCE_URL = "img/gardenFence.png";
+    private static final String IMG_GARDEN_GRASS_URL = "img/gardenGrass.jpg";
+    private static final String IMG_PLAYER_FRONT1_URL = "img/playerFront0.png";
+    private static final String IMG_PLAYER_FRONT2_URL = "img/playerFront1.png";
+    private static final String IMG_PLAYER_FRONT3_URL = "img/playerFront2.png";
+    private static final String IMG_PLAYER_RIGHT1_URL = "img/playerRight0.png";
+    private static final String IMG_PLAYER_RIGHT2_URL = "img/playerRight1.png";
+    private static final String IMG_PLAYER_RIGHT3_URL = "img/playerRight2.png";
+    private static final String IMG_PLAYER_LEFT1_URL = "img/playerLeft0.png";
+    private static final String IMG_PLAYER_LEFT2_URL = "img/playerLeft1.png";
+    private static final String IMG_PLAYER_LEFT3_URL = "img/playerLeft2.png";
+    private static final String IMG_PLAYER_BACK1_URL = "img/playerBack0.png";
+    private static final String IMG_PLAYER_BACK2_URL = "img/playerBack1.png";
+    private static final String IMG_PLAYER_BACK3_URL = "img/playerBack2.png";
+
     // Create Image and ImageView objects
-    public final static Image BRICK_SINGLE_HORIZONTAL = new Image("img/brickSingleHorizontal.png");
-    public final static Image BRICK_SINGLE_VERTICAL = new Image("img/brickSingleVert.png");
-    public final static Image WALL_SHORT = new Image("img/wallShort.png");
-    public final static Image WALL_COLON = new Image("img/wallColon.png");
-    final static Image DOOR_IMAGE = new Image("img/door.png");
+    public final static Image BRICK_SINGLE_HORIZONTAL = new Image(IMG_BRICK_SINGLE_HORIZONTAL_URL);
+    public final static Image BRICK_SINGLE_VERTICAL = new Image(IMG_BRICK_SINGLE_VERTICAL_URL);
+    public final static Image WALL_SHORT = new Image(IMG_WALL_SHORT_URL);
+    public final static Image WALL_COLON = new Image(IMG_WALL_COLON_URL);
+    final static Image DOOR_IMAGE = new Image(IMG_DOOR_URL);
 
     private static ArrayDeque<String> _playerDownImages, _playerRightImages, _playerLeftImages, _playerUpImages;
     private static Image parquet;
@@ -28,17 +62,17 @@ public class ImageController {
     private static Image smallGardenGrass;
 
     public static void defineImages () {
-        parquet = new Image("img/parquet.jpg", KITCHEN_WIDTH, KITCHEN_HEIGHT / 2, false, false);
-        tiles = new Image("img/tiles2.jpg", BATHROOM_WIDTH, BATHROOM_HEIGHT / 2, false, false);
-        carpet = new Image("img/carpet.jpg", LIVING_ROOM_WIDTH / 2 ,
-                LIVING_ROOM_HEIGHT / 2 + 60, false, false);
-        carpet2 = new Image("img/carpet03.jpg", BEDROOM_WIDTH, BEDROOM_HEIGHT / 2, false, false);
-        siphon = new Image("img/siphon.png", 40, 40, false, false);
-        statsBoard = new Image("img/statsBoard.png");
-        gardenGrass = new Image("img/gardenGrass.jpg", GlobalVariables.getCanvas().getWidth() / 5,
+        parquet = new Image(IMG_PARQUET_URL, KITCHEN_WIDTH, KITCHEN_HEIGHT / 2, false, false);
+        tiles = new Image(IMG_TILES2_URL, BATHROOM_WIDTH, BATHROOM_HEIGHT / 2, false, false);
+        carpet = new Image(IMG_CARPET_URL, CARPET_REQUESTED_WIDTH, CARPET_REQUESTED_HEIGHT, false, false);
+        carpet2 = new Image(IMG_CARPET03_URL, BEDROOM_WIDTH, BEDROOM_HEIGHT / 2, false, false);
+        siphon = new Image(IMG_SIPHON_URL, SIPHON_REQUESTED_WIDTH, SIPHON_REQUESTED_HEIGHT, false, false);
+        statsBoard = new Image(IMG_STATS_BOARD_URL);
+        gardenGrass = new Image(IMG_GARDEN_GRASS_URL, GlobalVariables.CANVAS_WIDTH / 5,
                 GlobalVariables.getCanvas().getHeight() / 5, false, false);
-        gardenWall = new Image("img/gardenFence.png", 100, 50, false, false);
-        smallGardenGrass = new Image("img/gardenGrass.jpg", 150, 120, false, false);
+        gardenWall = new Image(IMG_GARDEN_FENCE_URL, GARDEN_WALL_WIDTH, GARDEN_WALL_HEIGHT, false, false);
+        smallGardenGrass = new Image(IMG_GARDEN_GRASS_URL, SMALL_GARDEN_GRASS_WIDTH,
+                SMALL_GARDEN_GRASS_HEIGHT1, false, false);
     }
 
     public static ArrayDeque<String> getPlayerDownImages() {
@@ -47,9 +81,9 @@ public class ImageController {
 
     public static void setPlayerDownImages(ArrayDeque<String> playerDownImages) {
         _playerDownImages = playerDownImages;
-        ImageController.getPlayerDownImages().addLast("img/playerFront0.png");
-        ImageController.getPlayerDownImages().addLast("img/playerFront1.png");
-        ImageController.getPlayerDownImages().addLast("img/playerFront2.png");
+        ImageController.getPlayerDownImages().addLast(IMG_PLAYER_FRONT1_URL);
+        ImageController.getPlayerDownImages().addLast(IMG_PLAYER_FRONT2_URL);
+        ImageController.getPlayerDownImages().addLast(IMG_PLAYER_FRONT3_URL);
     }
 
     public static ArrayDeque<String> getPlayerRightImages() {
@@ -58,9 +92,9 @@ public class ImageController {
 
     public static void setPlayerRightImages(ArrayDeque<String> playerRightImages) {
         _playerRightImages = playerRightImages;
-        ImageController.getPlayerRightImages().addLast("img/playerRight0.png");
-        ImageController.getPlayerRightImages().addLast("img/playerRight1.png");
-        ImageController.getPlayerRightImages().addLast("img/playerRight2.png");
+        ImageController.getPlayerRightImages().addLast(IMG_PLAYER_RIGHT1_URL);
+        ImageController.getPlayerRightImages().addLast(IMG_PLAYER_RIGHT2_URL);
+        ImageController.getPlayerRightImages().addLast(IMG_PLAYER_RIGHT3_URL);
     }
 
     public static ArrayDeque<String> getPlayerLeftImages() {
@@ -69,9 +103,9 @@ public class ImageController {
 
     public static void setPlayerLeftImages(ArrayDeque<String> playerLeftImages) {
         _playerLeftImages = playerLeftImages;
-        ImageController.getPlayerLeftImages().addLast("img/playerLeft0.png");
-        ImageController.getPlayerLeftImages().addLast("img/playerLeft1.png");
-        ImageController.getPlayerLeftImages().addLast("img/playerLeft2.png");
+        ImageController.getPlayerLeftImages().addLast(IMG_PLAYER_LEFT1_URL);
+        ImageController.getPlayerLeftImages().addLast(IMG_PLAYER_LEFT2_URL);
+        ImageController.getPlayerLeftImages().addLast(IMG_PLAYER_LEFT3_URL);
     }
 
     public static ArrayDeque<String> getPlayerUpImages() {
@@ -80,9 +114,9 @@ public class ImageController {
 
     public static void setPlayerUpImages(ArrayDeque<String> playerUpImages) {
         _playerUpImages = playerUpImages;
-        ImageController.getPlayerUpImages().addLast("img/playerBack0.png");
-        ImageController.getPlayerUpImages().addLast("img/playerBack1.png");
-        ImageController.getPlayerUpImages().addLast("img/playerBack2.png");
+        ImageController.getPlayerUpImages().addLast(IMG_PLAYER_BACK1_URL);
+        ImageController.getPlayerUpImages().addLast(IMG_PLAYER_BACK2_URL);
+        ImageController.getPlayerUpImages().addLast(IMG_PLAYER_BACK3_URL);
     }
 
     static Image getParquet() {
