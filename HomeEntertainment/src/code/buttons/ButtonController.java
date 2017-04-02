@@ -50,7 +50,7 @@ public class ButtonController {
     private static final String SOUND_ON_BUTTON_TEXT = "Sound ON";
     private static final String SOUND_OFF_BUTTON_TEXT = "Affects all sounds and music";
     private static final String KEYBOARD_GUIDE_TITLE = "Keyboard guide:\n";
-    private static final String KEYBOARD_GUIDE_TEXT = "\t-'P' button - pause;\n\t-'Esc' button - show settings;" +
+    private static final String KEYBOARD_GUIDE_TEXT = "\t-'KEYBOARD_P' button - pause;\n\t-'Esc' button - show settings;" +
             "\n\t-'Left' button - player moving left;\n\t-'Right' button - player moving right;" +
             "\n\t-'Up' button - player moving up;\n\t-'Down' button - player moving down;" +
             "\n\t-'Shift' button with combination('Left', 'Right', 'Up', or 'Down' buttons) - player start running;";

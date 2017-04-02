@@ -30,14 +30,19 @@ public class MonstersController {
     private static final int GAME_OVER_MESSAGE_X = 317;
     private static final int GAME_OVER_MESSAGE_Y = 299;
     private static final int MONSTER_RANDOM_POSITION_ADDITION = 100;
+    private static final String IMG_MONSTER_TYPE1 = "img/monster.gif";
+    private static final String IMG_MONSTER_TYPE2 = "img/monster1.png";
+    private static final String IMG_MONSTER_TYPE3 = "img/monster2.png";
+    private static final String PLAYER_HIT_MONSTER_TEXT = "Ouch!";
+    private static final String GAME_OVER_TEXT = "Bugs owned the house and ate you, Game Over!";
 
     private static ArrayDeque<String> monstersImages;
 
     public static void setMonsterImages() {
         monstersImages = new ArrayDeque<>();
-        monstersImages.addLast("img/monster.gif");
-        monstersImages.addLast("img/monster1.png");
-        monstersImages.addLast("img/monster2.png");
+        monstersImages.addLast(IMG_MONSTER_TYPE1);
+        monstersImages.addLast(IMG_MONSTER_TYPE2);
+        monstersImages.addLast(IMG_MONSTER_TYPE3);
     }
 
     public static void createMonsters() {
@@ -61,14 +66,14 @@ public class MonstersController {
         for (Sprite monster : GlobalVariables.getMonstersToRender()) {
             if (GlobalVariables.getPlayer().intersects(monster)) {
 
-                GM.renderMessage("Ouch!", 2, Color.RED, GlobalVariables.getPlayer().getX(), GlobalVariables.getPlayer().getY());
+                GM.renderMessage(PLAYER_HIT_MONSTER_TEXT, 2, Color.RED, GlobalVariables.getPlayer().getX(), GlobalVariables.getPlayer().getY());
                 if (!GlobalVariables.getMute()[0]  && !GlobalVariables.getAttack().isPlaying()) {
                     GlobalVariables.getAttack().play(ATTACK_SOUND_VOLUME, ATTACK_SOUND_BALANCE, ATTACK_SOUND_RATE,
                             ATTACK_SOUND_PAN, ATTACK_SOUND_PRIORITY);
                 }
 
                 if ((int) GlobalVariables.getPlayer().getPlayerHealth() <= PLAYER_MIN_HEALTH)
-                    GM.renderMessage("Bugs owned the house and ate you, Game Over!", GAME_OVER_MESSAGE_DURATION,
+                    GM.renderMessage(GAME_OVER_TEXT, GAME_OVER_MESSAGE_DURATION,
                             Color.RED, GAME_OVER_MESSAGE_X, GAME_OVER_MESSAGE_Y);
 
                 GlobalVariables.getPlayer().subtractPlayerHealth();

@@ -14,6 +14,30 @@ import static code.graphics.ImageController.BRICK_SINGLE_VERTICAL;
 
 public class DrawLevel2 {
 
+    private static final int TREE_WIDTH_AND_HEIGHT = 20;
+    private static final int FOUNTAIN_HEIGHT = 50;
+    private static final String KEYBOARD_Q = "Q";
+    private static final String KEYBOARD_W = "W";
+    private static final String KEYBOARD_E = "E";
+    private static final String KEYBOARD_R = "R";
+    private static final String KEYBOARD_T = "T";
+    private static final String KEYBOARD_Y = "Y";
+    private static final String KEYBOARD_U = "U";
+    private static final String KEYBOARD_I = "I";
+    private static final String KEYBOARD_O = "O";
+    private static final String KEYBOARD_A = "A";
+    private static final String KEYBOARD_S = "S";
+    private static final String KEYBOARD_D = "D";
+    private static final String KEYBOARD_F = "F";
+    private static final String KEYBOARD_Z = "Z";
+    private static final String TREE_TYPE = "tree";
+    private static final String FLOWER_TYPE = "flower";
+    private static final String DWARF_TYPE = "dwarf";
+    private static final String FOUNTAIN_TYPE = "fountain";
+    private static final String FERN_TYPE = "fern";
+    private static final String SMALL_ROCK_TYPE = "smallRock";
+    private static final String BIG_ROCK_TYPE = "bigRock";
+
     public static List<Sprite> plants = new ArrayList<>();
 
     public static List<Rectangle2D> getPlants() {
@@ -32,7 +56,8 @@ public class DrawLevel2 {
     public static void drawGarden() {
 
         //draw garden
-        GlobalVariables.getGraphicContext().clearRect(0, 0, 1024, 768);
+        GlobalVariables.getGraphicContext().clearRect(GlobalVariables.CANVAS_X_Y, GlobalVariables.CANVAS_X_Y,
+                GlobalVariables.CANVAS_WIDTH, GlobalVariables.CANVAS_HEIGHT);
 
         //draw garden grass
         int y = 0;
@@ -99,7 +124,7 @@ public class DrawLevel2 {
 
     private static void createPlant() {
         boolean intersects = false;
-        if (GlobalVariables.getInput().contains("Q")) {
+        if (GlobalVariables.getInput().contains(KEYBOARD_Q)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getFirstTree() .intersects(plant)) {
@@ -108,9 +133,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getFirstTree());
-                addIntersectObjectLevel2("tree");
+                addIntersectObjectLevel2(TREE_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("W")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_W)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getSecondTree() .intersects(plant)) {
@@ -119,9 +144,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getSecondTree());
-                addIntersectObjectLevel2("tree");
+                addIntersectObjectLevel2(TREE_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("E")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_E)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getThirdTree() .intersects(plant)) {
@@ -130,9 +155,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getThirdTree());
-                addIntersectObjectLevel2("tree");
+                addIntersectObjectLevel2(TREE_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("R")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_R)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getFirstFlower() .intersects(plant)) {
@@ -141,9 +166,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getFirstFlower());
-                addIntersectObjectLevel2("flower");
+                addIntersectObjectLevel2(FLOWER_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("T")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_T)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getSecondFlower() .intersects(plant)) {
@@ -152,9 +177,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getSecondFlower());
-                addIntersectObjectLevel2("flower");
+                addIntersectObjectLevel2(FLOWER_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("Y")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_Y)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getThirdFlower() .intersects(plant)) {
@@ -163,9 +188,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getThirdFlower());
-                addIntersectObjectLevel2("flower");
+                addIntersectObjectLevel2(FLOWER_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("U")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_U)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getDwarf() .intersects(plant)) {
@@ -174,9 +199,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getDwarf());
-                addIntersectObjectLevel2("dwarf");
+                addIntersectObjectLevel2(DWARF_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("I")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_I)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getFountain() .intersects(plant)) {
@@ -185,9 +210,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getFountain());
-                addIntersectObjectLevel2("fountain");
+                addIntersectObjectLevel2(FOUNTAIN_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("O")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_O)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getFern() .intersects(plant)) {
@@ -196,9 +221,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getFern());
-                addIntersectObjectLevel2("fern");
+                addIntersectObjectLevel2(FERN_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("A")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_A)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getSmallRock() .intersects(plant)) {
@@ -207,9 +232,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getSmallRock());
-                addIntersectObjectLevel2("smallRock");
+                addIntersectObjectLevel2(SMALL_ROCK_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("S")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_S)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getBigRock() .intersects(plant)) {
@@ -218,9 +243,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getBigRock());
-                addIntersectObjectLevel2("bigRock");
+                addIntersectObjectLevel2(BIG_ROCK_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("D")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_D)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getFourthTree() .intersects(plant)) {
@@ -229,9 +254,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getFourthTree());
-                addIntersectObjectLevel2("tree");
+                addIntersectObjectLevel2(TREE_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("F")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_F)) {
             GlobalVariables.getInput().clear();
             for (Sprite plant : plants) {
                 if (plant().getFifthTree() .intersects(plant)) {
@@ -240,9 +265,9 @@ public class DrawLevel2 {
             }
             if (!intersects) {
                 plants.add(plant().getFifthTree());
-                addIntersectObjectLevel2("tree");
+                addIntersectObjectLevel2(TREE_TYPE);
             }
-        } else if (GlobalVariables.getInput().contains("Z")) {
+        } else if (GlobalVariables.getInput().contains(KEYBOARD_Z)) {
             GlobalVariables.getInput().clear();
             removeIntersectObjectLevel2();
             if (!plants.isEmpty()) {
@@ -255,33 +280,40 @@ public class DrawLevel2 {
         Sprite gardenObject = plants.get(plants.size() - 1);
         Rectangle2D rectangle2D = null;
         switch (type) {
-            case "tree":
-                rectangle2D = new Rectangle2D(gardenObject.getX() + gardenObject.getWidth() / 2 - 20,
-                        gardenObject.getY() + gardenObject.getHeight() - 20, 20, 20);
+            case TREE_TYPE:
+                rectangle2D = new Rectangle2D(gardenObject.getX() + gardenObject.getWidth() / 2 - TREE_WIDTH_AND_HEIGHT,
+                        gardenObject.getY() + gardenObject.getHeight() - TREE_WIDTH_AND_HEIGHT,
+                        TREE_WIDTH_AND_HEIGHT, TREE_WIDTH_AND_HEIGHT);
                 break;
-            case "flower":
+            case FLOWER_TYPE:
                 rectangle2D = new Rectangle2D(gardenObject.getX(),
-                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                        gardenObject.getY() + gardenObject.getHeight() - TREE_WIDTH_AND_HEIGHT,
+                        gardenObject.getWidth(), TREE_WIDTH_AND_HEIGHT);
                 break;
-            case "dwarf":
+            case DWARF_TYPE:
                 rectangle2D = new Rectangle2D(gardenObject.getX(),
-                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                        gardenObject.getY() + gardenObject.getHeight() - TREE_WIDTH_AND_HEIGHT,
+                        gardenObject.getWidth(), TREE_WIDTH_AND_HEIGHT);
                 break;
-            case "bigRock":
+            case BIG_ROCK_TYPE:
                 rectangle2D = new Rectangle2D(gardenObject.getX(),
-                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                        gardenObject.getY() + gardenObject.getHeight() - TREE_WIDTH_AND_HEIGHT,
+                        gardenObject.getWidth(), TREE_WIDTH_AND_HEIGHT);
                 break;
-            case "smallRock":
+            case SMALL_ROCK_TYPE:
                 rectangle2D = new Rectangle2D(gardenObject.getX(),
-                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                        gardenObject.getY() + gardenObject.getHeight() - TREE_WIDTH_AND_HEIGHT,
+                        gardenObject.getWidth(), TREE_WIDTH_AND_HEIGHT);
                 break;
-            case "fern":
+            case FERN_TYPE:
                 rectangle2D = new Rectangle2D(gardenObject.getX(),
-                        gardenObject.getY() + gardenObject.getHeight() - 20, gardenObject.getWidth(), 20);
+                        gardenObject.getY() + gardenObject.getHeight() - TREE_WIDTH_AND_HEIGHT,
+                        gardenObject.getWidth(), TREE_WIDTH_AND_HEIGHT);
                 break;
-            case "fountain":
+            case FOUNTAIN_TYPE:
                 rectangle2D = new Rectangle2D(gardenObject.getX(),
-                        gardenObject.getY() + gardenObject.getHeight() - 50, gardenObject.getWidth(), 50);
+                        gardenObject.getY() + gardenObject.getHeight() - FOUNTAIN_HEIGHT,
+                        gardenObject.getWidth(), FOUNTAIN_HEIGHT);
                 break;
         }
         if(rectangle2D != null) {

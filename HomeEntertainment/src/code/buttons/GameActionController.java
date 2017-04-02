@@ -46,15 +46,31 @@ public class GameActionController {
     private static final int COMPLETE_LEVEL1_MESSAGE_X = 197;
     private static final int COMPLETE_LEVEL1_MESSAGE_Y = 299;
     private static final double NANO_TIME_DIVIDER = 1000000000.0;
+    private static final String SOUND_ON_TEXT = "Sound ON";
+    private static final String SOUND_OFF_TEST = "Sound OFF";
+    private static final String IMG_SOUND_ON_URL = "img/soundOn.png";
+    private static final String IMG_SOUND_OFF_URL = "img/soundOff.png";
+    private static final String SCORE_FONT_TYPE = "Arial";
+    private static final String BUTTONS_STYLE = "-fx-font: 22 arial";
+    private static final String PAUSE_BUTTON_TEXT = "Pause";
+    private static final String ESCAPE = "ESCAPE";
+    private static final String KEYBOARD_P = "KEYBOARD_P";
+    private static final String FIRST_LEVEL_CONGRATS_MESSAGE = "Congratulations!!!\n You pass the first level please go through the door!";
+    private static final String KEYBOARD_LEFT = "LEFT";
+    private static final String KEYBOARD_SPACE = "SPACE";
+    private static final String DIRECRION_LEFT = "left";
+    private static final String DIRECTION_RIGHT = "RIGHT";
+    private static final String DIRECTION_UP = "UP";
+    private static final String DIRECTION_DOWN = "DOWN";
 
     public static void attachSoundButtonEvent() {
         ButtonController.buttonSound.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (GlobalVariables.getMute()[0]) {
-                    changeSoundMode(false, "Sound ON", "img/soundOn.png");
+                    changeSoundMode(false, SOUND_ON_TEXT, IMG_SOUND_ON_URL);
                 } else {
-                    changeSoundMode(true, "Sound OFF", "img/soundOff.png");
+                    changeSoundMode(true, SOUND_OFF_TEST, IMG_SOUND_OFF_URL);
                 }
             }
 
@@ -111,7 +127,7 @@ public class GameActionController {
                 ButtonController.IS_MAIN_WINDOW[0] = false;
 
                 //Prepare the score text
-                Font scoreFont = Font.font("Arial", FontWeight.NORMAL, SCORE_FONT_SIZE);
+                Font scoreFont = Font.font(SCORE_FONT_TYPE, FontWeight.NORMAL, SCORE_FONT_SIZE);
                 GlobalVariables.getGraphicContext().setFont(scoreFont);
                 GlobalVariables.getGraphicContext().setStroke(Color.BLACK);
                 GlobalVariables.getGraphicContext().setLineWidth(1);
@@ -140,7 +156,7 @@ public class GameActionController {
                         ButtonController.buttonStartNewGame.setPrefWidth(BUTTONS_WIDTH);
                         ButtonController.buttonStartNewGame.setLayoutX(BUTTON_START_NEW_GAME_X);
                         ButtonController.buttonStartNewGame.setLayoutY(BUTTONS_Y);
-                        ButtonController.buttonStartNewGame.setStyle("-fx-font: 22 arial");
+                        ButtonController.buttonStartNewGame.setStyle(BUTTONS_STYLE);
 
                         ButtonController.buttonStartNewGame.setOnAction(__ -> {
                             theStage.close();
@@ -154,15 +170,15 @@ public class GameActionController {
                         ButtonController.buttonResume.setPrefWidth(BUTTONS_WIDTH);
                         ButtonController.buttonResume.setLayoutX(BUTTONS_X);
                         ButtonController.buttonResume.setLayoutY(BUTTONS_Y);
-                        ButtonController.buttonResume.setStyle("-fx-font: 22 arial");
+                        ButtonController.buttonResume.setStyle(BUTTONS_STYLE);
 
                         //Button Pause game
-                        Button pause = new Button("Pause");
+                        Button pause = new Button(PAUSE_BUTTON_TEXT);
                         pause.setPrefHeight(BUTTONS_HEIGHT);
                         pause.setPrefWidth(BUTTONS_WIDTH);
                         pause.setLayoutX(BUTTONS_X);
                         pause.setLayoutY(PAUSE_Y);
-                        pause.setStyle("-fx-font: 22 arial");
+                        pause.setStyle(BUTTONS_STYLE);
 
                         ButtonController.buttonResume.setOnAction(new EventHandler<ActionEvent>() {
                             @Override
@@ -176,7 +192,7 @@ public class GameActionController {
                         });
 
                         //show menu
-                        if (GlobalVariables.getInput().contains("ESCAPE")) {
+                        if (GlobalVariables.getInput().contains(ESCAPE)) {
                             addButtonsToRoot();
                             GlobalVariables.getRoot().getChildren().add(ButtonController.buttonQuit);
                             GlobalVariables.getRoot().getChildren().add(ButtonController.buttonResume);
@@ -185,7 +201,7 @@ public class GameActionController {
                         }
 
                         //Pause control
-                        if (GlobalVariables.getInput().contains("P")) {
+                        if (GlobalVariables.getInput().contains(KEYBOARD_P)) {
                             GlobalVariables.getRoot().getChildren().add(pause);
                             GlobalVariables.getRoot().getChildren().add(ButtonController.buttonResume);
                             stop();
@@ -224,7 +240,7 @@ public class GameActionController {
 
                                 playerMovement(GlobalVariables.getIntersectsObject());
                             } else if (level[0] == 1){
-                                GM.renderMessage("Congratulations!!!\n You pass the first level please go through the door!",
+                                GM.renderMessage(FIRST_LEVEL_CONGRATS_MESSAGE,
                                         1, Color.DEEPSKYBLUE, COMPLETE_LEVEL1_MESSAGE_X, COMPLETE_LEVEL1_MESSAGE_Y);
 
                                 // remove door
@@ -273,40 +289,41 @@ public class GameActionController {
     }
 
     private static void playerMovement(IntersectsObject intersectObject) {
+
         GlobalVariables.getPlayer().setVelocity(0, 0);
-        if (GlobalVariables.getInput().contains("LEFT") && !GlobalVariables.getInput().contains("SPACE")) {
+        if (GlobalVariables.getInput().contains(KEYBOARD_LEFT) && !GlobalVariables.getInput().contains(KEYBOARD_SPACE)) {
             if (intersectObject.intersect(GlobalVariables.getPlayer().leftBoundary())) {
-
                 Player.checkIfPlayerCollidesUD();
-
             } else {
-                GlobalVariables.setDirection("left");
+                GlobalVariables.setDirection(DIRECRION_LEFT);
                 Player.move(-180, 0, GlobalVariables.getDirection(), -90, 0);
             }
         }
-        if (GlobalVariables.getInput().contains("RIGHT") && !GlobalVariables.getInput().contains("SPACE")) {
-            if (intersectObject.intersect(GlobalVariables.getPlayer().rightBoundary())) {
 
+        if (GlobalVariables.getInput().contains(DIRECTION_RIGHT) && !GlobalVariables.getInput().contains(KEYBOARD_SPACE)) {
+            if (intersectObject.intersect(GlobalVariables.getPlayer().rightBoundary())) {
                 Player.checkIfPlayerCollidesUD();
             } else {
-                GlobalVariables.setDirection("right");
+                GlobalVariables.setDirection(DIRECTION_RIGHT.toLowerCase());
                 Player.move(180, 0, GlobalVariables.getDirection(), 90, 0);
             }
         }
-        if (GlobalVariables.getInput().contains("UP") && !GlobalVariables.getInput().contains("SPACE")) {
+
+        if (GlobalVariables.getInput().contains(DIRECTION_UP) && !GlobalVariables.getInput().contains(KEYBOARD_SPACE)) {
             if (intersectObject.intersect(GlobalVariables.getPlayer().upperBoundary())) {
 
                 Player.checkIfPlayerCollidesLR();
             } else {
-                GlobalVariables.setDirection("up");
+                GlobalVariables.setDirection(DIRECTION_UP.toLowerCase());
                 Player.move(0, -180, GlobalVariables.getDirection(), 0, -90);
             }
         }
-        if (GlobalVariables.getInput().contains("DOWN") && !GlobalVariables.getInput().contains("SPACE")) {
+
+        if (GlobalVariables.getInput().contains(DIRECTION_DOWN) && !GlobalVariables.getInput().contains(KEYBOARD_SPACE)) {
             if (intersectObject.intersect(GlobalVariables.getPlayer().bottomBoundary())) {
                 Player.checkIfPlayerCollidesLR();
             } else {
-                GlobalVariables.setDirection("down");
+                GlobalVariables.setDirection(DIRECTION_DOWN.toLowerCase());
                 Player.move(0, 180, GlobalVariables.getDirection(), 0, 90);
             }
         }

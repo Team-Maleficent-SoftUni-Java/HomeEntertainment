@@ -17,6 +17,7 @@ public class GlobalVariables {
     private static final String PROJECT_PATH = System.getProperty("user.dir");
     public static final int CANVAS_HEIGHT = 768;
     public static final int CANVAS_WIDTH = 1024;
+    public static final int CANVAS_X_Y = 0;
 
     //borders Kitchen
     public static final double KITCHEN_X = 20;

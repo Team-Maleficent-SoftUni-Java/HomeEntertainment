@@ -83,7 +83,32 @@ public class DrawLevel1 {
     private static final double SINK_Y = BATHROOM_Y - 70;
     private static final int INTRODUCE_IMAGE_X_AND_Y = 0;
     private static final int FONT_INTRODUCE_SIZE = 43;
-
+    private static final int INTRODUCE_TEXT_X = GlobalVariables.CANVAS_WIDTH / 2;
+    private static final int INTRODUCE_TEXT_Y = GlobalVariables.CANVAS_HEIGHT - 50;
+    private static final double DRAW_PARQUET_Y = KITCHEN_Y + KITCHEN_HEIGHT / 2;
+    private static final double DRAW_CARPET_2_Y = BEDROOM_Y + BEDROOM_HEIGHT / 2;
+    private static final double DRAW_TILES_Y = BATHROOM_Y + BATHROOM_HEIGHT / 2;
+    private static final double DRAW_CARPET_1_X = GlobalVariables.LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2;
+    private static final double DRAW_CARPET_1_Y = LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15;
+    private static final double DRAW_CARPET_3_X = GlobalVariables.LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2;
+    private static final double DRAW_CARPET_3_Y = LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15;
+    private static final int DRAW_GARDEN_GRASS_1_X = 0;
+    private static final double DRAW_GARDEN_GRASS_1_Y = LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100;
+    private static final int DRAW_GARDEN_GRASS_2_X = 600;
+    private static final double DRAW_GARDEN_GRASS_2_Y = LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100;
+    private static final int DRAW_DOOR_X = 270;
+    private static final int DRAW_DOOR_Y = -20;
+    private static final int DRAW_STATS_BOARD_X = GlobalVariables.CANVAS_WIDTH - 240;
+    private static final int DRAW_STATS_BOARD_Y = 3;
+    private static final double DRAW_SIPHON_Y = BATHROOM_Y + 100;
+    private static final double DRAW_SIPHON_X = BATHROOM_X + (BATHROOM_WIDTH / 2)
+            - (ImageController.getSiphon().getWidth() / 2);
+    private static final double POINTS_TEXT_X = GlobalVariables.getCanvas().getWidth()
+            - ImageController.getStatsBoard().getWidth() + 5;
+    private static final double POINTS_TEXT_Y = GlobalVariables.getCanvas().getLayoutY() + 40;
+    private static final double HEALTH_TEXT_X = GlobalVariables.getCanvas().getWidth()
+            - ImageController.getStatsBoard().getWidth() + 5;
+    private static final double HEALTH_TEXT_Y = GlobalVariables.getCanvas().getLayoutY() + 20;
     private static final String IMG_TV_PNG = "img/tv.png";
     private static final String IMG_ROBBER_PLANT_BURNED_PNG = "img/robber plant_burned.png";
     private static final String IMG_DRESSER_PNG = "img/dresser.png";
@@ -103,6 +128,8 @@ public class DrawLevel1 {
     private static final String IMG_BATHTUB_PNG = "img/bathtub.png";
     private static final String IMG_SINK_PNG = "img/sink.png";
     private static final String INTRODUCE_TEXT = "Team Maleficent introduce Home Entertainment";
+    private static final String POINTS_TEXT = "Points: ";
+    private static final String HEALTH_TEXT = "Health ";
 
     public static void displayObjects() {
         //The kitchenDresser object
@@ -210,8 +237,7 @@ public class DrawLevel1 {
         final Effect glow = new Glow(1.0);
         GlobalVariables.getGraphicContext().setEffect(glow);
         GlobalVariables.getGraphicContext().setFill(Color.CADETBLUE);
-        GlobalVariables.getGraphicContext()
-                .fillText(INTRODUCE_TEXT, GlobalVariables.getCanvas().getWidth() / 2, GlobalVariables.CANVAS_HEIGHT - 50);
+        GlobalVariables.getGraphicContext().fillText(INTRODUCE_TEXT, INTRODUCE_TEXT_X, INTRODUCE_TEXT_Y);
     }
 
     public static void drawWalls(boolean drawDoor) {
@@ -223,20 +249,20 @@ public class DrawLevel1 {
         double wallKitchenBedroomHeight = 0;
 
         //Draw pavements of different rooms
-        GlobalVariables.getGraphicContext().clearRect(0, 0, 1024, 768);
+        GlobalVariables.getGraphicContext().clearRect(GlobalVariables.CANVAS_X_Y, GlobalVariables.CANVAS_X_Y,
+                GlobalVariables.CANVAS_WIDTH, GlobalVariables.CANVAS_HEIGHT);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getParquet(), KITCHEN_X, KITCHEN_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getParquet(), KITCHEN_X, KITCHEN_Y + KITCHEN_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getParquet(), KITCHEN_X, DRAW_PARQUET_Y);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet2(), BEDROOM_X, BEDROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet2(), BEDROOM_X, BEDROOM_Y + BEDROOM_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet2(), BEDROOM_X, DRAW_CARPET_2_Y);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, BATHROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, BATHROOM_Y + BATHROOM_HEIGHT / 2);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getTiles(), BATHROOM_X, DRAW_TILES_Y);
         GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), GlobalVariables.LIVING_ROOM_X, LIVING_ROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), GlobalVariables.LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), GlobalVariables.LIVING_ROOM_X, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(),
-                GlobalVariables.LIVING_ROOM_X + LIVING_ROOM_WIDTH / 2, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT / 2 + 15);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), 0, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100);
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), 600, LIVING_ROOM_Y + LIVING_ROOM_HEIGHT + 100);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), DRAW_CARPET_1_X, LIVING_ROOM_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), GlobalVariables.LIVING_ROOM_X, DRAW_CARPET_1_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getCarpet(), DRAW_CARPET_3_X, DRAW_CARPET_3_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), DRAW_GARDEN_GRASS_1_X, DRAW_GARDEN_GRASS_1_Y);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getGardenGrass(), DRAW_GARDEN_GRASS_2_X, DRAW_GARDEN_GRASS_2_Y);
 
         //Draw upper walls and bricks
         //Upper border
@@ -249,13 +275,14 @@ public class DrawLevel1 {
         }
 
         //draw door
-        GlobalVariables.getGraphicContext().drawImage(drawDoor ? DOOR_IMAGE : ImageController.getSmallGardenGrass(), 270, -20);
+        GlobalVariables.getGraphicContext().drawImage(drawDoor ? DOOR_IMAGE : ImageController.getSmallGardenGrass(),
+                DRAW_DOOR_X, DRAW_DOOR_Y);
 
         for (int i = 0; i < GlobalVariables.getCanvas().getWidth() / BRICK_SINGLE_HORIZONTAL.getWidth(); i++) {
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
                     + wallUpBorder1 + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), BRICK_SINGLE_HORIZONTAL.getHeight());
             //Stats board
-            GlobalVariables.getGraphicContext().drawImage(ImageController.getStatsBoard(), GlobalVariables.getCanvas().getWidth() - 240, 3);
+            GlobalVariables.getGraphicContext().drawImage(ImageController.getStatsBoard(), DRAW_STATS_BOARD_X, DRAW_STATS_BOARD_Y);
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
                     + wallUpBorder1 + doorWidth + (i * BRICK_SINGLE_HORIZONTAL.getWidth()), 0);
         }
@@ -281,8 +308,8 @@ public class DrawLevel1 {
         FurnitureObjects.getBed().render(GlobalVariables.getGraphicContext());
 
         //Draw the player if it`s in the first half of the screen(above the top walls and behind the middle walls)
-        if (GlobalVariables.getPlayer().bottomBoundary().intersects(0, 0, GlobalVariables.getCanvas().getWidth(),
-                BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT.getHeight() + KITCHEN_HEIGHT)) {
+        if (GlobalVariables.getPlayer().bottomBoundary().intersects(GlobalVariables.CANVAS_X_Y, GlobalVariables.CANVAS_X_Y,
+                GlobalVariables.CANVAS_WIDTH, BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT.getHeight() + KITCHEN_HEIGHT)) {
             GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
         }
 
@@ -349,8 +376,7 @@ public class DrawLevel1 {
         FurnitureObjects.getLivingRoomChair().render(GlobalVariables.getGraphicContext());
         FurnitureObjects.getToilet().render(GlobalVariables.getGraphicContext());
         FurnitureObjects.getBathroomSink().render(GlobalVariables.getGraphicContext());
-        GlobalVariables.getGraphicContext().drawImage(ImageController.getSiphon(), BATHROOM_X + (BATHROOM_WIDTH / 2)
-                - (ImageController.getSiphon().getWidth() / 2), BATHROOM_Y + 100);
+        GlobalVariables.getGraphicContext().drawImage(ImageController.getSiphon(), DRAW_SIPHON_X, DRAW_SIPHON_Y);
 
         //player above the middle wall and the obstacles in the low middle part of the screen
         if (GlobalVariables.getPlayer().bottomBoundary().intersects(0, BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT.getHeight()
@@ -364,9 +390,11 @@ public class DrawLevel1 {
         //Down border
         for (int i = 0; i < GlobalVariables.getCanvas().getWidth() ; i++) {
             GlobalVariables.getGraphicContext().drawImage(WALL_SHORT, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, GlobalVariables.CANVAS_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight()) + 20);
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25,
+                    GlobalVariables.CANVAS_HEIGHT - (2 * BRICK_SINGLE_HORIZONTAL.getHeight()) + 20);
             GlobalVariables.getGraphicContext().drawImage(BRICK_SINGLE_HORIZONTAL, BRICK_SINGLE_VERTICAL.getWidth()
-                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25, GlobalVariables.CANVAS_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
+                    + (i * BRICK_SINGLE_HORIZONTAL.getWidth()) - 25,
+                    GlobalVariables.CANVAS_HEIGHT - 2 * BRICK_SINGLE_HORIZONTAL.getHeight());
             wallKitchenLivingRoomWidth += BRICK_SINGLE_HORIZONTAL.getWidth();
         }
 
@@ -377,14 +405,12 @@ public class DrawLevel1 {
         }
 
         //Display scores on the stats board
-        String pointsText = "Points: " + GlobalVariables.getPlayer().getScore();
-        GlobalVariables.getGraphicContext().fillText(pointsText, GlobalVariables.getCanvas().getWidth()
-                - ImageController.getStatsBoard().getWidth() + 5, GlobalVariables.getCanvas().getLayoutY() + 40);
+        String pointsText = POINTS_TEXT + GlobalVariables.getPlayer().getScore();
+        GlobalVariables.getGraphicContext().fillText(pointsText, POINTS_TEXT_X, POINTS_TEXT_Y);
 
         //Display health on stats board
-        String healthText = "Health " + (int) (GlobalVariables.getPlayer().getPlayerHealth()) + "%";
+        String healthText = HEALTH_TEXT + (int) (GlobalVariables.getPlayer().getPlayerHealth()) + "%";
 
-        GlobalVariables.getGraphicContext().fillText(healthText, GlobalVariables.getCanvas().getWidth()
-                - ImageController.getStatsBoard().getWidth() + 5, GlobalVariables.getCanvas().getLayoutY() + 20);
+        GlobalVariables.getGraphicContext().fillText(healthText, HEALTH_TEXT_X, HEALTH_TEXT_Y);
     }
 }

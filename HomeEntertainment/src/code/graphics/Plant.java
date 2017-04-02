@@ -6,19 +6,32 @@ import javafx.scene.image.Image;
 
 public class Plant {
 
-    private static final Image FIRST_TREE_IMAGE = new Image("img/Tree1.png", 150, 200, false, false);
-    private static final Image SECOND_TREE_IMAGE = new Image("img/Tree2.png", 150, 200, false, false);
-    private static final Image THIRD_TREE_IMAGE = new Image("img/Tree3.png", 150, 200, false, false);
-    private static final Image FOURTH_TREE_IMAGE = new Image("img/bor.png", 150, 200, false, false);
-    private static final Image FIFTH_TREE_IMAGE = new Image("img/peach.png", 150, 200, false, false);
-    private static final Image FERN_IMAGE = new Image("img/paprat.png", 70, 100, false, false);
-    private static final Image FIRST_FLOWER_IMAGE = new Image("img/flower1.png", 150, 100, false, false);
-    private static final Image SECOND_FLOWER_IMAGE = new Image("img/flower2.png", 90, 50, false, false);
-    private static final Image THIRD_FLOWER_IMAGE = new Image("img/flower3.png", 100, 60, false, false);
-    private static final Image DWARF_IMAGE = new Image("img/dwarf1.png", 50, 80, false, false);
-    private static final Image SMALL_ROCK_IMAGE = new Image("img/rock.png", 30, 20, false, false);
-    private static final Image BIG_ROCK_IMAGE = new Image("img/rock.png", 60, 40, false, false);
-    private static final Image FOUNTAIN_IMAGE = new Image("img/fontan.png", 250, 180, false, false);
+    private static final Image FIRST_TREE_IMAGE = new Image("img/Tree1.png",
+            150, 200, false, false);
+    private static final Image SECOND_TREE_IMAGE = new Image("img/Tree2.png",
+            150, 200, false, false);
+    private static final Image THIRD_TREE_IMAGE = new Image("img/Tree3.png",
+            150, 200, false, false);
+    private static final Image FOURTH_TREE_IMAGE = new Image("img/bor.png",
+            150, 200, false, false);
+    private static final Image FIFTH_TREE_IMAGE = new Image("img/peach.png",
+            150, 200, false, false);
+    private static final Image FERN_IMAGE = new Image("img/paprat.png",
+            70, 100, false, false);
+    private static final Image FIRST_FLOWER_IMAGE = new Image("img/flower1.png",
+            150, 100, false, false);
+    private static final Image SECOND_FLOWER_IMAGE = new Image("img/flower2.png",
+            90, 50, false, false);
+    private static final Image THIRD_FLOWER_IMAGE = new Image("img/flower3.png",
+            100, 60, false, false);
+    private static final Image DWARF_IMAGE = new Image("img/dwarf1.png",
+            50, 80, false, false);
+    private static final Image SMALL_ROCK_IMAGE = new Image("img/rock.png",
+            30, 20, false, false);
+    private static final Image BIG_ROCK_IMAGE = new Image("img/rock.png",
+            60, 40, false, false);
+    private static final Image FOUNTAIN_IMAGE = new Image("img/fontan.png",
+            250, 180, false, false);
     public static final int TREE_POINTS = 3;
     public static final int FLOWER_POINTS = 2;
     public static final int FOUNTAIN_POINTS = 5;
