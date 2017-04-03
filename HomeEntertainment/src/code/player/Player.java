@@ -13,11 +13,17 @@ import static code.graphics.ImageController.BRICK_SINGLE_HORIZONTAL;
 
 public class Player extends Sprite {
 
+    private static final int PLAYER_INITIAL_HEALTH = 100;
+    private static final double SUBTRACT_PLAYER_HEALTH_VALUE = 0.10;
+    private static final int PLAYER_SLOW_DOWN_SPRAY_VALUE = 100000000;
+    private static final int PLAYER_IMAGE_WIDTH = 45;
+    private static final int PLAYER_IMAGE_HEIGHT = 120;
+
     private double health;
     private int score;
 
-    public Player(){
-        this.health = 100;
+    private Player(){
+        this.health = PLAYER_INITIAL_HEALTH;
     }
 
     public double getPlayerHealth(){
@@ -29,7 +35,7 @@ public class Player extends Sprite {
     }
     public void addScore(double score) { this.score += score; }
     public void subtractPlayerHealth(){
-        this.health -= 0.10;
+        this.health -= SUBTRACT_PLAYER_HEALTH_VALUE;
     }
 
     public ArrayList<Achievement> achievements = new ArrayList<>();
@@ -130,7 +136,7 @@ public class Player extends Sprite {
     }
 
     public static void createPlayerObject() {
-        Image playerImage = new Image("img/playerFront0.png", 45, 120, false, false);
+        Image playerImage = new Image("img/playerFront0.png", PLAYER_IMAGE_WIDTH, PLAYER_IMAGE_HEIGHT, false, false);
         GlobalVariables.setPlayer(new Player());
         GlobalVariables.getPlayer().setImage(playerImage);
         GlobalVariables.getPlayer().setPosition(5 * BRICK_SINGLE_HORIZONTAL.getWidth(), 20);
@@ -156,8 +162,8 @@ public class Player extends Sprite {
                 Sprite monster = monstersIter.next();
 
                 if ( GlobalVariables.getPlayer().sprayBoundary().intersects(monster.sprayBoundary())) {
-                    for (long i = 0; i < 100000000; i++) {
-                        if ( i == 99999999){
+                    for (long i = 0; i < PLAYER_SLOW_DOWN_SPRAY_VALUE; i++) {
+                        if ( i == PLAYER_SLOW_DOWN_SPRAY_VALUE - 1){
                             GlobalVariables.getPlayer().score++;
                             if (!GlobalVariables.getMute()[0]) {
                                 SoundController.getPickup().play();

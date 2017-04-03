@@ -5,6 +5,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Sprite {
+
+    private static final int IMAGE1_WIDTH = 45;
+    private static final int IMAGE1_HEIGHT = 120;
+    private static final int IMAGE2_WIDTH = 70;
+    private static final int IMAGE2_HEIGHT = 120;
+
     private boolean hasAlreadyHit;
     private Image image;
     private double positionX;
@@ -37,12 +43,12 @@ public class Sprite {
     }
 
     void setImage(String filename) {
-        Image i = new Image(filename, 45, 120, false, false);
+        Image i = new Image(filename, IMAGE1_WIDTH, IMAGE1_HEIGHT, false, false);
         setImage(i);
     }
 
     void setSprayImage(String filename) {
-        Image i = new Image(filename, 70, 120, false, false);
+        Image i = new Image(filename, IMAGE2_WIDTH, IMAGE2_HEIGHT, false, false);
         setImage(i);
     }
 
