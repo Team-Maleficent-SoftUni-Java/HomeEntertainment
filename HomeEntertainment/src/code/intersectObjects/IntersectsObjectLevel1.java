@@ -33,7 +33,7 @@ public class IntersectsObjectLevel1 extends IntersectsObject{
     private static final double UPPER_LEFT_WALL_WIDTH = BRICK_SINGLE_VERTICAL.getWidth() + (4 * BRICK_SINGLE_HORIZONTAL.getWidth());
     private static final double UPPER_RIGHT_WALL_X = BRICK_SINGLE_VERTICAL.getWidth() + (6 * BRICK_SINGLE_HORIZONTAL.getWidth());
     private static final double UPPER_RIGHT_WALL_WIDTH = 10 * BRICK_SINGLE_HORIZONTAL.getWidth();
-    private static final double WALL_BETWEEN_KITCEN_AND_BEDROOM_HEIGHT =
+    private static final double WALL_BETWEEN_KITCHEN_AND_BEDROOM_HEIGHT =
             (3 * BRICK_SINGLE_VERTICAL.getHeight()) + (2 * WALL_COLON.getHeight());
     private static final double SMALL_WALL_BETWEEN_KITCHEN_AND_BEDROOM_Y =
             (3 * BRICK_SINGLE_VERTICAL.getHeight()) + (2 * WALL_COLON.getHeight()) + BRICK_SINGLE_VERTICAL.getHeight() + 40;
@@ -81,7 +81,7 @@ public class IntersectsObjectLevel1 extends IntersectsObject{
             UPPER_RIGHT_WALL_X, LEFT_BORDER_X_AND_Y, UPPER_RIGHT_WALL_WIDTH,
             BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT.getHeight());
     private Rectangle2D wallBetweenKitchenAndBedroom = new Rectangle2D(BEDROOM_X - BRICK_SINGLE_VERTICAL
-            .getWidth(), LEFT_BORDER_X_AND_Y, BRICK_SINGLE_VERTICAL.getWidth(), WALL_BETWEEN_KITCEN_AND_BEDROOM_HEIGHT);
+            .getWidth(), LEFT_BORDER_X_AND_Y, BRICK_SINGLE_VERTICAL.getWidth(), WALL_BETWEEN_KITCHEN_AND_BEDROOM_HEIGHT);
     private Rectangle2D wallBetweenKitchenAndBedroomOneBrick = new Rectangle2D(BEDROOM_X - BRICK_SINGLE_VERTICAL.getWidth(),
             SMALL_WALL_BETWEEN_KITCHEN_AND_BEDROOM_Y, BRICK_SINGLE_VERTICAL.getWidth(), BRICK_SINGLE_VERTICAL.getHeight() * 2);
     private Rectangle2D wallBetweenKitchenAndLivingRoom = new Rectangle2D(BRICK_SINGLE_VERTICAL.getWidth(),

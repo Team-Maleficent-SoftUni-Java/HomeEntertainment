@@ -6,6 +6,7 @@ import code.buttons.ButtonController;
 import code.global.GlobalVariables;
 import code.graphics.FurnitureObjects;
 import code.intersectObjects.IntersectsObjectLevel1;
+import code.player.Player;
 import code.player.Sprite;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
@@ -59,26 +60,26 @@ public class MonstersController {
     }
 
     public static void checkCollision(AnimationTimer animationTimer) {
-        AchievementController AM = new AchievementController(GlobalVariables.getPlayer(),
+        AchievementController AM = new AchievementController(Player.getInstance(),
                 GlobalVariables.getGraphicContext(), GlobalVariables.getRoot());
-        GameMessage GM = new GameMessage(GlobalVariables.getPlayer(), GlobalVariables.getRoot());
+        GameMessage GM = new GameMessage(Player.getInstance(), GlobalVariables.getRoot());
 
         for (Sprite monster : GlobalVariables.getMonstersToRender()) {
-            if (GlobalVariables.getPlayer().intersects(monster)) {
+            if (Player.getInstance().intersects(monster)) {
 
-                GM.renderMessage(PLAYER_HIT_MONSTER_TEXT, 2, Color.RED, GlobalVariables.getPlayer().getX(), GlobalVariables.getPlayer().getY());
+                GM.renderMessage(PLAYER_HIT_MONSTER_TEXT, 2, Color.RED, Player.getInstance().getX(), Player.getInstance().getY());
                 if (!GlobalVariables.getMute()[0]  && !GlobalVariables.getAttack().isPlaying()) {
                     GlobalVariables.getAttack().play(ATTACK_SOUND_VOLUME, ATTACK_SOUND_BALANCE, ATTACK_SOUND_RATE,
                             ATTACK_SOUND_PAN, ATTACK_SOUND_PRIORITY);
                 }
 
-                if ((int) GlobalVariables.getPlayer().getPlayerHealth() <= PLAYER_MIN_HEALTH)
+                if ((int) Player.getInstance().getPlayerHealth() <= PLAYER_MIN_HEALTH)
                     GM.renderMessage(GAME_OVER_TEXT, GAME_OVER_MESSAGE_DURATION,
                             Color.RED, GAME_OVER_MESSAGE_X, GAME_OVER_MESSAGE_Y);
 
-                GlobalVariables.getPlayer().subtractPlayerHealth();
+                Player.getInstance().subtractPlayerHealth();
 
-                if (GlobalVariables.getPlayer().getPlayerHealth() <= PLAYER_MIN_HEALTH) {
+                if (Player.getInstance().getPlayerHealth() <= PLAYER_MIN_HEALTH) {
                     GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonQuit);
                     GlobalVariables.getRoot().getChildren().add(ButtonController.buttonQuit);
                     GlobalVariables.getRoot().getChildren().remove(ButtonController.buttonStartNewGame);
@@ -98,8 +99,8 @@ public class MonstersController {
         if (monsterCounter.get() == MONSTERS_MAX_COUNT) {
             Sprite tempMonster = GlobalVariables.getMonsterList().pop();
             GlobalVariables.getMonsterList().addLast(tempMonster);
-            double px = (GlobalVariables.getPlayer().getX() * Math.random() + MONSTER_RANDOM_POSITION_ADDITION);
-            double py = (GlobalVariables.getPlayer().getY() * Math.random() + MONSTER_RANDOM_POSITION_ADDITION);
+            double px = (Player.getInstance().getX() * Math.random() + MONSTER_RANDOM_POSITION_ADDITION);
+            double py = (Player.getInstance().getY() * Math.random() + MONSTER_RANDOM_POSITION_ADDITION);
             tempMonster.setPosition(px, py);
             if (!intersectObject.intersect(tempMonster)) {
                 GlobalVariables.getMonstersToRender().add(tempMonster);

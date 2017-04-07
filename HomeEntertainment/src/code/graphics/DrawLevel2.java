@@ -2,6 +2,7 @@ package code.graphics;
 
 import code.global.GlobalVariables;
 import code.intersectObjects.IntersectsObjectLevel2;
+import code.player.Player;
 import code.player.Sprite;
 import javafx.geometry.Rectangle2D;
 
@@ -78,7 +79,7 @@ public class DrawLevel2 {
         }
 
         if (plants.size() == 0) {
-            GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+            Player.getInstance().render(GlobalVariables.getGraphicContext());
 
             GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getDownBorder());
             GlobalVariables.getIntersectsObject().addElement(IntersectsObjectLevel2.getUpperBorder());
@@ -88,7 +89,7 @@ public class DrawLevel2 {
 
         createPlant();
 
-        GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+        Player.getInstance().render(GlobalVariables.getGraphicContext());
 
         //draw down border
         for (int i = 0; i < 4 ; i++) {
@@ -102,13 +103,13 @@ public class DrawLevel2 {
         }
 
         for (Sprite plant1 : plants) {
-            if (plant1.intersects(GlobalVariables.getPlayer())) {
-                if (plant1.getY() + plant1.getHeight() > GlobalVariables.getPlayer().getY() + GlobalVariables.getPlayer().getHeight()) {
-                    GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+            if (plant1.intersects(Player.getInstance())) {
+                if (plant1.getY() + plant1.getHeight() > Player.getInstance().getY() + Player.getInstance().getHeight()) {
+                    Player.getInstance().render(GlobalVariables.getGraphicContext());
                     plant1.render(GlobalVariables.getGraphicContext());
-                } else if (plant1.getY() + plant1.getHeight() <= GlobalVariables.getPlayer().getY() + GlobalVariables.getPlayer().getHeight()) {
+                } else if (plant1.getY() + plant1.getHeight() <= Player.getInstance().getY() + Player.getInstance().getHeight()) {
                     plant1.render(GlobalVariables.getGraphicContext());
-                    GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+                    Player.getInstance().render(GlobalVariables.getGraphicContext());
                 }
             } else {
                 plant1.render(GlobalVariables.getGraphicContext());
@@ -117,8 +118,8 @@ public class DrawLevel2 {
     }
 
     private static Plant plant() {
-        double x = GlobalVariables.getPlayer().getX() + GlobalVariables.getPlayer().getWidth();
-        double y = GlobalVariables.getPlayer().getY() + GlobalVariables.getPlayer().getHeight();
+        double x = Player.getInstance().getX() + Player.getInstance().getWidth();
+        double y = Player.getInstance().getY() + Player.getInstance().getHeight();
         return new Plant(x, y);
     }
 

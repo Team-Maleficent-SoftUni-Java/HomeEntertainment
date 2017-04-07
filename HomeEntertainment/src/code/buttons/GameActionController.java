@@ -58,7 +58,7 @@ public class GameActionController {
     private static final String FIRST_LEVEL_CONGRATS_MESSAGE = "Congratulations!!!\n You pass the first level please go through the door!";
     private static final String KEYBOARD_LEFT = "LEFT";
     private static final String KEYBOARD_SPACE = "SPACE";
-    private static final String DIRECRION_LEFT = "left";
+    private static final String DIRECTION_LEFT = "left";
     private static final String DIRECTION_RIGHT = "RIGHT";
     private static final String DIRECTION_UP = "UP";
     private static final String DIRECTION_DOWN = "DOWN";
@@ -209,13 +209,13 @@ public class GameActionController {
 
                         IntersectsObjectLevel1 intersectsObjectLevel1 = new IntersectsObjectLevel1();
 
-                        GameMessage GM = new GameMessage(GlobalVariables.getPlayer(), GlobalVariables.getRoot());
+                        GameMessage GM = new GameMessage(Player.getInstance(), GlobalVariables.getRoot());
 
                         //Stops sound effects while standing in place
                         SoundController.stopSoundEffects();
-                        GlobalVariables.getPlayer().update(elapsedTime);
+                        Player.getInstance().update(elapsedTime);
 
-                        if (GlobalVariables.getPlayer().getScore() < 1 && level[0] == 1) {
+                        if (Player.getInstance().getScore() < 1 && level[0] == 1) {
 
                             // player movement
                             playerMovement(intersectsObjectLevel1);
@@ -227,16 +227,16 @@ public class GameActionController {
                             MonstersController.displayMonsters(monsterCounter);
 
                             //Spraying the monsters
-                            Player.sprayMonsters();
+                            Player.getInstance().sprayMonsters();
 
                             // Check collision with monsters
                             MonstersController.checkCollision(this);
                         } else {
-                            if(GlobalVariables.getPlayer().getScore() >= 1 && GlobalVariables.getPlayer().getY() <= HOUSE_DOOR_Y) {
+                            if(Player.getInstance().getScore() >= 1 && Player.getInstance().getY() <= HOUSE_DOOR_Y) {
                                 level[0] = 2;
 
                                 //set player position in garden
-                                GlobalVariables.getPlayer().setPosition(PLAYER_INITIAL_POSITION_X, PLAYER_INITIAL_GARDEN_POSITION_Y);
+                                Player.getInstance().setPosition(PLAYER_INITIAL_POSITION_X, PLAYER_INITIAL_GARDEN_POSITION_Y);
 
                                 playerMovement(GlobalVariables.getIntersectsObject());
                             } else if (level[0] == 1){
@@ -256,10 +256,10 @@ public class GameActionController {
                             } else if(level[0] == 2){
                                 playerMovement(GlobalVariables.getIntersectsObject());
                                 DrawLevel2.drawGarden();
-                                if (GlobalVariables.getPlayer().getX() > DOOR_LEFT_X &&  GlobalVariables.getPlayer().getX() < DOOR_RIGHT_X
-                                        && GlobalVariables.getPlayer().getY() > GARDEN_DOOR_Y) {
+                                if (Player.getInstance().getX() > DOOR_LEFT_X &&  Player.getInstance().getX() < DOOR_RIGHT_X
+                                        && Player.getInstance().getY() > GARDEN_DOOR_Y) {
                                     level[0] = 1;
-                                    GlobalVariables.getPlayer().setPosition(PLAYER_INITIAL_POSITION_X, PLAYER_INITIAL_HOUSE_POSITION_Y);
+                                    Player.getInstance().setPosition(PLAYER_INITIAL_POSITION_X, PLAYER_INITIAL_HOUSE_POSITION_Y);
                                 }
                                 GlobalVariables.beenInSecondLevel = true;
                             }
@@ -293,18 +293,18 @@ public class GameActionController {
 
     private static void playerMovement(IntersectsObject intersectObject) {
 
-        GlobalVariables.getPlayer().setVelocity(0, 0);
+        Player.getInstance().setVelocity(0, 0);
         if (GlobalVariables.getInput().contains(KEYBOARD_LEFT) && !GlobalVariables.getInput().contains(KEYBOARD_SPACE)) {
-            if (intersectObject.intersect(GlobalVariables.getPlayer().leftBoundary())) {
+            if (intersectObject.intersect(Player.getInstance().leftBoundary())) {
                 Player.checkIfPlayerCollidesUD();
             } else {
-                GlobalVariables.setDirection(DIRECRION_LEFT);
+                GlobalVariables.setDirection(DIRECTION_LEFT);
                 Player.move(-180, 0, GlobalVariables.getDirection(), -90, 0);
             }
         }
 
         if (GlobalVariables.getInput().contains(DIRECTION_RIGHT) && !GlobalVariables.getInput().contains(KEYBOARD_SPACE)) {
-            if (intersectObject.intersect(GlobalVariables.getPlayer().rightBoundary())) {
+            if (intersectObject.intersect(Player.getInstance().rightBoundary())) {
                 Player.checkIfPlayerCollidesUD();
             } else {
                 GlobalVariables.setDirection(DIRECTION_RIGHT.toLowerCase());
@@ -313,7 +313,7 @@ public class GameActionController {
         }
 
         if (GlobalVariables.getInput().contains(DIRECTION_UP) && !GlobalVariables.getInput().contains(KEYBOARD_SPACE)) {
-            if (intersectObject.intersect(GlobalVariables.getPlayer().upperBoundary())) {
+            if (intersectObject.intersect(Player.getInstance().upperBoundary())) {
 
                 Player.checkIfPlayerCollidesLR();
             } else {
@@ -323,7 +323,7 @@ public class GameActionController {
         }
 
         if (GlobalVariables.getInput().contains(DIRECTION_DOWN) && !GlobalVariables.getInput().contains(KEYBOARD_SPACE)) {
-            if (intersectObject.intersect(GlobalVariables.getPlayer().bottomBoundary())) {
+            if (intersectObject.intersect(Player.getInstance().bottomBoundary())) {
                 Player.checkIfPlayerCollidesLR();
             } else {
                 GlobalVariables.setDirection(DIRECTION_DOWN.toLowerCase());

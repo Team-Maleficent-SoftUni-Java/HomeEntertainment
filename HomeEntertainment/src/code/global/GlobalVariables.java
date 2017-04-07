@@ -47,7 +47,6 @@ public class GlobalVariables {
     public static boolean beenInSecondLevel = false;
 
     private static Group root = new Group();
-    private static Player player;
     private static ArrayList<String> input;
     private static AudioClip walking, running, wallHit, attack;
     private static AtomicInteger stepCounter;
@@ -58,17 +57,9 @@ public class GlobalVariables {
     private static ArrayDeque<Sprite> monsterList;
     private static IntersectsObject intersectsObject;
 
-    public static Player getPlayer() {
-        return player;
-    }
-
     public static IntersectsObject getIntersectsObject() { return intersectsObject; }
 
     public static void setIntersectsObject(IntersectsObject intersectsObject) { GlobalVariables.intersectsObject = intersectsObject; }
-
-    public static void setPlayer(Player player) {
-        GlobalVariables.player = player;
-    }
 
     public static ArrayList<String> getInput() {
         return input;

@@ -1,6 +1,7 @@
 package code.graphics;
 
 import code.global.GlobalVariables;
+import code.player.Player;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -39,7 +40,7 @@ public class DrawLevel1 {
     private static final double SOFA_Y = LIVING_ROOM_Y - 80;
     private static final int COFFEE_TABLE_WIDTH = 150;
     private static final int COFFEE_TABLE_HEIGHT = 100;
-    private static final int COFEE_TABLE_X = 375;
+    private static final int COFFEE_TABLE_X = 375;
     private static final int LIVING_ROOM_CHAIR_WIDTH = 150;
     private static final int LIVING_ROOM_CHAIR_HEIGHT = 100;
     private static final double LIVING_ROOM_CHAIR_X = 300;
@@ -165,7 +166,7 @@ public class DrawLevel1 {
         //The coffeeTable object
         Image coffeeTableImage = new Image(IMG_COFFEE_TABLE_PNG, COFFEE_TABLE_WIDTH, COFFEE_TABLE_HEIGHT, false, false);
         FurnitureObjects.getCoffeeTable().setImage(coffeeTableImage);
-        FurnitureObjects.getCoffeeTable().setPosition(COFEE_TABLE_X, LIVING_ROOM_Y);
+        FurnitureObjects.getCoffeeTable().setPosition(COFFEE_TABLE_X, LIVING_ROOM_Y);
 
         //The livingRoomChair object
         Image livingRoomChairImage = new Image(IMG_LIVING_CHAIR_PNG, LIVING_ROOM_CHAIR_WIDTH, LIVING_ROOM_CHAIR_HEIGHT, false, false);
@@ -304,9 +305,9 @@ public class DrawLevel1 {
         FurnitureObjects.getBed().render(GlobalVariables.getGraphicContext());
 
         //Draw the player if it`s in the first half of the screen(above the top walls and behind the middle walls)
-        if (GlobalVariables.getPlayer().bottomBoundary().intersects(GlobalVariables.CANVAS_X_Y, GlobalVariables.CANVAS_X_Y,
+        if (Player.getInstance().bottomBoundary().intersects(GlobalVariables.CANVAS_X_Y, GlobalVariables.CANVAS_X_Y,
                 GlobalVariables.CANVAS_WIDTH, BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT.getHeight() + KITCHEN_HEIGHT)) {
-            GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+            Player.getInstance().render(GlobalVariables.getGraphicContext());
         }
 
         FurnitureObjects.getDesk().render(GlobalVariables.getGraphicContext());
@@ -375,9 +376,9 @@ public class DrawLevel1 {
         GlobalVariables.getGraphicContext().drawImage(ImageController.getSiphon(), DRAW_SIPHON_X, DRAW_SIPHON_Y);
 
         //player above the middle wall and the obstacles in the low middle part of the screen
-        if (GlobalVariables.getPlayer().bottomBoundary().intersects(0, BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT.getHeight()
+        if (Player.getInstance().bottomBoundary().intersects(0, BRICK_SINGLE_HORIZONTAL.getHeight() + WALL_SHORT.getHeight()
                 + KITCHEN_HEIGHT, GlobalVariables.getCanvas().getWidth(), BRICK_SINGLE_HORIZONTAL.getHeight() + LIVING_ROOM_HEIGHT + 40)) {
-            GlobalVariables.getPlayer().render(GlobalVariables.getGraphicContext());
+            Player.getInstance().render(GlobalVariables.getGraphicContext());
         }
 
         FurnitureObjects.getBathtub().render(GlobalVariables.getGraphicContext());
@@ -401,11 +402,11 @@ public class DrawLevel1 {
         }
 
         //Display scores on the stats board
-        String pointsText = POINTS_TEXT + GlobalVariables.getPlayer().getScore();
+        String pointsText = POINTS_TEXT + Player.getInstance().getScore();
         GlobalVariables.getGraphicContext().fillText(pointsText, POINTS_TEXT_X, POINTS_TEXT_Y);
 
         //Display health on stats board
-        String healthText = HEALTH_TEXT + (int) (GlobalVariables.getPlayer().getPlayerHealth()) + "%";
+        String healthText = HEALTH_TEXT + (int) (Player.getInstance().getPlayerHealth()) + "%";
 
         GlobalVariables.getGraphicContext().fillText(healthText, HEALTH_TEXT_X, HEALTH_TEXT_Y);
     }

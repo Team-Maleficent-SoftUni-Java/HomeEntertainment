@@ -47,9 +47,6 @@ public class Main extends Application {
         ImageController.setPlayerDownImages(new ArrayDeque<>());
         ImageController.setPlayerUpImages(new ArrayDeque<>());
 
-        //Create the player object
-        Player.createPlayerObject();
-
         //Set monster images
         MonstersController.setMonsterImages();
 
